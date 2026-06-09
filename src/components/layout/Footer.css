@@ -1,7 +1,8 @@
 .footer {
-  background: #0f172a;
-  color: #94a3b8;
+  background: #050508;
+  color: var(--text-secondary);
   padding: 64px 0 0;
+  border-top: 1px solid var(--border);
 }
 
 .footer-container {
@@ -33,23 +34,24 @@
   width: 40px;
   height: 40px;
   border-radius: 12px;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
+  box-shadow: 0 0 16px var(--accent-glow);
 }
 
 .footer-logo-text {
   font-size: 1.125rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--text-primary);
 }
 
 .footer-tagline {
   font-size: 0.875rem;
   line-height: 1.7;
-  color: #94a3b8;
+  color: var(--text-secondary);
   max-width: 300px;
 }
 
@@ -64,19 +66,19 @@
   align-items: center;
   gap: 8px;
   font-size: 0.875rem;
-  color: #94a3b8;
+  color: var(--text-secondary);
   text-decoration: none;
   transition: color 0.2s;
 }
 
 .footer-contact-item:hover {
-  color: #e2e8f0;
+  color: var(--text-primary);
 }
 
 .footer-links-title {
   font-size: 0.875rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--text-primary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 16px;
@@ -93,19 +95,19 @@
 
 .footer-link {
   font-size: 0.875rem;
-  color: #94a3b8;
+  color: var(--text-secondary);
   text-decoration: none;
   transition: color 0.2s;
 }
 
 .footer-link:hover {
-  color: #e2e8f0;
+  color: var(--text-primary);
 }
 
 .footer-bottom {
   margin-top: 48px;
   padding: 24px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -113,7 +115,7 @@
 
 .footer-copyright {
   font-size: 0.813rem;
-  color: #64748b;
+  color: var(--text-muted);
   margin: 0;
 }
 
@@ -124,13 +126,13 @@
 
 .footer-bottom-links a {
   font-size: 0.813rem;
-  color: #64748b;
+  color: var(--text-muted);
   text-decoration: none;
   transition: color 0.2s;
 }
 
 .footer-bottom-links a:hover {
-  color: #e2e8f0;
+  color: var(--text-primary);
 }
 
 @media (max-width: 768px) {

@@ -1,6 +1,6 @@
 .semester-view {
-  padding: 80px 0;
-  background: #f8fafc;
+  padding: 100px 0;
+  position: relative;
 }
 
 .semester-view-container {
@@ -24,26 +24,26 @@
 
 .year-pill {
   padding: 8px 20px;
-  border: 1.5px solid rgba(0, 0, 0, 0.08);
-  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid var(--border);
+  background: var(--bg-card);
   border-radius: 100px;
   font-family: "Inter", sans-serif;
   font-size: 0.875rem;
   font-weight: 600;
-  color: #64748b;
+  color: var(--text-secondary);
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .year-pill:hover {
-  border-color: rgba(99, 102, 241, 0.3);
+  border-color: var(--border-hover);
 }
 
 .year-pill-active {
-  background: #6366f1;
+  background: var(--accent);
   border-color: transparent;
   color: #fff;
-  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 0 16px var(--accent-glow);
 }
 
 .semester-selector {
@@ -54,26 +54,26 @@
 
 .semester-pill {
   padding: 10px 24px;
-  border: 1.5px solid rgba(0, 0, 0, 0.08);
-  background: rgba(255, 255, 255, 0.85);
-  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
   font-family: "Inter", sans-serif;
   font-size: 0.875rem;
   font-weight: 600;
-  color: #64748b;
+  color: var(--text-secondary);
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .semester-pill:hover {
-  border-color: rgba(99, 102, 241, 0.3);
+  border-color: var(--border-hover);
 }
 
 .semester-pill-active {
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
   border-color: transparent;
   color: #fff;
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 0 16px var(--accent-glow);
 }
 
 .courses-grid {
@@ -86,15 +86,16 @@
   grid-column: 1 / -1;
   text-align: center;
   padding: 60px 20px;
-  color: #94a3b8;
+  color: var(--text-muted);
 }
 
 .courses-summary {
   text-align: center;
   margin-top: 32px;
   padding: 12px 24px;
-  background: rgba(99, 102, 241, 0.05);
-  border-radius: 12px;
+  background: var(--accent-subtle);
+  border: 1px solid rgba(124, 92, 252, 0.1);
+  border-radius: var(--radius-md);
   display: inline-block;
   margin-left: auto;
   margin-right: auto;
@@ -103,7 +104,7 @@
 .courses-summary-text {
   font-size: 0.813rem;
   font-weight: 500;
-  color: #6366f1;
+  color: var(--accent-light);
 }
 
 .courses-summary {
