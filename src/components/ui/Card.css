@@ -1,0 +1,56 @@
+.card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  border-color: rgba(99, 102, 241, 0.15);
+}
+
+.card-glass {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.card-glow {
+  box-shadow: 0 0 30px rgba(var(--glow-color-rgb, 99, 102, 241), 0.1);
+}
+
+.card-glow:hover {
+  box-shadow: 0 0 40px rgba(var(--glow-color-rgb, 99, 102, 241), 0.2);
+}
+
+.card-pad-sm {
+  padding: 12px;
+}
+
+.card-pad-md {
+  padding: 20px;
+}
+
+.card-pad-lg {
+  padding: 28px;
+}
+
+.card-pad-none {
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  .card {
+    border-radius: 12px;
+  }
+
+  .card-pad-md {
+    padding: 16px;
+  }
+
+  .card-pad-lg {
+    padding: 20px;
+  }
+}

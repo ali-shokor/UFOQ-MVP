@@ -1,0 +1,124 @@
+.semester-view {
+  padding: 80px 0;
+  background: #f8fafc;
+}
+
+.semester-view-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.semester-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.year-selector-inline {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.year-pill {
+  padding: 8px 20px;
+  border: 1.5px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 100px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.year-pill:hover {
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+.year-pill-active {
+  background: #6366f1;
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+}
+
+.semester-selector {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.semester-pill {
+  padding: 10px 24px;
+  border: 1.5px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 12px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.semester-pill:hover {
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+.semester-pill-active {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.courses-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: #94a3b8;
+}
+
+.courses-summary {
+  text-align: center;
+  margin-top: 32px;
+  padding: 12px 24px;
+  background: rgba(99, 102, 241, 0.05);
+  border-radius: 12px;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.courses-summary-text {
+  font-size: 0.813rem;
+  font-weight: 500;
+  color: #6366f1;
+}
+
+.courses-summary {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 640px) {
+  .courses-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .year-selector-inline,
+  .semester-selector {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

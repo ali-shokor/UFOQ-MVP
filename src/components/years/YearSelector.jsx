@@ -1,0 +1,76 @@
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import MajorCard from "./MajorCard";
+import { years } from "../../data/years";
+import { majors } from "../../data/majors";
+import "./YearSelector.css";
+
+export default function YearSelector({ onMajorSelect }) {
+  const [selectedYear, setSelectedYear] = useState(2);
+
+  return (
+    <section className="year-selector">
+      <div className="year-selector-container">
+        <motion.div
+          className="section-header"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <span className="section-tag">Academic Structure</span>
+          <h2 className="section-title">
+            Choose Your <span className="gradient-text">Year & Major</span>
+          </h2>
+          <p className="section-description">
+            Select your academic year to explore available programs and specializations.
+            More majors are coming soon.
+          </p>
+        </motion.div>
+
+        <motion.div
+          className="year-tabs"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+        >
+          {years.map((year) => (
+            <button
+              key={year.id}
+              className={`year-tab ${selectedYear === year.id ? "year-tab-active" : ""}`}
+              onClick={() => setSelectedYear(year.id)}
+            >
+              <span className="year-tab-number">{year.id}</span>
+              <div className="year-tab-info">
+                <span className="year-tab-label">{year.label}</span>
+                <span className="year-tab-desc">{year.description}</span>
+              </div>
+            </button>
+          ))}
+        </motion.div>
+
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={selectedYear}
+            className="majors-grid"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            {majors.map((major, index) => (
+              <MajorCard
+                key={major.id}
+                major={major}
+                year={selectedYear}
+                index={index}
+                onSelect={onMajorSelect}
+              />
+            ))}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </section>
+  );
+}
