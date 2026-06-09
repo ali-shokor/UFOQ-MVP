@@ -4,8 +4,9 @@
   border-radius: var(--radius-lg);
   border: 1px solid var(--border);
   background: var(--bg-card);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
+  backdrop-filter: blur(12px);
 }
 
 .major-card-active {
@@ -13,15 +14,16 @@
 }
 
 .major-card-active:hover {
-  border-color: var(--border-hover);
+  border-color: var(--border-glow);
   background: var(--bg-card-hover);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 0 30px rgba(124, 92, 252, 0.06), var(--shadow-md);
+  transform: translateY(-3px);
 }
 
 .major-card-disabled {
-  opacity: 0.4;
+  opacity: 0.35;
   cursor: not-allowed;
-  filter: grayscale(0.7);
+  filter: grayscale(0.8);
 }
 
 .major-card-icon {
@@ -32,13 +34,13 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 16px;
-  transition: all 0.3s;
+  transition: all 0.35s;
 }
 
 .major-card-active .major-card-icon {
-  background: linear-gradient(135deg, var(--major-color, var(--accent)), color-mix(in srgb, var(--major-color, var(--accent)), white 20%));
+  background: linear-gradient(135deg, var(--major-color, var(--accent)), color-mix(in srgb, var(--major-color, var(--accent)), white 25%));
   color: #fff;
-  box-shadow: 0 0 20px color-mix(in srgb, var(--major-color, var(--accent)), transparent 70%);
+  box-shadow: 0 0 24px color-mix(in srgb, var(--major-color, var(--accent)), transparent 65%);
 }
 
 .major-card-disabled .major-card-icon {
@@ -68,17 +70,12 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.813rem;
+  font-size: 0.8rem;
   font-weight: 500;
 }
 
-.major-card-active .major-card-status {
-  color: var(--accent-light);
-}
-
-.major-card-disabled .major-card-status {
-  color: var(--text-muted);
-}
+.major-card-active .major-card-status { color: var(--accent-light); }
+.major-card-disabled .major-card-status { color: var(--text-muted); }
 
 .major-card-glow {
   position: absolute;
@@ -92,5 +89,5 @@
 }
 
 .major-card-active:hover .major-card-glow {
-  opacity: 0.06;
+  opacity: 0.07;
 }

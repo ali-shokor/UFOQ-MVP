@@ -1,12 +1,69 @@
 .package-section {
   padding: 100px 0;
   position: relative;
+  overflow: hidden;
+}
+
+/* creative background */
+.package-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 45% at 50% 0%, rgba(124, 92, 252, 0.08), transparent),
+    radial-gradient(ellipse 40% 35% at 20% 80%, rgba(79, 140, 255, 0.06), transparent),
+    radial-gradient(ellipse 35% 30% at 80% 60%, rgba(167, 139, 250, 0.05), transparent);
+  pointer-events: none;
+}
+
+.package-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-glow), transparent);
+}
+
+/* floating decorative orbs */
+.package-section .pkg-orb-1,
+.package-section .pkg-orb-2 {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  animation: pkgOrbFloat 15s ease-in-out infinite;
+}
+
+.package-section .pkg-orb-1 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(124, 92, 252, 0.1), transparent 70%);
+  top: -100px;
+  right: -50px;
+  animation-delay: 0s;
+}
+
+.package-section .pkg-orb-2 {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(79, 140, 255, 0.08), transparent 70%);
+  bottom: -80px;
+  left: -40px;
+  animation-delay: 5s;
+}
+
+@keyframes pkgOrbFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(20px, -20px) scale(1.05); }
 }
 
 .package-container {
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 24px;
+  position: relative;
 }
 
 .packages-grid {
@@ -20,25 +77,30 @@
 .package-card {
   position: relative;
   padding: 32px;
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-2xl);
   border: 1px solid var(--border);
-  background: var(--bg-card);
-  transition: all 0.3s;
+  background: rgba(124, 92, 252, 0.025);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(16px);
 }
 
 .package-card:hover {
-  border-color: var(--border-hover);
-  box-shadow: var(--shadow-md);
+  border-color: var(--border-glow);
+  box-shadow: var(--shadow-md), 0 0 40px rgba(124, 92, 252, 0.05);
 }
 
 .package-card-featured {
-  border-color: rgba(124, 92, 252, 0.25);
-  background: linear-gradient(180deg, rgba(124, 92, 252, 0.06), var(--bg-card));
-  box-shadow: 0 0 40px var(--accent-glow);
+  border-color: var(--border-glow);
+  background: linear-gradient(180deg,
+    rgba(124, 92, 252, 0.08),
+    rgba(79, 140, 255, 0.04),
+    rgba(124, 92, 252, 0.02));
+  box-shadow: 0 0 60px rgba(124, 92, 252, 0.1), 0 0 120px rgba(124, 92, 252, 0.04);
 }
 
 .package-card-featured:hover {
-  box-shadow: 0 0 60px var(--accent-glow), var(--shadow-lg);
+  box-shadow: 0 0 80px rgba(124, 92, 252, 0.15), 0 0 160px rgba(124, 92, 252, 0.06), var(--shadow-lg);
+  transform: translateY(-4px);
 }
 
 .package-badge {
@@ -50,13 +112,13 @@
   align-items: center;
   gap: 6px;
   padding: 6px 16px;
-  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  background: linear-gradient(135deg, var(--accent), var(--blue));
   color: #fff;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
   border-radius: 100px;
   white-space: nowrap;
-  box-shadow: 0 0 16px var(--accent-glow);
+  box-shadow: 0 0 20px var(--accent-glow), 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .package-header {
@@ -68,13 +130,13 @@
   width: 56px;
   height: 56px;
   border-radius: 16px;
-  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  background: linear-gradient(135deg, var(--accent), var(--blue));
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
   margin: 0 auto 16px;
-  box-shadow: 0 0 24px var(--accent-glow);
+  box-shadow: 0 0 28px var(--accent-glow), 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .package-name {
@@ -85,7 +147,7 @@
 }
 
 .package-subtitle {
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   color: var(--text-secondary);
   margin: 0;
 }
@@ -120,17 +182,17 @@
 }
 
 .package-period {
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
 }
 
 .package-discount {
   text-align: center;
   padding: 6px 16px;
-  background: rgba(52, 211, 153, 0.08);
-  border: 1px solid rgba(52, 211, 153, 0.15);
+  background: rgba(52, 211, 153, 0.06);
+  border: 1px solid rgba(52, 211, 153, 0.12);
   color: var(--green);
-  font-size: 0.813rem;
+  font-size: 0.8rem;
   font-weight: 700;
   border-radius: 8px;
   margin-bottom: 24px;
@@ -142,7 +204,6 @@
 
 .package-header + .package-pricing + .package-original + .package-period + .package-discount,
 .package-card > .package-discount {
-  text-align: center;
   display: flex;
   justify-content: center;
 }
@@ -160,7 +221,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   color: var(--text-secondary);
 }
 
@@ -170,16 +231,7 @@
 }
 
 @media (max-width: 640px) {
-  .packages-grid {
-    grid-template-columns: 1fr;
-    max-width: 400px;
-  }
-
-  .package-card {
-    padding: 24px;
-  }
-
-  .package-price {
-    font-size: 2.5rem;
-  }
+  .packages-grid { grid-template-columns: 1fr; max-width: 400px; }
+  .package-card { padding: 24px; }
+  .package-price { font-size: 2.5rem; }
 }

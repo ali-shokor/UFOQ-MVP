@@ -1,6 +1,5 @@
 .ps-section {
   padding: 100px 0;
-  background: var(--bg-secondary);
   position: relative;
   overflow: hidden;
 }
@@ -8,17 +7,29 @@
 .ps-section::before {
   content: '';
   position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 40% 35% at 10% 50%, rgba(124, 92, 252, 0.06), transparent),
+    radial-gradient(ellipse 35% 30% at 90% 40%, rgba(79, 140, 255, 0.05), transparent),
+    radial-gradient(ellipse 30% 25% at 50% 90%, rgba(167, 139, 250, 0.04), transparent);
+  pointer-events: none;
+}
+
+.ps-section::after {
+  content: '';
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  background: linear-gradient(90deg, transparent, var(--border-glow), transparent);
 }
 
 .ps-container {
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 24px;
+  position: relative;
 }
 
 .ps-grid {
@@ -33,20 +44,20 @@
   gap: 10px;
   padding: 12px 16px;
   border-radius: var(--radius-md);
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   font-weight: 700;
   margin-bottom: 16px;
 }
 
 .ps-column-problem {
-  background: rgba(239, 68, 68, 0.08);
-  border: 1px solid rgba(239, 68, 68, 0.15);
+  background: rgba(239, 68, 68, 0.06);
+  border: 1px solid rgba(239, 68, 68, 0.12);
   color: #f87171;
 }
 
 .ps-column-solution {
-  background: rgba(52, 211, 153, 0.08);
-  border: 1px solid rgba(52, 211, 153, 0.15);
+  background: rgba(52, 211, 153, 0.06);
+  border: 1px solid rgba(52, 211, 153, 0.12);
   color: var(--green);
 }
 
@@ -63,12 +74,14 @@
   padding: 18px;
   border-radius: var(--radius-md);
   border: 1px solid var(--border);
-  background: var(--bg-card);
+  background: rgba(124, 92, 252, 0.025);
   transition: all 0.3s;
+  backdrop-filter: blur(8px);
 }
 
 .ps-card:hover {
   border-color: var(--border-hover);
+  box-shadow: 0 0 20px rgba(124, 92, 252, 0.04);
 }
 
 .ps-card-icon {
@@ -82,32 +95,29 @@
 }
 
 .ps-card-icon-red {
-  background: rgba(239, 68, 68, 0.1);
+  background: rgba(239, 68, 68, 0.08);
   color: #f87171;
 }
 
 .ps-card-icon-green {
-  background: rgba(52, 211, 153, 0.1);
+  background: rgba(52, 211, 153, 0.08);
   color: var(--green);
 }
 
 .ps-card-title {
-  font-size: 0.938rem;
+  font-size: 0.9rem;
   font-weight: 700;
   color: var(--text-primary);
   margin: 0 0 4px;
 }
 
 .ps-card-desc {
-  font-size: 0.813rem;
+  font-size: 0.8rem;
   color: var(--text-secondary);
-  line-height: 1.5;
+  line-height: 1.55;
   margin: 0;
 }
 
 @media (max-width: 768px) {
-  .ps-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
+  .ps-grid { grid-template-columns: 1fr; gap: 24px; }
 }

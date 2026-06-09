@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Play, Users, BookOpen, Award, Sparkles } from "lucide-react";
+import {
+  ArrowRight, Play, Users, BookOpen, Award, Sparkles,
+  ChevronRight, GraduationCap, Compass, Code, Lightbulb
+} from "lucide-react";
 import Button from "../ui/Button";
 import "./Hero.css";
 
@@ -14,11 +17,13 @@ export default function Hero() {
   return (
     <section className="hero">
       <div className="hero-bg">
-        <div className="hero-gradient-1" />
-        <div className="hero-gradient-2" />
-        <div className="hero-gradient-3" />
-        <div className="hero-grid" />
-        <div className="hero-noise" />
+        <div className="hero-gradient-orb hero-orb-purple" />
+        <div className="hero-gradient-orb hero-orb-blue" />
+        <div className="hero-gradient-orb hero-orb-violet" />
+        <div className="hero-gradient-orb hero-orb-deep" />
+        <div className="hero-aurora" />
+        <div className="hero-grid-pattern" />
+        <div className="hero-noise-overlay" />
       </div>
 
       <div className="hero-container">
@@ -39,9 +44,9 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            Master Your
+            Discover Your
             <br />
-            <span className="hero-title-gradient">Academic Journey</span>
+            <span className="hero-title-gradient">Academic Path</span>
           </motion.h1>
 
           <motion.p
@@ -50,9 +55,9 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.35 }}
           >
-            UFOQ Academy provides structured, expert-led courses for university
-            students. From Computer Science fundamentals to advanced
-            specializations — everything you need to excel, in one place.
+            UFOQ Academy maps your university journey with structured courses,
+            expert mentors, and a clear path from where you are to where you
+            want to be.
           </motion.p>
 
           <motion.div
@@ -63,7 +68,7 @@ export default function Hero() {
           >
             <Link to="/academics">
               <Button size="lg" icon={ArrowRight} iconPosition="right">
-                Explore Programs
+                Find Your Path
               </Button>
             </Link>
             <Link to="/packages">
@@ -74,21 +79,22 @@ export default function Hero() {
           </motion.div>
 
           <motion.div
-            className="hero-price-tag"
+            className="hero-price-pill"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.6 }}
+            transition={{ delay: 0.62 }}
           >
-            <div className="hero-price-content">
-              <span className="hero-price-label">Full Package</span>
+            <div className="hero-price-left">
+              <span className="hero-price-badge">Full Package</span>
               <div className="hero-price-amount">
-                <span className="hero-price-currency">$</span>
-                <span className="hero-price-value">99</span>
+                <span className="hero-price-dollar">$</span>
+                <span className="hero-price-num">99</span>
               </div>
-              <span className="hero-price-note">All courses · Lifetime access</span>
+              <span className="hero-price-detail">All courses · Lifetime access</span>
             </div>
-            <Link to="/packages" className="hero-price-link">
-              Get Started <ArrowRight size={14} />
+            <Link to="/packages" className="hero-price-cta">
+              Get Started
+              <ChevronRight size={16} />
             </Link>
           </motion.div>
 
@@ -114,40 +120,92 @@ export default function Hero() {
 
         <motion.div
           className="hero-visual"
-          initial={{ opacity: 0, scale: 0.8 }}
+          initial={{ opacity: 0, scale: 0.85 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
+          transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
         >
-          <div className="hero-3d-scene">
-            <div className="hero-card-stack">
-              <div className="hero-float-card hero-float-1">
-                <div className="hero-float-icon">
-                  <BookOpen size={20} />
-                </div>
-                <div>
-                  <div className="hero-float-title">8 Courses</div>
-                  <div className="hero-float-sub">Semester 1 · Year 2</div>
-                </div>
+          <div className="hero-edu-scene">
+            {/* Central compass / guide icon */}
+            <div className="edu-compass">
+              <div className="edu-compass-ring edu-ring-outer" />
+              <div className="edu-compass-ring edu-ring-middle" />
+              <div className="edu-compass-ring edu-ring-inner" />
+              <div className="edu-compass-core">
+                <div className="edu-compass-inner-glow" />
+                <Compass size={28} style={{ transform: "rotate(45deg)" }} />
               </div>
+              <div className="edu-compass-pulse" />
+            </div>
 
-              <div className="hero-float-card hero-float-2">
-                <div className="hero-float-icon hero-float-icon-green">
-                  <Award size={20} />
-                </div>
-                <div>
-                  <div className="hero-float-title">Certificate</div>
-                  <div className="hero-float-sub">On completion</div>
-                </div>
+            {/* The winding academic path */}
+            <svg className="edu-path-svg" viewBox="0 0 400 500" fill="none">
+              <defs>
+                <linearGradient id="pathGrad" x1="200" y1="0" x2="200" y2="500" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stopColor="#7c5cfc" stopOpacity="0.8" />
+                  <stop offset="50%" stopColor="#4f8cff" stopOpacity="0.5" />
+                  <stop offset="100%" stopColor="#34d399" stopOpacity="0.3" />
+                </linearGradient>
+                <filter id="pathGlow">
+                  <feGaussianBlur stdDeviation="4" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <path
+                d="M200 40 C260 100, 140 160, 200 220 C260 280, 140 340, 200 400"
+                stroke="url(#pathGrad)"
+                strokeWidth="3"
+                strokeLinecap="round"
+                filter="url(#pathGlow)"
+                className="edu-path-line"
+              />
+              {/* Milestone dots */}
+              <circle cx="200" cy="40" r="6" fill="#7c5cfc" className="edu-dot edu-dot-1" />
+              <circle cx="200" cy="160" r="5" fill="#6366f1" className="edu-dot edu-dot-2" />
+              <circle cx="200" cy="280" r="5" fill="#4f8cff" className="edu-dot edu-dot-3" />
+              <circle cx="200" cy="400" r="7" fill="#34d399" className="edu-dot edu-dot-4" />
+            </svg>
+
+            {/* Floating academic icons along the path */}
+            <div className="edu-float edu-float-1">
+              <div className="edu-float-icon">
+                <BookOpen size={18} />
               </div>
+              <div className="edu-float-text">
+                <span className="edu-float-label">Start Here</span>
+                <span className="edu-float-sub">Foundation</span>
+              </div>
+            </div>
 
-              <div className="hero-float-card hero-float-3">
-                <div className="hero-float-icon hero-float-icon-amber">
-                  <Users size={20} />
-                </div>
-                <div>
-                  <div className="hero-float-title">Live Support</div>
-                  <div className="hero-float-sub">Chat with mentors</div>
-                </div>
+            <div className="edu-float edu-float-2">
+              <div className="edu-float-icon edu-float-icon-blue">
+                <Code size={18} />
+              </div>
+              <div className="edu-float-text">
+                <span className="edu-float-label">Learn & Build</span>
+                <span className="edu-float-sub">Core Skills</span>
+              </div>
+            </div>
+
+            <div className="edu-float edu-float-3">
+              <div className="edu-float-icon edu-float-icon-violet">
+                <Lightbulb size={18} />
+              </div>
+              <div className="edu-float-text">
+                <span className="edu-float-label">Level Up</span>
+                <span className="edu-float-sub">Advanced</span>
+              </div>
+            </div>
+
+            <div className="edu-float edu-float-4">
+              <div className="edu-float-icon edu-float-icon-green">
+                <GraduationCap size={18} />
+              </div>
+              <div className="edu-float-text">
+                <span className="edu-float-label">Graduate</span>
+                <span className="edu-float-sub">Achievement</span>
               </div>
             </div>
           </div>

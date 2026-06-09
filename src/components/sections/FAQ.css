@@ -1,23 +1,34 @@
 .faq-section {
   padding: 100px 0;
-  background: var(--bg-secondary);
   position: relative;
+  overflow: hidden;
 }
 
 .faq-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 40% 35% at 50% 0%, rgba(124, 92, 252, 0.06), transparent),
+    radial-gradient(ellipse 30% 25% at 20% 80%, rgba(79, 140, 255, 0.04), transparent);
+  pointer-events: none;
+}
+
+.faq-section::after {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  background: linear-gradient(90deg, transparent, var(--border-glow), transparent);
 }
 
 .faq-container {
   max-width: 800px;
   margin: 0 auto;
   padding: 0 24px;
+  position: relative;
 }
 
 .faq-list {
@@ -29,9 +40,10 @@
 .faq-item {
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  background: var(--bg-card);
+  background: rgba(124, 92, 252, 0.025);
   overflow: hidden;
   transition: all 0.3s;
+  backdrop-filter: blur(8px);
 }
 
 .faq-item:hover {
@@ -39,8 +51,9 @@
 }
 
 .faq-item-open {
-  border-color: rgba(124, 92, 252, 0.2);
-  background: rgba(124, 92, 252, 0.03);
+  border-color: var(--border-glow);
+  background: rgba(124, 92, 252, 0.04);
+  box-shadow: 0 0 20px rgba(124, 92, 252, 0.04);
 }
 
 .faq-question {
@@ -53,7 +66,7 @@
   border: none;
   cursor: pointer;
   font-family: "Inter", sans-serif;
-  font-size: 0.938rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: var(--text-primary);
   text-align: left;
@@ -70,13 +83,11 @@
   color: var(--accent-light);
 }
 
-.faq-answer {
-  overflow: hidden;
-}
+.faq-answer { overflow: hidden; }
 
 .faq-answer p {
   padding: 0 20px 18px;
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   color: var(--text-secondary);
   line-height: 1.7;
   margin: 0;

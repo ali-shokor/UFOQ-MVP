@@ -25,25 +25,32 @@
 .year-pill {
   padding: 8px 20px;
   border: 1px solid var(--border);
-  background: var(--bg-card);
+  background: rgba(124, 92, 252, 0.04);
   border-radius: 100px;
   font-family: "Inter", sans-serif;
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   font-weight: 600;
   color: var(--text-secondary);
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .year-pill:hover {
-  border-color: var(--border-hover);
+  border-color: var(--border-glow);
+  background: rgba(124, 92, 252, 0.08);
+  color: var(--text-primary);
 }
 
 .year-pill-active {
-  background: var(--accent);
+  background: linear-gradient(135deg, var(--accent), var(--blue));
   border-color: transparent;
   color: #fff;
-  box-shadow: 0 0 16px var(--accent-glow);
+  box-shadow: 0 0 16px var(--accent-glow), 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.year-pill-active:hover {
+  color: #fff;
+  box-shadow: 0 0 24px var(--accent-glow), 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
 .semester-selector {
@@ -55,25 +62,32 @@
 .semester-pill {
   padding: 10px 24px;
   border: 1px solid var(--border);
-  background: var(--bg-card);
+  background: rgba(124, 92, 252, 0.04);
   border-radius: var(--radius-md);
   font-family: "Inter", sans-serif;
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   font-weight: 600;
   color: var(--text-secondary);
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .semester-pill:hover {
-  border-color: var(--border-hover);
+  border-color: var(--border-glow);
+  background: rgba(124, 92, 252, 0.08);
+  color: var(--text-primary);
 }
 
 .semester-pill-active {
-  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  background: linear-gradient(135deg, var(--accent), var(--blue));
   border-color: transparent;
   color: #fff;
-  box-shadow: 0 0 16px var(--accent-glow);
+  box-shadow: 0 0 16px var(--accent-glow), 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.semester-pill-active:hover {
+  color: #fff;
+  box-shadow: 0 0 24px var(--accent-glow), 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
 .courses-grid {
@@ -94,32 +108,20 @@
   margin-top: 32px;
   padding: 12px 24px;
   background: var(--accent-subtle);
-  border: 1px solid rgba(124, 92, 252, 0.1);
+  border: 1px solid var(--border-glow);
   border-radius: var(--radius-md);
   display: inline-block;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .courses-summary-text {
-  font-size: 0.813rem;
+  font-size: 0.8rem;
   font-weight: 500;
   color: var(--accent-light);
 }
 
-.courses-summary {
-  display: flex;
-  justify-content: center;
-}
+.courses-summary { display: flex; justify-content: center; }
 
 @media (max-width: 640px) {
-  .courses-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .year-selector-inline,
-  .semester-selector {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+  .courses-grid { grid-template-columns: 1fr; }
+  .year-selector-inline, .semester-selector { flex-wrap: wrap; justify-content: center; }
 }
