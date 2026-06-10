@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer, useCallback } from "react";
+import { createContext, useContext, useReducer, useCallback, useMemo } from "react";
 
 const CartContext = createContext(null);
 
@@ -20,8 +20,12 @@ const cartReducer = (state, action) => {
           (c) => c.code !== action.payload
         ),
       };
+    case "SET_BUNDLE_ACTIVE":
+      return { ...state, selectedCourses: action.payload, isBundleActive: true };
+    case "SET_BUNDLE_INACTIVE":
+      return { ...state, isBundleActive: false };
     case "CLEAR_CART":
-      return { ...state, selectedCourses: [] };
+      return { ...state, selectedCourses: [], isBundleActive: false };
     case "TOGGLE_CART":
       return { ...state, isCartOpen: !state.isCartOpen };
     case "OPEN_CART":
@@ -36,6 +40,7 @@ const cartReducer = (state, action) => {
 const initialState = {
   selectedCourses: [],
   isCartOpen: false,
+  isBundleActive: false,
 };
 
 export function CartProvider({ children }) {
@@ -47,6 +52,14 @@ export function CartProvider({ children }) {
 
   const removeCourse = useCallback((courseCode) => {
     dispatch({ type: "REMOVE_COURSE", payload: courseCode });
+  }, []);
+
+  const setBundleActive = useCallback((courses) => {
+    dispatch({ type: "SET_BUNDLE_ACTIVE", payload: courses });
+  }, []);
+
+  const setBundleInactive = useCallback(() => {
+    dispatch({ type: "SET_BUNDLE_INACTIVE" });
   }, []);
 
   const clearCart = useCallback(() => {
@@ -72,17 +85,25 @@ export function CartProvider({ children }) {
     [state.selectedCourses]
   );
 
+  const totalPrice = useMemo(() => {
+    return state.selectedCourses.reduce((sum, c) => sum + (c.price || 0), 0);
+  }, [state.selectedCourses]);
+
   const value = {
     selectedCourses: state.selectedCourses,
     isCartOpen: state.isCartOpen,
+    isBundleActive: state.isBundleActive,
     addCourse,
     removeCourse,
+    setBundleActive,
+    setBundleInactive,
     clearCart,
     toggleCart,
     openCart,
     closeCart,
     isCourseSelected,
     courseCount: state.selectedCourses.length,
+    totalPrice,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

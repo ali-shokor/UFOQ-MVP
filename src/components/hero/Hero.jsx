@@ -135,15 +135,20 @@ export default function Hero() {
                 <Compass size={28} style={{ transform: "rotate(45deg)" }} />
               </div>
               <div className="edu-compass-pulse" />
+              <div className="edu-compass-pulse edu-compass-pulse-2" />
             </div>
+
+            {/* Orbital rings around the scene */}
+            <div className="edu-orbit edu-orbit-1" />
+            <div className="edu-orbit edu-orbit-2" />
 
             {/* The winding academic path */}
             <svg className="edu-path-svg" viewBox="0 0 400 500" fill="none">
               <defs>
                 <linearGradient id="pathGrad" x1="200" y1="0" x2="200" y2="500" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stopColor="#7c5cfc" stopOpacity="0.8" />
-                  <stop offset="50%" stopColor="#4f8cff" stopOpacity="0.5" />
-                  <stop offset="100%" stopColor="#34d399" stopOpacity="0.3" />
+                  <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.8" />
+                  <stop offset="50%" stopColor="#a78bfa" stopOpacity="0.5" />
+                  <stop offset="100%" stopColor="#c4b5fd" stopOpacity="0.3" />
                 </linearGradient>
                 <filter id="pathGlow">
                   <feGaussianBlur stdDeviation="4" result="blur" />
@@ -161,10 +166,10 @@ export default function Hero() {
                 filter="url(#pathGlow)"
                 className="edu-path-line"
               />
-              {/* Milestone dots */}
-              <circle cx="200" cy="40" r="6" fill="#7c5cfc" className="edu-dot edu-dot-1" />
-              <circle cx="200" cy="160" r="5" fill="#6366f1" className="edu-dot edu-dot-2" />
-              <circle cx="200" cy="280" r="5" fill="#4f8cff" className="edu-dot edu-dot-3" />
+              {/* Milestone dots — calculated on the bezier path */}
+              <circle cx="200" cy="40" r="6" fill="#8b5cf6" className="edu-dot edu-dot-1" />
+              <circle cx="200" cy="130" r="5" fill="#a78bfa" className="edu-dot edu-dot-2" />
+              <circle cx="200" cy="310" r="5" fill="#c4b5fd" className="edu-dot edu-dot-3" />
               <circle cx="200" cy="400" r="7" fill="#34d399" className="edu-dot edu-dot-4" />
             </svg>
 

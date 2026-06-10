@@ -8,7 +8,7 @@
   border: none;
   border-radius: var(--radius-md);
   cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
   white-space: nowrap;
   position: relative;
   overflow: hidden;
@@ -27,68 +27,77 @@
 .btn-md { padding: 10px 24px; font-size: 0.9rem; }
 .btn-lg { padding: 14px 32px; font-size: 0.95rem; }
 
+/* ── primary ── */
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent), var(--blue));
-  color: #fff;
-  box-shadow: 0 0 20px var(--accent-glow), 0 2px 8px rgba(0, 0, 0, 0.3);
+  background: rgba(139, 92, 246, 0.12);
+  color: var(--accent-light);
+  border: 1px solid rgba(139, 92, 246, 0.2);
 }
 
 .btn-primary:hover:not(:disabled) {
-  box-shadow: 0 0 36px var(--accent-glow), 0 4px 16px rgba(0, 0, 0, 0.4);
-  transform: translateY(-1px);
+  background: rgba(139, 92, 246, 0.18);
+  border-color: rgba(139, 92, 246, 0.35);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.08);
 }
 
+/* ── secondary ── */
 .btn-secondary {
-  background: var(--bg-card);
+  background: rgba(255, 255, 255, 0.03);
   color: var(--text-primary);
   border: 1px solid var(--border);
   backdrop-filter: blur(8px);
 }
 
 .btn-secondary:hover:not(:disabled) {
-  background: var(--bg-card-hover);
+  background: rgba(255, 255, 255, 0.06);
   border-color: var(--border-hover);
 }
 
+/* ── outline ── */
 .btn-outline {
   background: transparent;
   color: var(--accent-light);
-  border: 1px solid rgba(124, 92, 252, 0.25);
+  border: 1px solid rgba(139, 92, 246, 0.2);
 }
 
 .btn-outline:hover:not(:disabled) {
-  background: var(--accent-subtle);
-  border-color: var(--accent);
+  background: rgba(139, 92, 246, 0.06);
+  border-color: rgba(139, 92, 246, 0.35);
 }
 
+/* ── ghost ── */
 .btn-ghost {
   background: transparent;
   color: var(--text-secondary);
 }
 
 .btn-ghost:hover:not(:disabled) {
-  background: var(--bg-card);
+  background: rgba(255, 255, 255, 0.04);
   color: var(--text-primary);
 }
 
+/* ── danger ── */
 .btn-danger {
-  background: linear-gradient(135deg, #ef4444, #dc2626);
-  color: #fff;
+  background: rgba(239, 68, 68, 0.1);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.2);
 }
 
 .btn-danger:hover:not(:disabled) {
-  box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+  background: rgba(239, 68, 68, 0.16);
+  border-color: rgba(239, 68, 68, 0.35);
 }
 
+/* ── whatsapp ── */
 .btn-whatsapp {
-  background: linear-gradient(135deg, #25d366, #128c7e);
-  color: #fff;
-  box-shadow: 0 0 20px rgba(37, 211, 102, 0.2);
+  background: rgba(37, 211, 102, 0.1);
+  color: #34d399;
+  border: 1px solid rgba(37, 211, 102, 0.2);
 }
 
 .btn-whatsapp:hover:not(:disabled) {
-  box-shadow: 0 0 32px rgba(37, 211, 102, 0.35);
-  transform: translateY(-1px);
+  background: rgba(37, 211, 102, 0.16);
+  border-color: rgba(37, 211, 102, 0.35);
 }
 
 .btn-loading .btn-text { opacity: 0; }

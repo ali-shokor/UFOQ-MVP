@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ShoppingCart, GraduationCap } from "lucide-react";
+import { Menu, X, ShoppingCart, GraduationCap, ArrowRight } from "lucide-react";
 import { useCart } from "../../context/CartContext";
 import "./Header.css";
 
@@ -15,8 +15,9 @@ const navLinks = [
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { courseCount, toggleCart } = useCart();
+  const { courseCount, toggleCart, totalPrice, isBundleActive } = useCart();
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -27,6 +28,10 @@ export default function Header() {
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [location]);
+
+  const handleEnroll = () => {
+    navigate(courseCount > 0 ? "/contact" : "/academics");
+  };
 
   return (
     <motion.header
@@ -78,9 +83,16 @@ export default function Header() {
             )}
           </motion.button>
 
-          <Link to="/contact" className="header-cta">
-            Enroll Now
-          </Link>
+          {courseCount > 0 && (
+            <span className="header-price-tag">
+              {isBundleActive ? "$99" : `$${totalPrice}`}
+            </span>
+          )}
+
+          <button onClick={handleEnroll} className="header-enroll-btn">
+            <span>Enroll Now</span>
+            <ArrowRight size={16} />
+          </button>
 
           <button
             className="mobile-menu-btn"
@@ -122,9 +134,10 @@ export default function Header() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 }}
               >
-                <Link to="/contact" className="mobile-cta-btn">
-                  Enroll Now
-                </Link>
+                <button onClick={handleEnroll} className="mobile-enroll-btn">
+                  <span>Enroll Now</span>
+                  <ArrowRight size={16} />
+                </button>
               </motion.div>
             </nav>
           </motion.div>

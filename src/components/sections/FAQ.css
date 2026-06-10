@@ -9,8 +9,8 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 40% 35% at 50% 0%, rgba(124, 92, 252, 0.06), transparent),
-    radial-gradient(ellipse 30% 25% at 20% 80%, rgba(79, 140, 255, 0.04), transparent);
+    radial-gradient(ellipse 40% 35% at 50% 0%, rgba(139, 92, 246, 0.06), transparent),
+    radial-gradient(ellipse 30% 25% at 20% 80%, rgba(167, 139, 250, 0.05), transparent);
   pointer-events: none;
 }
 
@@ -40,7 +40,7 @@
 .faq-item {
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  background: rgba(124, 92, 252, 0.025);
+  background: rgba(139, 92, 246, 0.025);
   overflow: hidden;
   transition: all 0.3s;
   backdrop-filter: blur(8px);
@@ -52,8 +52,8 @@
 
 .faq-item-open {
   border-color: var(--border-glow);
-  background: rgba(124, 92, 252, 0.04);
-  box-shadow: 0 0 20px rgba(124, 92, 252, 0.04);
+  background: rgba(139, 92, 246, 0.04);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.04);
 }
 
 .faq-question {

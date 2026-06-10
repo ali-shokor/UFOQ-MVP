@@ -48,7 +48,7 @@ export default function AboutUs() {
                 </div>
               </div>
               <div className="about-value">
-                <div className="about-value-icon about-value-icon-pink">
+                <div className="about-value-icon about-value-icon-violet">
                   <Heart size={20} />
                 </div>
                 <div>

@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSearchParams } from "react-router-dom";
+import { Package } from "lucide-react";
 import CourseCard from "./CourseCard";
+import { useCart } from "../../context/CartContext";
 import { getCourses, getAvailableSemesters, getAvailableYears } from "../../data/courses";
 import "./SemesterView.css";
 
@@ -10,10 +12,23 @@ export default function SemesterView({ majorId = "cs" }) {
   const initialYear = parseInt(searchParams.get("year")) || 2;
   const [selectedYear, setSelectedYear] = useState(initialYear);
   const [selectedSemester, setSelectedSemester] = useState(1);
+  const { addCourse, removeCourse, isCourseSelected, selectedCourses, isBundleActive, setBundleActive, setBundleInactive, totalPrice } = useCart();
 
   const availableYears = getAvailableYears(majorId);
   const availableSemesters = getAvailableSemesters(majorId, selectedYear);
   const courses = getCourses(majorId, selectedYear, selectedSemester);
+  const availableCourses = courses.filter((c) => c.available);
+
+  const allSelected = availableCourses.length > 0 && availableCourses.every((c) => isCourseSelected(c.code));
+
+  const handleFullBundle = () => {
+    if (allSelected) {
+      setBundleInactive();
+      availableCourses.forEach((c) => removeCourse(c.code));
+    } else {
+      setBundleActive(availableCourses);
+    }
+  };
 
   return (
     <section className="semester-view">
@@ -62,6 +77,23 @@ export default function SemesterView({ majorId = "cs" }) {
             ))}
           </div>
         </div>
+
+        {availableCourses.length > 0 && (
+          <div className="bundle-bar">
+            <button
+              className={`bundle-btn ${allSelected ? "bundle-btn-active" : ""}`}
+              onClick={handleFullBundle}
+            >
+              <Package size={18} />
+              <span className="bundle-btn-text">
+                {allSelected ? "Remove Full Bundle" : "Full Bundle — $99"}
+              </span>
+              <span className="bundle-btn-hint">
+                {allSelected ? "All courses selected" : `All ${availableCourses.length} courses · Save up to 60%`}
+              </span>
+            </button>
+          </div>
+        )}
 
         <AnimatePresence mode="wait">
           <motion.div

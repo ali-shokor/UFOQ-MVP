@@ -1,5 +1,6 @@
+import { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { Star, Quote } from "lucide-react";
+import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import "./Testimonials.css";
 
 const testimonials = [
@@ -45,9 +46,41 @@ const testimonials = [
     text: "I've tried many resources before UFOQ. Nothing comes close to the structure and quality here. It's like having a personal tutor.",
     avatar: "N",
   },
+  {
+    name: "Karim Moussaoui",
+    role: "CS Student · Year 1",
+    rating: 5,
+    text: "The step-by-step approach really works. I never felt lost during lectures and the summaries helped me ace my finals.",
+    avatar: "K",
+  },
+  {
+    name: "Layla Fassi",
+    role: "CS Student · Year 2",
+    rating: 5,
+    text: "What I love most is the 1:1 sessions. Having someone to ask questions directly made all the difference in understanding complex topics.",
+    avatar: "L",
+  },
 ];
 
 export default function Testimonials() {
+  const scrollRef = useRef(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const checkScroll = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 10);
+    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10);
+  };
+
+  const scroll = (dir) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const cardWidth = el.querySelector(".testimonial-card")?.offsetWidth || 340;
+    el.scrollBy({ left: dir * (cardWidth + 20), behavior: "smooth" });
+  };
+
   return (
     <section className="testimonials-section">
       <div className="testimonials-container">
@@ -67,34 +100,61 @@ export default function Testimonials() {
           </p>
         </motion.div>
 
-        <div className="testimonials-grid">
-          {testimonials.map((t, index) => (
-            <motion.div
-              key={t.name}
-              className="testimonial-card"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.08 }}
-              whileHover={{ y: -4 }}
-            >
-              <div className="testimonial-quote">
-                <Quote size={20} />
-              </div>
-              <p className="testimonial-text">{t.text}</p>
-              <div className="testimonial-stars">
-                {Array.from({ length: t.rating }).map((_, i) => (
-                  <Star key={i} size={14} fill="#fbbf24" color="#fbbf24" />
-                ))}
-              </div>
-              <div className="testimonial-author">
-                <div className="testimonial-avatar">{t.avatar}</div>
-                <div>
-                  <div className="testimonial-name">{t.name}</div>
-                  <div className="testimonial-role">{t.role}</div>
+        <div className="testimonials-carousel">
+          <button
+            className={`carousel-arrow carousel-arrow-left ${canScrollLeft ? "" : "hidden"}`}
+            onClick={() => scroll(-1)}
+            aria-label="Previous"
+          >
+            <ChevronLeft size={20} />
+          </button>
+
+          <div
+            className="testimonials-track"
+            ref={scrollRef}
+            onScroll={checkScroll}
+          >
+            {testimonials.map((t, i) => (
+              <motion.div
+                key={t.name}
+                className="testimonial-card"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.06 }}
+              >
+                <div className="testimonial-quote">
+                  <Quote size={20} />
                 </div>
-              </div>
-            </motion.div>
+                <p className="testimonial-text">{t.text}</p>
+                <div className="testimonial-stars">
+                  {Array.from({ length: t.rating }).map((_, j) => (
+                    <Star key={j} size={14} fill="#fbbf24" color="#fbbf24" />
+                  ))}
+                </div>
+                <div className="testimonial-author">
+                  <div className="testimonial-avatar">{t.avatar}</div>
+                  <div>
+                    <div className="testimonial-name">{t.name}</div>
+                    <div className="testimonial-role">{t.role}</div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <button
+            className={`carousel-arrow carousel-arrow-right ${canScrollRight ? "" : "hidden"}`}
+            onClick={() => scroll(1)}
+            aria-label="Next"
+          >
+            <ChevronRight size={20} />
+          </button>
+        </div>
+
+        <div className="testimonials-dots">
+          {testimonials.map((_, i) => (
+            <span key={i} className="testimonials-dot" />
           ))}
         </div>
       </div>

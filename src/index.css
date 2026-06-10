@@ -2,9 +2,9 @@
 
 :root {
   --bg-deep: #06060e;
-  --bg-primary: #0b0b18;
-  --bg-secondary: #0f0f24;
-  --bg-elevated: #141432;
+  --bg-primary: #0a0a16;
+  --bg-secondary: #0e0e22;
+  --bg-elevated: #131330;
   --bg-card: rgba(255, 255, 255, 0.025);
   --bg-card-hover: rgba(255, 255, 255, 0.05);
   --bg-glass: rgba(255, 255, 255, 0.035);
@@ -13,24 +13,23 @@
   --text-secondary: #9d9db8;
   --text-muted: #5e5e78;
 
-  --accent: #7c5cfc;
-  --accent-light: #9b7dff;
-  --accent-deep: #5b3fd4;
-  --accent-glow: rgba(124, 92, 252, 0.3);
-  --accent-subtle: rgba(124, 92, 252, 0.07);
-  --accent-wash: rgba(124, 92, 252, 0.04);
+  --accent: #8b5cf6;
+  --accent-light: #a78bfa;
+  --accent-deep: #6d28d9;
+  --accent-glow: rgba(139, 92, 246, 0.3);
+  --accent-subtle: rgba(139, 92, 246, 0.07);
+  --accent-wash: rgba(139, 92, 246, 0.04);
 
-  --blue: #4f8cff;
-  --blue-glow: rgba(79, 140, 255, 0.25);
   --violet: #a78bfa;
   --violet-glow: rgba(167, 139, 250, 0.2);
+
   --green: #34d399;
   --green-glow: rgba(52, 211, 153, 0.2);
   --amber: #fbbf24;
 
   --border: rgba(255, 255, 255, 0.055);
   --border-hover: rgba(255, 255, 255, 0.1);
-  --border-glow: rgba(124, 92, 252, 0.18);
+  --border-glow: rgba(139, 92, 246, 0.2);
 
   --radius-sm: 8px;
   --radius-md: 14px;
@@ -42,7 +41,6 @@
   --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.45);
   --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.5);
   --shadow-glow: 0 0 40px var(--accent-glow);
-  --shadow-glow-blue: 0 0 40px var(--blue-glow);
 }
 
 *,
@@ -65,6 +63,11 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
+  cursor: default;
+}
+
+a, button, input, textarea, select {
+  cursor: pointer;
 }
 
 img {
@@ -89,7 +92,7 @@ select {
 }
 
 ::selection {
-  background: rgba(124, 92, 252, 0.35);
+  background: rgba(139, 92, 246, 0.35);
   color: #fff;
 }
 
@@ -102,12 +105,12 @@ select {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(124, 92, 252, 0.2);
+  background: rgba(139, 92, 246, 0.25);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(124, 92, 252, 0.35);
+  background: rgba(139, 92, 246, 0.4);
 }
 
 @media (prefers-reduced-motion: reduce) {

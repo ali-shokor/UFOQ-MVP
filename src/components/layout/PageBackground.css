@@ -16,32 +16,32 @@
 .page-bg-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(120px);
+  filter: blur(80px);
   will-change: transform;
 }
 
 .page-bg-orb-1 {
-  width: 800px;
-  height: 800px;
-  background: radial-gradient(circle, rgba(124, 92, 252, 0.12), transparent 65%);
+  width: 900px;
+  height: 900px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.064), transparent 60%);
   top: -30%;
   right: -15%;
   animation: pageOrb1 25s ease-in-out infinite;
 }
 
 .page-bg-orb-2 {
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(79, 140, 255, 0.08), transparent 65%);
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(79, 140, 255, 0.05), transparent 60%);
   bottom: -20%;
   left: -10%;
   animation: pageOrb2 30s ease-in-out infinite;
 }
 
 .page-bg-orb-3 {
-  width: 450px;
-  height: 450px;
-  background: radial-gradient(circle, rgba(167, 139, 250, 0.07), transparent 65%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.04), transparent 60%);
   top: 40%;
   left: 50%;
   animation: pageOrb3 22s ease-in-out infinite;
@@ -51,21 +51,32 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 70% 45% at 20% 80%, rgba(79, 140, 255, 0.04), transparent),
-    radial-gradient(ellipse 55% 35% at 80% 20%, rgba(124, 92, 252, 0.05), transparent),
-    radial-gradient(ellipse 45% 25% at 50% 50%, rgba(167, 139, 250, 0.03), transparent);
+    radial-gradient(ellipse 70% 45% at 20% 80%, rgba(139, 92, 246, 0.024), transparent),
+    radial-gradient(ellipse 55% 35% at 80% 20%, rgba(79, 140, 255, 0.025), transparent),
+    radial-gradient(ellipse 45% 25% at 50% 50%, rgba(167, 139, 250, 0.02), transparent);
   animation: pageAurora 15s ease-in-out infinite alternate;
 }
 
+/* visible grid pattern */
 .page-bg-grid {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(124, 92, 252, 0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(124, 92, 252, 0.018) 1px, transparent 1px);
-  background-size: 80px 80px;
-  mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 20%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 20%, transparent 100%);
+    linear-gradient(rgba(139, 92, 246, 0.032) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.032) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 85% 75% at 50% 40%, black 10%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 40%, black 10%, transparent 100%);
+}
+
+/* dot pattern overlay */
+.page-bg-dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(139, 92, 246, 0.048) 1px, transparent 1px);
+  background-size: 30px 30px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 100%);
 }
 
 @keyframes pageOrb1 {
@@ -93,7 +104,6 @@
 /* ── main spacing ── */
 .main-home {
   min-height: 100vh;
-  /* no extra padding — hero handles its own */
 }
 
 .main-page {

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, Phone, User, Mail, MessageSquare, BookOpen } from "lucide-react";
+import { Send, Phone, User, Mail, MessageSquare, BookOpen, DollarSign } from "lucide-react";
 import { useCart } from "../../context/CartContext";
 import Button from "../ui/Button";
 import { validateContactForm } from "../../utils/validation";
@@ -8,7 +8,7 @@ import { sendToWhatsApp } from "../../utils/whatsapp";
 import "./ContactSection.css";
 
 export default function ContactSection() {
-  const { selectedCourses } = useCart();
+  const { selectedCourses, totalPrice, isBundleActive } = useCart();
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -68,10 +68,23 @@ export default function ContactSection() {
         </motion.div>
 
         <div className="contact-grid">
+          <motion.div
+            className="contact-spline-wrap"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            tabIndex={-1}
+          >
+            <spline-viewer
+              url="https://prod.spline.design/djYCBtJtPEzjwxQx/scene.splinecode"
+              loading="lazy"
+            />
+          </motion.div>
+
           <motion.form
             className="contact-form"
             onSubmit={handleSubmit}
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
@@ -158,6 +171,21 @@ export default function ContactSection() {
               <span className="form-error form-error-courses">{errors.courses}</span>
             )}
 
+            {selectedCourses.length > 0 && (
+              <div className="contact-total-bar">
+                <div className="contact-total-info">
+                  <DollarSign size={18} />
+                  <span className="contact-total-label">Total</span>
+                </div>
+                <span className="contact-total-price">
+                  {isBundleActive ? "$99" : `$${totalPrice}`}
+                </span>
+                {isBundleActive && (
+                  <span className="contact-bundle-badge">Full Bundle</span>
+                )}
+              </div>
+            )}
+
             <Button
               type="submit"
               variant="whatsapp"
@@ -169,64 +197,6 @@ export default function ContactSection() {
               Send via WhatsApp
             </Button>
           </motion.form>
-
-          <motion.div
-            className="contact-info"
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <div className="contact-info-card">
-              <h3>Why Enroll With Us?</h3>
-              <ul className="contact-benefits">
-                <li>
-                  <div className="benefit-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" strokeLinecap="round" />
-                      <polyline points="22 4 12 14.01 9 11.01" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </div>
-                  <span>Expert-led courses with structured curriculum</span>
-                </li>
-                <li>
-                  <div className="benefit-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" strokeLinecap="round" />
-                      <polyline points="22 4 12 14.01 9 11.01" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </div>
-                  <span>HD video lectures and downloadable materials</span>
-                </li>
-                <li>
-                  <div className="benefit-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" strokeLinecap="round" />
-                      <polyline points="22 4 12 14.01 9 11.01" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </div>
-                  <span>Certificates of completion</span>
-                </li>
-                <li>
-                  <div className="benefit-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" strokeLinecap="round" />
-                      <polyline points="22 4 12 14.01 9 11.01" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </div>
-                  <span>Lifetime access to course content</span>
-                </li>
-                <li>
-                  <div className="benefit-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" strokeLinecap="round" />
-                      <polyline points="22 4 12 14.01 9 11.01" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </div>
-                  <span>Priority student support</span>
-                </li>
-              </ul>
-            </div>
-          </motion.div>
         </div>
       </div>
     </section>

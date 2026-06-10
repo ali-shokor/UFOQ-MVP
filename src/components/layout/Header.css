@@ -13,7 +13,7 @@
   backdrop-filter: blur(24px) saturate(180%);
   border-bottom: 1px solid var(--border);
   padding: 10px 0;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3), 0 0 60px rgba(124, 92, 252, 0.03);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3), 0 0 60px rgba(139, 92, 246, 0.03);
 }
 
 .header-inner {
@@ -37,7 +37,7 @@
   width: 40px;
   height: 40px;
   border-radius: 12px;
-  background: linear-gradient(135deg, var(--accent), var(--blue));
+  background: linear-gradient(135deg, var(--accent), var(--violet));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -96,7 +96,7 @@
   transform: translateX(-50%);
   width: 20px;
   height: 3px;
-  background: linear-gradient(90deg, var(--accent), var(--blue));
+  background: linear-gradient(90deg, var(--accent), var(--violet));
   border-radius: 3px;
   box-shadow: 0 0 10px var(--accent-glow);
 }
@@ -137,31 +137,68 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), var(--blue));
-  color: #fff;
+  background: rgba(139, 92, 246, 0.15);
+  color: var(--accent-light);
   font-size: 0.65rem;
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 12px var(--accent-glow);
+  border: 1px solid rgba(139, 92, 246, 0.3);
 }
 
-.header-cta {
-  padding: 10px 24px;
-  background: linear-gradient(135deg, var(--accent), var(--blue));
-  color: #fff;
-  text-decoration: none;
+.header-price-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--green);
+  background: rgba(52, 211, 153, 0.08);
+  border: 1px solid rgba(52, 211, 153, 0.2);
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.header-enroll-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 22px;
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--accent-light);
+  border: 1px solid rgba(139, 92, 246, 0.25);
   border-radius: 12px;
+  font-family: "Inter", sans-serif;
   font-size: 0.85rem;
   font-weight: 600;
-  transition: all 0.25s;
-  box-shadow: 0 0 20px var(--accent-glow), 0 2px 8px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.header-cta:hover {
-  box-shadow: 0 0 32px var(--accent-glow), 0 4px 16px rgba(0, 0, 0, 0.4);
+.header-enroll-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.15), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.header-enroll-btn:hover {
+  background: rgba(139, 92, 246, 0.16);
+  border-color: rgba(139, 92, 246, 0.4);
+  box-shadow: 0 0 24px rgba(139, 92, 246, 0.1);
   transform: translateY(-1px);
+}
+
+.header-enroll-btn:hover::before {
+  opacity: 1;
+}
+
+.header-enroll-btn span,
+.header-enroll-btn svg {
+  position: relative;
+  z-index: 1;
 }
 
 .mobile-menu-btn {
@@ -213,17 +250,29 @@
   color: var(--accent-light);
 }
 
-.mobile-cta-btn {
-  display: block;
+.mobile-enroll-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
   text-align: center;
   padding: 14px;
-  background: linear-gradient(135deg, var(--accent), var(--blue));
-  color: #fff;
-  text-decoration: none;
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--accent-light);
+  border: 1px solid rgba(139, 92, 246, 0.25);
   border-radius: 12px;
+  font-family: "Inter", sans-serif;
   font-weight: 600;
+  font-size: 0.95rem;
   margin-top: 8px;
-  box-shadow: 0 0 20px var(--accent-glow);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mobile-enroll-btn:hover {
+  background: rgba(139, 92, 246, 0.16);
+  border-color: rgba(139, 92, 246, 0.4);
 }
 
 @media (max-width: 768px) {

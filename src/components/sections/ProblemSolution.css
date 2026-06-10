@@ -9,9 +9,9 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 40% 35% at 10% 50%, rgba(124, 92, 252, 0.06), transparent),
-    radial-gradient(ellipse 35% 30% at 90% 40%, rgba(79, 140, 255, 0.05), transparent),
-    radial-gradient(ellipse 30% 25% at 50% 90%, rgba(167, 139, 250, 0.04), transparent);
+    radial-gradient(ellipse 40% 35% at 10% 50%, rgba(139, 92, 246, 0.06), transparent),
+    radial-gradient(ellipse 35% 30% at 90% 40%, rgba(167, 139, 250, 0.05), transparent),
+    radial-gradient(ellipse 30% 25% at 50% 90%, rgba(167, 139, 250, 0.05), transparent);
   pointer-events: none;
 }
 
@@ -74,14 +74,14 @@
   padding: 18px;
   border-radius: var(--radius-md);
   border: 1px solid var(--border);
-  background: rgba(124, 92, 252, 0.025);
+  background: rgba(139, 92, 246, 0.025);
   transition: all 0.3s;
   backdrop-filter: blur(8px);
 }
 
 .ps-card:hover {
   border-color: var(--border-hover);
-  box-shadow: 0 0 20px rgba(124, 92, 252, 0.04);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.04);
 }
 
 .ps-card-icon {

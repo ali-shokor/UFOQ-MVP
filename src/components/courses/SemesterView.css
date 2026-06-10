@@ -25,32 +25,31 @@
 .year-pill {
   padding: 8px 20px;
   border: 1px solid var(--border);
-  background: rgba(124, 92, 252, 0.04);
+  background: rgba(255, 255, 255, 0.025);
   border-radius: 100px;
   font-family: "Inter", sans-serif;
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--text-secondary);
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
 }
 
 .year-pill:hover {
-  border-color: var(--border-glow);
-  background: rgba(124, 92, 252, 0.08);
+  border-color: rgba(139, 92, 246, 0.25);
   color: var(--text-primary);
 }
 
 .year-pill-active {
-  background: linear-gradient(135deg, var(--accent), var(--blue));
-  border-color: transparent;
-  color: #fff;
-  box-shadow: 0 0 16px var(--accent-glow), 0 2px 8px rgba(0, 0, 0, 0.2);
+  background: rgba(139, 92, 246, 0.1);
+  border-color: rgba(139, 92, 246, 0.35);
+  color: var(--accent-light);
+  box-shadow: 0 0 16px rgba(139, 92, 246, 0.06);
 }
 
 .year-pill-active:hover {
-  color: #fff;
-  box-shadow: 0 0 24px var(--accent-glow), 0 4px 12px rgba(0, 0, 0, 0.25);
+  color: var(--accent-light);
+  border-color: rgba(139, 92, 246, 0.5);
 }
 
 .semester-selector {
@@ -62,38 +61,115 @@
 .semester-pill {
   padding: 10px 24px;
   border: 1px solid var(--border);
-  background: rgba(124, 92, 252, 0.04);
+  background: rgba(255, 255, 255, 0.025);
   border-radius: var(--radius-md);
   font-family: "Inter", sans-serif;
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--text-secondary);
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
 }
 
 .semester-pill:hover {
-  border-color: var(--border-glow);
-  background: rgba(124, 92, 252, 0.08);
+  border-color: rgba(139, 92, 246, 0.25);
   color: var(--text-primary);
 }
 
 .semester-pill-active {
-  background: linear-gradient(135deg, var(--accent), var(--blue));
-  border-color: transparent;
-  color: #fff;
-  box-shadow: 0 0 16px var(--accent-glow), 0 2px 8px rgba(0, 0, 0, 0.2);
+  background: rgba(139, 92, 246, 0.1);
+  border-color: rgba(139, 92, 246, 0.35);
+  color: var(--accent-light);
+  box-shadow: 0 0 16px rgba(139, 92, 246, 0.06);
 }
 
 .semester-pill-active:hover {
-  color: #fff;
-  box-shadow: 0 0 24px var(--accent-glow), 0 4px 12px rgba(0, 0, 0, 0.25);
+  color: var(--accent-light);
+  border-color: rgba(139, 92, 246, 0.5);
 }
 
 .courses-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
+}
+
+/* ── Bundle Bar ── */
+.bundle-bar {
+  margin-bottom: 28px;
+}
+
+.bundle-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 18px 24px;
+  background: rgba(139, 92, 246, 0.06);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.bundle-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 50%, rgba(139, 92, 246, 0.08), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.bundle-btn:hover {
+  border-color: rgba(139, 92, 246, 0.4);
+  background: rgba(139, 92, 246, 0.1);
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.08);
+}
+
+.bundle-btn:hover::before {
+  opacity: 1;
+}
+
+.bundle-btn-active {
+  background: rgba(52, 211, 153, 0.06);
+  border-color: rgba(52, 211, 153, 0.25);
+}
+
+.bundle-btn-active:hover {
+  background: rgba(52, 211, 153, 0.1);
+  border-color: rgba(52, 211, 153, 0.4);
+  box-shadow: 0 0 30px rgba(52, 211, 153, 0.08);
+}
+
+.bundle-btn svg {
+  color: var(--accent-light);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.bundle-btn-active svg {
+  color: var(--green);
+}
+
+.bundle-btn-text {
+  font-size: 0.95rem;
+  font-weight: 700;
+  position: relative;
+  z-index: 1;
+}
+
+.bundle-btn-hint {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-left: auto;
+  position: relative;
+  z-index: 1;
 }
 
 .courses-empty {

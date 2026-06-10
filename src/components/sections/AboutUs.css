@@ -9,9 +9,9 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 40% 35% at 0% 50%, rgba(124, 92, 252, 0.06), transparent),
+    radial-gradient(ellipse 40% 35% at 0% 50%, rgba(139, 92, 246, 0.06), transparent),
     radial-gradient(ellipse 30% 25% at 100% 30%, rgba(167, 139, 250, 0.05), transparent),
-    radial-gradient(ellipse 35% 30% at 50% 80%, rgba(79, 140, 255, 0.04), transparent);
+    radial-gradient(ellipse 35% 30% at 50% 80%, rgba(167, 139, 250, 0.05), transparent);
   pointer-events: none;
 }
 
@@ -80,10 +80,10 @@
   color: var(--accent-light);
 }
 
-.about-value-icon-pink {
-  background: rgba(244, 114, 182, 0.06);
-  border: 1px solid rgba(244, 114, 182, 0.12);
-  color: #f472b6;
+.about-value-icon-violet {
+  background: rgba(167, 139, 250, 0.06);
+  border: 1px solid rgba(167, 139, 250, 0.12);
+  color: #a78bfa;
 }
 
 .about-value h4 {
@@ -110,7 +110,7 @@
   padding: 28px;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border);
-  background: rgba(124, 92, 252, 0.025);
+  background: rgba(139, 92, 246, 0.025);
   text-align: center;
   transition: all 0.35s;
   backdrop-filter: blur(12px);
@@ -118,20 +118,20 @@
 
 .about-card:hover {
   border-color: var(--border-glow);
-  background: rgba(124, 92, 252, 0.05);
+  background: rgba(139, 92, 246, 0.05);
   transform: translateY(-2px);
-  box-shadow: 0 0 30px rgba(124, 92, 252, 0.06);
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.06);
 }
 
 .about-card-main {
-  background: linear-gradient(135deg, rgba(124, 92, 252, 0.08), rgba(79, 140, 255, 0.04));
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(167, 139, 250, 0.04));
   border-color: var(--border-glow);
 }
 
 .about-card-number {
   font-size: 2.5rem;
   font-weight: 900;
-  background: linear-gradient(135deg, var(--accent), var(--blue));
+  background: linear-gradient(135deg, var(--accent), var(--violet));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

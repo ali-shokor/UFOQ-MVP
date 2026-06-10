@@ -18,6 +18,7 @@ export default function Layout({ children }) {
         <div className="page-bg-orb page-bg-orb-3" />
         <div className="page-bg-aurora" />
         <div className="page-bg-grid" />
+        <div className="page-bg-dots" />
       </div>
       <Header />
       <CartSidebar />

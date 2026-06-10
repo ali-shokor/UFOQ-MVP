@@ -9,7 +9,7 @@
 .card-hover:hover {
   border-color: var(--border-glow);
   background: var(--bg-card-hover);
-  box-shadow: 0 0 30px rgba(124, 92, 252, 0.06), var(--shadow-md);
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.06), var(--shadow-md);
 }
 
 .card-glass {
