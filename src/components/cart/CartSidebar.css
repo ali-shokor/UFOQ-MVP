@@ -155,6 +155,22 @@
   color: var(--accent-light);
 }
 
+.cart-item-session {
+  background: rgba(167, 139, 250, 0.04);
+  border-color: rgba(167, 139, 250, 0.15);
+}
+
+.cart-item-session:hover {
+  border-color: rgba(167, 139, 250, 0.3);
+}
+
+.cart-item-session-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--violet);
+}
+
 .cart-item-remove {
   display: flex;
   align-items: center;

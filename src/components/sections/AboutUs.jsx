@@ -67,11 +67,11 @@ export default function AboutUs() {
             transition={{ delay: 0.2 }}
           >
             <div className="about-card about-card-main">
-              <div className="about-card-number">500+</div>
+              <div className="about-card-number">400+</div>
               <div className="about-card-label">Students Trust Us</div>
             </div>
             <div className="about-card about-card-secondary">
-              <div className="about-card-number">95%</div>
+              <div className="about-card-number">90%</div>
               <div className="about-card-label">Pass Rate</div>
             </div>
             <div className="about-card about-card-tertiary">

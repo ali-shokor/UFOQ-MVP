@@ -1,21 +1,72 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { BookOpen, Plus, Check, Play, ExternalLink, DollarSign, User } from "lucide-react";
+import {
+  BookOpen,
+  Plus,
+  Check,
+  Play,
+  User,
+  Minus,
+  Users,
+} from "lucide-react";
 import { useCart } from "../../context/CartContext";
 import Card from "../ui/Card";
 import "./CourseCard.css";
 
 export default function CourseCard({ course, index }) {
-  const { addCourse, removeCourse, isCourseSelected, isBundleActive } = useCart();
+  const {
+    addCourse,
+    removeCourse,
+    isCourseSelected,
+    isBundleActive,
+    isHalfBundleActive,
+    bundleCourseCodes,
+    bundleYear,
+    bundleSemester,
+    canAddToHalfBundle,
+    addSession,
+    removeSession,
+    isSessionSelected,
+    getSession,
+  } = useCart();
+
   const isSelected = isCourseSelected(course.code);
-  const locked = isBundleActive && isSelected;
+  const inBundleScope = bundleCourseCodes.includes(course.code);
+  const locked = isBundleActive && isSelected && inBundleScope;
+  const halfBundleLocked = isHalfBundleActive && isSelected && inBundleScope;
+  const canAdd = isHalfBundleActive && inBundleScope ? canAddToHalfBundle(course.credits) : true;
+  const overLimit = isHalfBundleActive && inBundleScope && !isSelected && !canAdd;
+  const hasSession = isSessionSelected(course.code);
+  const session = getSession(course.code);
+  const [showSession, setShowSession] = useState(false);
+  const [hours, setHours] = useState(1);
 
   const handleToggle = () => {
     if (locked) return;
+    if (halfBundleLocked) {
+      removeCourse(course.code);
+      return;
+    }
+    if (overLimit) return;
     if (isSelected) {
       removeCourse(course.code);
     } else {
       addCourse(course);
     }
+  };
+
+  const handleSessionToggle = () => {
+    if (hasSession) {
+      removeSession(course.code);
+      setShowSession(false);
+    } else {
+      setShowSession((prev) => !prev);
+    }
+  };
+
+  const handleAddSession = () => {
+    addSession(course.code, course.title, hours);
+    setShowSession(false);
   };
 
   return (
@@ -24,7 +75,14 @@ export default function CourseCard({ course, index }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.05 }}
     >
-      <Card hover={!locked} className={`course-card ${!course.available ? "course-card-locked" : ""} ${locked ? "course-card-bundle-locked" : ""}`}>
+      <Card
+        hover={!locked && !overLimit}
+        className={`course-card ${!course.available ? "course-card-locked" : ""} ${
+          locked ? "course-card-bundle-locked" : ""
+        } ${halfBundleLocked ? "course-card-half-bundle-locked" : ""} ${
+          overLimit ? "course-card-over-limit" : ""
+        }`}
+      >
         <div className="course-thumbnail">
           <div className="course-thumbnail-placeholder">
             <BookOpen size={32} />
@@ -58,34 +116,109 @@ export default function CourseCard({ course, index }) {
 
           <div className="course-actions">
             <button
-              className={`course-select-btn ${isSelected ? "course-select-btn-active" : ""} ${locked ? "course-select-btn-locked" : ""}`}
+              className={`course-select-btn ${
+                isSelected ? "course-select-btn-active" : ""
+              } ${locked ? "course-select-btn-locked" : ""} ${
+                halfBundleLocked ? "course-select-btn-half-bundle" : ""
+              } ${overLimit ? "course-select-btn-over-limit" : ""}`}
               onClick={handleToggle}
-              disabled={!course.available || locked}
+              disabled={!course.available || locked || overLimit}
             >
               {locked ? (
                 <>
                   <Check size={16} />
                   <span>Bundle</span>
                 </>
+              ) : halfBundleLocked ? (
+                <>
+                  <Check size={16} />
+                  <span>Selected</span>
+                </>
               ) : isSelected ? (
                 <>
                   <Check size={16} />
                   <span>Selected</span>
                 </>
+              ) : overLimit ? (
+                <>
+                  <span>Limit Reached</span>
+                </>
               ) : (
                 <>
                   <Plus size={16} />
-                  <span>Add to Cart</span>
+                  <span>Add Course to Cart</span>
                 </>
               )}
             </button>
 
             {course.available && (
-              <button className="course-preview-btn" aria-label="Preview course">
-                <ExternalLink size={16} />
+              <button
+                className={`course-session-btn ${
+                  hasSession ? "course-session-btn-active" : ""
+                } ${showSession && !hasSession ? "course-session-btn-active" : ""}`}
+                onClick={handleSessionToggle}
+                aria-label="Book 1:1 session"
+              >
+                <Users size={16} />
+                <span className="course-session-btn-label">1:1</span>
               </button>
             )}
           </div>
+
+          {showSession && (
+            <div className="session-panel">
+              <div className="session-header">
+                <Users size={14} />
+                <span>1:1 Private Session</span>
+              </div>
+              <div className="session-hours-row">
+                <button
+                  className="session-hours-btn"
+                  onClick={() => setHours(Math.max(1, hours - 1))}
+                >
+                  <Minus size={14} />
+                </button>
+                <div className="session-hours-display">
+                  <span className="session-hours-num">{hours}</span>
+                  <span className="session-hours-label">
+                    hr{hours !== 1 ? "s" : ""}
+                  </span>
+                </div>
+                <button
+                  className="session-hours-btn"
+                  onClick={() => setHours(Math.min(10, hours + 1))}
+                >
+                  <Plus size={14} />
+                </button>
+              </div>
+              <div className="session-total">
+                <span>${hours * 20}</span>
+                <span className="session-total-label">(${20}/hr)</span>
+              </div>
+              <button
+                className="session-confirm-btn"
+                onClick={handleAddSession}
+              >
+                <Check size={14} />
+                Add Session
+              </button>
+            </div>
+          )}
+
+          {hasSession && !showSession && (
+            <div className="session-badge">
+              <Users size={12} />
+              <span>
+                {session.hours}hr 1:1 · ${session.hours * 20}
+              </span>
+              <button
+                className="session-badge-remove"
+                onClick={() => removeSession(course.code)}
+              >
+                <Minus size={10} />
+              </button>
+            </div>
+          )}
         </div>
       </Card>
     </motion.div>

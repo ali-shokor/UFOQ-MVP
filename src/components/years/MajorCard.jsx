@@ -27,7 +27,7 @@ const iconMap = {
   TestTubes,
 };
 
-export default function MajorCard({ major, year, index, onSelect }) {
+export default function MajorCard({ major, year, index, onSelect, bundle }) {
   const navigate = useNavigate();
   const Icon = iconMap[major.icon] || Monitor;
 
@@ -36,7 +36,8 @@ export default function MajorCard({ major, year, index, onSelect }) {
     if (onSelect) {
       onSelect(major.id, year);
     } else {
-      navigate(`/academics/${major.id}?year=${year}`);
+      const bundleParam = bundle ? `&bundle=${bundle}` : "";
+      navigate(`/academics/${major.id}?year=${year}${bundleParam}`);
     }
   };
 

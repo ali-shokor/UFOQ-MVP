@@ -44,9 +44,9 @@ export default function Footer() {
                 <Mail size={16} />
                 info@ufuqacademy.com
               </a>
-              <a href="tel:+212600000000" className="footer-contact-item">
+              <a href="tel:+96178957" className="footer-contact-item">
                 <Phone size={16} />
-                +212 600 000 000
+                 +961 78 957 416
               </a>
               <div className="footer-contact-item">
                 <MapPin size={16} />

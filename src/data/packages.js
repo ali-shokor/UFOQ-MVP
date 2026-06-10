@@ -44,7 +44,7 @@ export const packages = [
     name: "Separate Courses",
     subtitle: "Pick Exactly What You Need",
     price: null,
-    priceRange: "$15–$30",
+    price: "15 – 30",
     currency: "$",
     period: "per course",
     icon: "separate",
@@ -61,7 +61,7 @@ export const packages = [
   {
     id: "private-sessions",
     name: "1:1 Private Sessions",
-    subtitle: "Personal Tutoring · $20/hour",
+    subtitle: "Personal Tutoring · $20/hr",
     price: 20,
     currency: "$",
     period: "per hour",
@@ -75,7 +75,6 @@ export const packages = [
     ],
     highlighted: false,
     badge: null,
-    hasHoursSelector: true,
   },
 ];
 

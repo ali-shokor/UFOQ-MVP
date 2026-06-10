@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useSearchParams } from "react-router-dom";
 import MajorCard from "./MajorCard";
 import { years } from "../../data/years";
 import { majors } from "../../data/majors";
 import "./YearSelector.css";
 
 export default function YearSelector({ onMajorSelect }) {
+  const [searchParams] = useSearchParams();
+  const bundle = searchParams.get("bundle");
   const [selectedYear, setSelectedYear] = useState(2);
 
   return (
@@ -66,6 +69,7 @@ export default function YearSelector({ onMajorSelect }) {
                 year={selectedYear}
                 index={index}
                 onSelect={onMajorSelect}
+                bundle={bundle}
               />
             ))}
           </motion.div>

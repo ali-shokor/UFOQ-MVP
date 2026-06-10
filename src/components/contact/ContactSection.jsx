@@ -1,6 +1,15 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, Phone, User, Mail, MessageSquare, BookOpen, DollarSign } from "lucide-react";
+import {
+  Send,
+  Phone,
+  User,
+  Mail,
+  MessageSquare,
+  BookOpen,
+  DollarSign,
+  Users,
+} from "lucide-react";
 import { useCart } from "../../context/CartContext";
 import Button from "../ui/Button";
 import { validateContactForm } from "../../utils/validation";
@@ -8,7 +17,16 @@ import { sendToWhatsApp } from "../../utils/whatsapp";
 import "./ContactSection.css";
 
 export default function ContactSection() {
-  const { selectedCourses, totalPrice, isBundleActive } = useCart();
+  const {
+    selectedCourses,
+    sessions,
+    totalPrice,
+    courseTotal,
+    sessionTotal,
+    isBundleActive,
+    isHalfBundleActive,
+    extraCourseTotal,
+  } = useCart();
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -17,6 +35,8 @@ export default function ContactSection() {
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const hasItems = selectedCourses.length > 0 || sessions.length > 0;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,15 +55,17 @@ export default function ContactSection() {
       return;
     }
 
-    if (selectedCourses.length === 0) {
-      setErrors({ courses: "Please select at least one course before submitting." });
+    if (!hasItems) {
+      setErrors({
+        courses: "Please select at least one course or session before submitting.",
+      });
       return;
     }
 
     setIsSubmitting(true);
 
     setTimeout(() => {
-      sendToWhatsApp(formData, selectedCourses);
+      sendToWhatsApp(formData, selectedCourses, sessions);
       setIsSubmitting(false);
     }, 500);
   };
@@ -62,8 +84,8 @@ export default function ContactSection() {
             Start Your <span className="gradient-text">Journey Today</span>
           </h2>
           <p className="section-description">
-            Fill out the form below to enroll in your selected courses. Our team
-            will reach out to confirm your enrollment.
+            Fill out the form below to enroll in your selected courses or sessions.
+            Our team will reach out to confirm your enrollment.
           </p>
         </motion.div>
 
@@ -113,7 +135,7 @@ export default function ContactSection() {
                 type="tel"
                 name="phone"
                 className={`form-input ${errors.phone ? "form-input-error" : ""}`}
-                placeholder="+212 6XX XXX XXX"
+                placeholder="+96178957416"
                 value={formData.phone}
                 onChange={handleChange}
               />
@@ -167,21 +189,68 @@ export default function ContactSection() {
               </div>
             )}
 
+            {sessions.length > 0 && (
+              <div className="selected-courses-preview">
+                <label className="form-label">
+                  <Users size={16} />
+                  1:1 Sessions ({sessions.length})
+                </label>
+                <div className="selected-courses-list">
+                  {sessions.map((session) => (
+                    <span key={session.courseCode} className="selected-course-tag selected-course-tag-session">
+                      {session.courseCode} · {session.hours}hr
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {errors.courses && (
               <span className="form-error form-error-courses">{errors.courses}</span>
             )}
 
-            {selectedCourses.length > 0 && (
+            {hasItems && (
               <div className="contact-total-bar">
                 <div className="contact-total-info">
                   <DollarSign size={18} />
                   <span className="contact-total-label">Total</span>
                 </div>
-                <span className="contact-total-price">
-                  {isBundleActive ? "$99" : `$${totalPrice}`}
-                </span>
-                {isBundleActive && (
-                  <span className="contact-bundle-badge">Full Bundle</span>
+                <div className="contact-total-breakdown">
+                  {(isBundleActive || isHalfBundleActive) ? (
+                    <>
+                      <span className="contact-total-line">
+                        {isBundleActive ? "Full Bundle" : "Half Bundle"}: ${isBundleActive ? "99" : "59"}
+                      </span>
+                      {extraCourseTotal > 0 && (
+                        <span className="contact-total-line">
+                          Extra Courses: ${extraCourseTotal}
+                        </span>
+                      )}
+                      {sessions.length > 0 && (
+                        <span className="contact-total-line">
+                          Sessions: ${sessionTotal}
+                        </span>
+                      )}
+                      <span className="contact-total-price">${totalPrice}</span>
+                    </>
+                  ) : (
+                    <>
+                      {selectedCourses.length > 0 && (
+                        <span className="contact-total-line">
+                          Courses: ${courseTotal}
+                        </span>
+                      )}
+                      {sessions.length > 0 && (
+                        <span className="contact-total-line">
+                          Sessions: ${sessionTotal}
+                        </span>
+                      )}
+                      <span className="contact-total-price">${totalPrice}</span>
+                    </>
+                  )}
+                </div>
+                {(isBundleActive || isHalfBundleActive) && (
+                  <span className="contact-bundle-badge">{isBundleActive ? "Full Bundle" : "Half Bundle"}</span>
                 )}
               </div>
             )}

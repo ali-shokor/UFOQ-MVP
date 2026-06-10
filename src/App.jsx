@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { CartProvider } from "./context/CartContext";
 import { AuthProvider } from "./context/AuthContext";
 import Layout from "./components/layout/Layout";
+import CustomCursor from "./components/ui/CustomCursor";
 import HomePage from "./pages/HomePage";
 import AcademicsPage from "./pages/AcademicsPage";
 import MajorPage from "./pages/MajorPage";
@@ -23,6 +24,7 @@ export default function App() {
   return (
     <AuthProvider>
       <CartProvider>
+        {/* <CustomCursor /> */}
         <BrowserRouter>
           <ScrollToTop />
           <Layout>

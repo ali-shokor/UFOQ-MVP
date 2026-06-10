@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSearchParams } from "react-router-dom";
-import { Package } from "lucide-react";
+import { Package, Layers } from "lucide-react";
 import CourseCard from "./CourseCard";
 import { useCart } from "../../context/CartContext";
 import { getCourses, getAvailableSemesters, getAvailableYears } from "../../data/courses";
@@ -12,12 +12,33 @@ export default function SemesterView({ majorId = "cs" }) {
   const initialYear = parseInt(searchParams.get("year")) || 2;
   const [selectedYear, setSelectedYear] = useState(initialYear);
   const [selectedSemester, setSelectedSemester] = useState(1);
-  const { addCourse, removeCourse, isCourseSelected, selectedCourses, isBundleActive, setBundleActive, setBundleInactive, totalPrice } = useCart();
+  const {
+    addCourse, removeCourse, isCourseSelected, selectedCourses,
+    isBundleActive, setBundleActive, setBundleInactive,
+    isHalfBundleActive, setHalfBundleActive, setHalfBundleInactive,
+    totalCredits, halfBundleCreditsLeft, canAddToHalfBundle, HALF_BUNDLE_MAX_CREDITS,
+  } = useCart();
 
   const availableYears = getAvailableYears(majorId);
   const availableSemesters = getAvailableSemesters(majorId, selectedYear);
   const courses = getCourses(majorId, selectedYear, selectedSemester);
   const availableCourses = courses.filter((c) => c.available);
+
+  const bundleParam = searchParams.get("bundle");
+  const bundleApplied = useRef(false);
+
+  useEffect(() => {
+    if (bundleApplied.current) return;
+    if (!bundleParam || availableCourses.length === 0) return;
+
+    bundleApplied.current = true;
+
+    if (bundleParam === "full") {
+      setBundleActive(availableCourses, selectedYear, selectedSemester);
+    } else if (bundleParam === "half") {
+      setHalfBundleActive([], selectedYear, selectedSemester);
+    }
+  }, [bundleParam, availableCourses, selectedYear, selectedSemester, setBundleActive, setHalfBundleActive]);
 
   const allSelected = availableCourses.length > 0 && availableCourses.every((c) => isCourseSelected(c.code));
 
@@ -26,9 +47,22 @@ export default function SemesterView({ majorId = "cs" }) {
       setBundleInactive();
       availableCourses.forEach((c) => removeCourse(c.code));
     } else {
-      setBundleActive(availableCourses);
+      setBundleActive(availableCourses, selectedYear, selectedSemester);
     }
   };
+
+  const handleHalfBundle = () => {
+    if (isHalfBundleActive) {
+      setHalfBundleInactive();
+    } else {
+      setHalfBundleActive([], selectedYear, selectedSemester);
+    }
+  };
+
+  const creditsUsed = isHalfBundleActive ? totalCredits : 0;
+  const creditsPercent = isHalfBundleActive
+    ? Math.min(100, (creditsUsed / HALF_BUNDLE_MAX_CREDITS) * 100)
+    : 0;
 
   return (
     <section className="semester-view">
@@ -92,6 +126,55 @@ export default function SemesterView({ majorId = "cs" }) {
                 {allSelected ? "All courses selected" : `All ${availableCourses.length} courses · Save up to 60%`}
               </span>
             </button>
+
+            <button
+              className={`bundle-btn half-bundle-btn ${isHalfBundleActive ? "bundle-btn-active half-bundle-active" : ""}`}
+              onClick={handleHalfBundle}
+            >
+              <Layers size={18} />
+              <span className="bundle-btn-text">
+                {isHalfBundleActive ? "Remove Half Bundle" : "Half Bundle — $59"}
+              </span>
+              <span className="bundle-btn-hint">
+                {isHalfBundleActive
+                  ? `${creditsUsed}/${HALF_BUNDLE_MAX_CREDITS} credits`
+                  : `Up to ${HALF_BUNDLE_MAX_CREDITS} credits · Pick your courses`}
+              </span>
+            </button>
+
+            <AnimatePresence>
+              {isHalfBundleActive && (
+                <motion.div
+                  className="half-bundle-progress"
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="progress-header">
+                    <span className="progress-label">
+                      Credits selected
+                    </span>
+                    <span className={`progress-count ${creditsUsed >= HALF_BUNDLE_MAX_CREDITS ? "progress-full" : ""}`}>
+                      {creditsUsed} / {HALF_BUNDLE_MAX_CREDITS}
+                    </span>
+                  </div>
+                  <div className="progress-track">
+                    <motion.div
+                      className="progress-fill"
+                      initial={{ width: 0 }}
+                      animate={{ width: `${creditsPercent}%` }}
+                      transition={{ duration: 0.4, ease: "easeOut" }}
+                    />
+                  </div>
+                  <p className="progress-hint">
+                    {halfBundleCreditsLeft > 0
+                      ? `You can add ${halfBundleCreditsLeft} more credit${halfBundleCreditsLeft !== 1 ? "s" : ""}`
+                      : "Credit limit reached — remove a course to add another"}
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         )}
 

@@ -1,15 +1,6 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
-import {
-  Check,
-  Star,
-  Package,
-  Layers,
-  ShoppingCart,
-  Users,
-  Minus,
-  Plus,
-} from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Check, Star, Package, Layers, ShoppingCart, Users } from "lucide-react";
 import { packages } from "../../data/packages";
 import Button from "../ui/Button";
 import "./PackageSection.css";
@@ -22,8 +13,17 @@ const iconMap = {
 };
 
 export default function PackageSection() {
-  const [selectedHours, setSelectedHours] = useState(1);
+  const navigate = useNavigate();
 
+  const handlePackageClick = (pkgId) => {
+    if (pkgId === "full-bundle") {
+      navigate("/academics?bundle=full");
+    } else if (pkgId === "half-bundle") {
+      navigate("/academics?bundle=half");
+    } else {
+      navigate("/academics");
+    }
+  };
   return (
     <section className="package-section">
       <div className="pkg-orb-1" />
@@ -41,7 +41,7 @@ export default function PackageSection() {
             Choose Your <span className="gradient-text">Learning Path</span>
           </h2>
           <p className="section-description">
-            From full bundles to single sessions — pick what fits your needs and budget.
+            From full bundles to private tutoring — pick what fits your needs and budget.
           </p>
         </motion.div>
 
@@ -74,61 +74,25 @@ export default function PackageSection() {
                   <p className="package-subtitle">{pkg.subtitle}</p>
                 </div>
 
-                {pkg.id === "private-sessions" ? (
-                  <div className="package-hours">
-                    <div className="package-pricing-single">
+                <div className="package-pricing">
+                  {pkg.price !== null ? (
+                    <>
                       <span className="package-currency">{pkg.currency}</span>
                       <span className="package-price">{pkg.price}</span>
-                      <span className="package-period">/{pkg.period}</span>
-                    </div>
-
-                    <div className="hours-selector">
-                      <button
-                        className="hours-btn"
-                        onClick={() => setSelectedHours(Math.max(1, selectedHours - 1))}
-                        aria-label="Decrease hours"
-                      >
-                        <Minus size={16} />
-                      </button>
-                      <div className="hours-display">
-                        <span className="hours-number">{selectedHours}</span>
-                        <span className="hours-label">hour{selectedHours !== 1 ? "s" : ""}</span>
-                      </div>
-                      <button
-                        className="hours-btn"
-                        onClick={() => setSelectedHours(Math.min(20, selectedHours + 1))}
-                        aria-label="Increase hours"
-                      >
-                        <Plus size={16} />
-                      </button>
-                    </div>
-
-                    <div className="hours-total">
-                      <span className="hours-total-label">Total</span>
-                      <span className="hours-total-price">
-                        ${pkg.price * selectedHours}
-                      </span>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="package-pricing">
-                    {pkg.price !== null ? (
-                      <>
-                        <span className="package-currency">{pkg.currency}</span>
-                        <span className="package-price">{pkg.price}</span>
+                      {pkg.originalPrice && (
                         <span className="package-original">
                           {pkg.currency}{pkg.originalPrice}
                         </span>
-                        <span className="package-period">/{pkg.period}</span>
-                      </>
-                    ) : (
-                      <div className="package-pricing-range">
-                        <span className="package-range-text">{pkg.priceRange}</span>
-                        <span className="package-period">/{pkg.period}</span>
-                      </div>
-                    )}
-                  </div>
-                )}
+                      )}
+                      <span className="package-period">/{pkg.period}</span>
+                    </>
+                  ) : (
+                    <div className="package-pricing-range">
+                      <span className="package-range-text">{pkg.priceRange}</span>
+                      <span className="package-period">/{pkg.period}</span>
+                    </div>
+                  )}
+                </div>
 
                 {pkg.originalPrice && (
                   <div className="package-discount">
@@ -149,10 +113,9 @@ export default function PackageSection() {
                   variant={pkg.highlighted ? "primary" : "outline"}
                   fullWidth
                   size="lg"
+                  onClick={() => handlePackageClick(pkg.id)}
                 >
-                  {pkg.id === "private-sessions"
-                    ? `Book ${selectedHours} Session${selectedHours !== 1 ? "s" : ""}`
-                    : pkg.id === "separate"
+                  {pkg.id === "separate"
                     ? "Browse Courses"
                     : `Get ${pkg.name}`}
                 </Button>

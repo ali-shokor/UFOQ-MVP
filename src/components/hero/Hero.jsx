@@ -8,9 +8,9 @@ import Button from "../ui/Button";
 import "./Hero.css";
 
 const stats = [
-  { icon: Users, value: "500+", label: "Active Students" },
-  { icon: BookOpen, value: "50+", label: "Expert-Led Courses" },
-  { icon: Award, value: "95%", label: "Success Rate" },
+  { icon: Users, value: "400+", label: "Active Students" },
+  { icon: BookOpen, value: "40+", label: "Expert-Led Courses" },
+  { icon: Award, value: "90%", label: "Success Rate" },
 ];
 
 export default function Hero() {
@@ -148,10 +148,24 @@ export default function Hero() {
                 <linearGradient id="pathGrad" x1="200" y1="0" x2="200" y2="500" gradientUnits="userSpaceOnUse">
                   <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.8" />
                   <stop offset="50%" stopColor="#a78bfa" stopOpacity="0.5" />
-                  <stop offset="100%" stopColor="#c4b5fd" stopOpacity="0.3" />
+                  <stop offset="100%" stopColor="#34d399" stopOpacity="0.4" />
                 </linearGradient>
                 <filter id="pathGlow">
                   <feGaussianBlur stdDeviation="4" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+                <filter id="dotGlow">
+                  <feGaussianBlur stdDeviation="6" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+                <filter id="dotGlowGreen">
+                  <feGaussianBlur stdDeviation="8" result="blur" />
                   <feMerge>
                     <feMergeNode in="blur" />
                     <feMergeNode in="SourceGraphic" />
@@ -166,15 +180,20 @@ export default function Hero() {
                 filter="url(#pathGlow)"
                 className="edu-path-line"
               />
-              {/* Milestone dots — calculated on the bezier path */}
-              <circle cx="200" cy="40" r="6" fill="#8b5cf6" className="edu-dot edu-dot-1" />
-              <circle cx="200" cy="130" r="5" fill="#a78bfa" className="edu-dot edu-dot-2" />
-              <circle cx="200" cy="310" r="5" fill="#c4b5fd" className="edu-dot edu-dot-3" />
-              <circle cx="200" cy="400" r="7" fill="#34d399" className="edu-dot edu-dot-4" />
+              {/* Milestone dots — on the bezier curve */}
+              <circle cx="200" cy="40" r="5" fill="#8b5cf6" filter="url(#dotGlow)" className="edu-dot edu-dot-1" />
+              <circle cx="200" cy="40" r="10" fill="none" stroke="#8b5cf6" strokeWidth="1" opacity="0.3" className="edu-dot-ring edu-dot-1" />
+              <circle cx="200" cy="130" r="5" fill="#a78bfa" filter="url(#dotGlow)" className="edu-dot edu-dot-2" />
+              <circle cx="200" cy="130" r="10" fill="none" stroke="#a78bfa" strokeWidth="1" opacity="0.3" className="edu-dot-ring edu-dot-2" />
+              <circle cx="200" cy="310" r="5" fill="#c4b5fd" filter="url(#dotGlow)" className="edu-dot edu-dot-3" />
+              <circle cx="200" cy="310" r="10" fill="none" stroke="#c4b5fd" strokeWidth="1" opacity="0.3" className="edu-dot-ring edu-dot-3" />
+              <circle cx="200" cy="400" r="6" fill="#34d399" filter="url(#dotGlowGreen)" className="edu-dot edu-dot-4" />
+              <circle cx="200" cy="400" r="12" fill="none" stroke="#34d399" strokeWidth="1" opacity="0.3" className="edu-dot-ring edu-dot-4" />
             </svg>
 
             {/* Floating academic icons along the path */}
             <div className="edu-float edu-float-1">
+              <div className="edu-float-dot-connector" />
               <div className="edu-float-icon">
                 <BookOpen size={18} />
               </div>
@@ -185,6 +204,7 @@ export default function Hero() {
             </div>
 
             <div className="edu-float edu-float-2">
+              <div className="edu-float-dot-connector" />
               <div className="edu-float-icon edu-float-icon-blue">
                 <Code size={18} />
               </div>
@@ -195,6 +215,7 @@ export default function Hero() {
             </div>
 
             <div className="edu-float edu-float-3">
+              <div className="edu-float-dot-connector" />
               <div className="edu-float-icon edu-float-icon-violet">
                 <Lightbulb size={18} />
               </div>
@@ -205,6 +226,7 @@ export default function Hero() {
             </div>
 
             <div className="edu-float edu-float-4">
+              <div className="edu-float-dot-connector" />
               <div className="edu-float-icon edu-float-icon-green">
                 <GraduationCap size={18} />
               </div>

@@ -48,17 +48,17 @@ export default function WhyUFOQ() {
           </p>
           <div className="why-stats">
             <div className="why-stat">
-              <span className="why-stat-num">500+</span>
+              <span className="why-stat-num">400+</span>
               <span className="why-stat-label">Students</span>
             </div>
             <div className="why-stat-divider" />
             <div className="why-stat">
-              <span className="why-stat-num">50+</span>
+              <span className="why-stat-num">40+</span>
               <span className="why-stat-label">Courses</span>
             </div>
             <div className="why-stat-divider" />
             <div className="why-stat">
-              <span className="why-stat-num">95%</span>
+              <span className="why-stat-num">90%</span>
               <span className="why-stat-label">Success</span>
             </div>
           </div>

@@ -2,6 +2,8 @@ import { createContext, useContext, useReducer, useCallback, useMemo } from "rea
 
 const CartContext = createContext(null);
 
+const HALF_BUNDLE_MAX_CREDITS = 15;
+
 const cartReducer = (state, action) => {
   switch (action.type) {
     case "ADD_COURSE": {
@@ -20,12 +22,67 @@ const cartReducer = (state, action) => {
           (c) => c.code !== action.payload
         ),
       };
+    case "ADD_SESSION": {
+      const existing = state.sessions.find(
+        (s) => s.courseCode === action.payload.courseCode
+      );
+      if (existing) {
+        return {
+          ...state,
+          sessions: state.sessions.map((s) =>
+            s.courseCode === action.payload.courseCode
+              ? { ...s, hours: action.payload.hours }
+              : s
+          ),
+        };
+      }
+      return {
+        ...state,
+        sessions: [...state.sessions, action.payload],
+      };
+    }
+    case "REMOVE_SESSION":
+      return {
+        ...state,
+        sessions: state.sessions.filter(
+          (s) => s.courseCode !== action.payload
+        ),
+      };
     case "SET_BUNDLE_ACTIVE":
-      return { ...state, selectedCourses: action.payload, isBundleActive: true };
+      return {
+        ...state,
+        selectedCourses: action.payload.courses,
+        isBundleActive: true,
+        isHalfBundleActive: false,
+        bundleYear: action.payload.year,
+        bundleSemester: action.payload.semester,
+        bundleCourseCodes: action.payload.courses.map((c) => c.code),
+      };
     case "SET_BUNDLE_INACTIVE":
-      return { ...state, isBundleActive: false };
+      return { ...state, isBundleActive: false, bundleYear: null, bundleSemester: null, bundleCourseCodes: [] };
+    case "SET_HALF_BUNDLE_ACTIVE":
+      return {
+        ...state,
+        isHalfBundleActive: true,
+        isBundleActive: false,
+        selectedCourses: action.payload.courses || [],
+        bundleYear: action.payload.year,
+        bundleSemester: action.payload.semester,
+        bundleCourseCodes: [],
+      };
+    case "SET_HALF_BUNDLE_INACTIVE":
+      return { ...state, isHalfBundleActive: false, bundleYear: null, bundleSemester: null, bundleCourseCodes: [] };
     case "CLEAR_CART":
-      return { ...state, selectedCourses: [], isBundleActive: false };
+      return {
+        ...state,
+        selectedCourses: [],
+        sessions: [],
+        isBundleActive: false,
+        isHalfBundleActive: false,
+        bundleYear: null,
+        bundleSemester: null,
+        bundleCourseCodes: [],
+      };
     case "TOGGLE_CART":
       return { ...state, isCartOpen: !state.isCartOpen };
     case "OPEN_CART":
@@ -39,8 +96,13 @@ const cartReducer = (state, action) => {
 
 const initialState = {
   selectedCourses: [],
+  sessions: [],
   isCartOpen: false,
   isBundleActive: false,
+  isHalfBundleActive: false,
+  bundleYear: null,
+  bundleSemester: null,
+  bundleCourseCodes: [],
 };
 
 export function CartProvider({ children }) {
@@ -54,12 +116,41 @@ export function CartProvider({ children }) {
     dispatch({ type: "REMOVE_COURSE", payload: courseCode });
   }, []);
 
-  const setBundleActive = useCallback((courses) => {
-    dispatch({ type: "SET_BUNDLE_ACTIVE", payload: courses });
+  const addSession = useCallback((courseCode, courseTitle, hours) => {
+    dispatch({
+      type: "ADD_SESSION",
+      payload: { courseCode, courseTitle, hours, pricePerHour: 20 },
+    });
+  }, []);
+
+  const removeSession = useCallback((courseCode) => {
+    dispatch({ type: "REMOVE_SESSION", payload: courseCode });
+  }, []);
+
+  const isSessionSelected = useCallback(
+    (courseCode) => state.sessions.some((s) => s.courseCode === courseCode),
+    [state.sessions]
+  );
+
+  const getSession = useCallback(
+    (courseCode) => state.sessions.find((s) => s.courseCode === courseCode),
+    [state.sessions]
+  );
+
+  const setBundleActive = useCallback((courses, year, semester) => {
+    dispatch({ type: "SET_BUNDLE_ACTIVE", payload: { courses, year, semester } });
   }, []);
 
   const setBundleInactive = useCallback(() => {
     dispatch({ type: "SET_BUNDLE_INACTIVE" });
+  }, []);
+
+  const setHalfBundleActive = useCallback((courses, year, semester) => {
+    dispatch({ type: "SET_HALF_BUNDLE_ACTIVE", payload: { courses, year, semester } });
+  }, []);
+
+  const setHalfBundleInactive = useCallback(() => {
+    dispatch({ type: "SET_HALF_BUNDLE_INACTIVE" });
   }, []);
 
   const clearCart = useCallback(() => {
@@ -79,31 +170,88 @@ export function CartProvider({ children }) {
   }, []);
 
   const isCourseSelected = useCallback(
-    (courseCode) => {
-      return state.selectedCourses.some((c) => c.code === courseCode);
-    },
+    (courseCode) => state.selectedCourses.some((c) => c.code === courseCode),
     [state.selectedCourses]
   );
 
-  const totalPrice = useMemo(() => {
+  const courseTotal = useMemo(() => {
     return state.selectedCourses.reduce((sum, c) => sum + (c.price || 0), 0);
   }, [state.selectedCourses]);
 
+  const extraCourseTotal = useMemo(() => {
+    if (!state.isBundleActive && !state.isHalfBundleActive) return 0;
+    return state.selectedCourses
+      .filter((c) => !state.bundleCourseCodes.includes(c.code))
+      .reduce((sum, c) => sum + (c.price || 0), 0);
+  }, [state.selectedCourses, state.isBundleActive, state.isHalfBundleActive, state.bundleCourseCodes]);
+
+  const sessionTotal = useMemo(() => {
+    return state.sessions.reduce((sum, s) => sum + s.hours * s.pricePerHour, 0);
+  }, [state.sessions]);
+
+  const totalPrice = useMemo(() => {
+    if (state.isBundleActive) return 99 + extraCourseTotal + sessionTotal;
+    if (state.isHalfBundleActive) return 59 + extraCourseTotal + sessionTotal;
+    return courseTotal + sessionTotal;
+  }, [courseTotal, extraCourseTotal, sessionTotal, state.isBundleActive, state.isHalfBundleActive]);
+
+  const itemCount = useMemo(
+    () => state.selectedCourses.length + state.sessions.length,
+    [state.selectedCourses, state.sessions]
+  );
+
+  const totalCredits = useMemo(() => {
+    return state.selectedCourses.reduce((sum, c) => sum + (c.credits || 0), 0);
+  }, [state.selectedCourses]);
+
+  const halfBundleCreditsLeft = useMemo(() => {
+    if (!state.isHalfBundleActive) return HALF_BUNDLE_MAX_CREDITS;
+    return Math.max(0, HALF_BUNDLE_MAX_CREDITS - totalCredits);
+  }, [state.isHalfBundleActive, totalCredits]);
+
+  const canAddToHalfBundle = useCallback(
+    (courseCredits) => {
+      if (!state.isHalfBundleActive) return true;
+      return totalCredits + courseCredits <= HALF_BUNDLE_MAX_CREDITS;
+    },
+    [state.isHalfBundleActive, totalCredits]
+  );
+
   const value = {
     selectedCourses: state.selectedCourses,
+    sessions: state.sessions,
     isCartOpen: state.isCartOpen,
     isBundleActive: state.isBundleActive,
+    isHalfBundleActive: state.isHalfBundleActive,
+    bundleYear: state.bundleYear,
+    bundleSemester: state.bundleSemester,
+    bundleCourseCodes: state.bundleCourseCodes,
     addCourse,
     removeCourse,
+    addSession,
+    removeSession,
+    isSessionSelected,
+    getSession,
     setBundleActive,
     setBundleInactive,
+    setHalfBundleActive,
+    setHalfBundleInactive,
     clearCart,
     toggleCart,
     openCart,
     closeCart,
     isCourseSelected,
     courseCount: state.selectedCourses.length,
+    sessionCount: state.sessions.length,
+    itemCount,
+    courseTotal,
+    extraCourseTotal,
+    sessionTotal,
     totalPrice,
+    totalCredits,
+    halfBundleCreditsLeft,
+    canAddToHalfBundle,
+    HALF_BUNDLE_MAX_CREDITS,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

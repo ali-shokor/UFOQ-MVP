@@ -15,7 +15,7 @@ const navLinks = [
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { courseCount, toggleCart, totalPrice, isBundleActive } = useCart();
+  const { itemCount, toggleCart, totalPrice, isBundleActive, isHalfBundleActive, selectedCourses, sessions } = useCart();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -30,7 +30,7 @@ export default function Header() {
   }, [location]);
 
   const handleEnroll = () => {
-    navigate(courseCount > 0 ? "/contact" : "/academics");
+    navigate(itemCount > 0 ? "/contact" : "/academics");
   };
 
   return (
@@ -71,21 +71,21 @@ export default function Header() {
             whileTap={{ scale: 0.9 }}
           >
             <ShoppingCart size={20} />
-            {courseCount > 0 && (
+            {itemCount > 0 && (
               <motion.span
                 className="cart-badge"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 exit={{ scale: 0 }}
               >
-                {courseCount}
+                {itemCount}
               </motion.span>
             )}
           </motion.button>
 
-          {courseCount > 0 && (
+          {itemCount > 0 && (
             <span className="header-price-tag">
-              {isBundleActive ? "$99" : `$${totalPrice}`}
+              {`$${totalPrice}`}
             </span>
           )}
 
