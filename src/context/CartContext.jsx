@@ -66,12 +66,9 @@ const cartReducer = (state, action) => {
         isHalfBundleActive: true,
         isBundleActive: false,
         selectedCourses: action.payload.courses || [],
-        bundleYear: action.payload.year,
-        bundleSemester: action.payload.semester,
-        bundleCourseCodes: [],
       };
     case "SET_HALF_BUNDLE_INACTIVE":
-      return { ...state, isHalfBundleActive: false, bundleYear: null, bundleSemester: null, bundleCourseCodes: [] };
+      return { ...state, isHalfBundleActive: false };
     case "CLEAR_CART":
       return {
         ...state,
@@ -145,8 +142,8 @@ export function CartProvider({ children }) {
     dispatch({ type: "SET_BUNDLE_INACTIVE" });
   }, []);
 
-  const setHalfBundleActive = useCallback((courses, year, semester) => {
-    dispatch({ type: "SET_HALF_BUNDLE_ACTIVE", payload: { courses, year, semester } });
+  const setHalfBundleActive = useCallback((courses) => {
+    dispatch({ type: "SET_HALF_BUNDLE_ACTIVE", payload: { courses } });
   }, []);
 
   const setHalfBundleInactive = useCallback(() => {
@@ -178,12 +175,43 @@ export function CartProvider({ children }) {
     return state.selectedCourses.reduce((sum, c) => sum + (c.price || 0), 0);
   }, [state.selectedCourses]);
 
+  const totalCredits = useMemo(() => {
+    return state.selectedCourses.reduce((sum, c) => sum + (c.credits || 0), 0);
+  }, [state.selectedCourses]);
+
+  const halfBundleCreditsUsed = useMemo(() => {
+    if (!state.isHalfBundleActive) return 0;
+    return totalCredits;
+  }, [state.isHalfBundleActive, totalCredits]);
+
+  const halfBundleCoveredCodes = useMemo(() => {
+    if (!state.isHalfBundleActive) return [];
+    let remaining = HALF_BUNDLE_MAX_CREDITS;
+    const covered = [];
+    for (const c of state.selectedCourses) {
+      if (remaining <= 0) break;
+      const credits = c.credits || 0;
+      if (credits <= remaining) {
+        covered.push(c.code);
+        remaining -= credits;
+      }
+    }
+    return covered;
+  }, [state.selectedCourses, state.isHalfBundleActive]);
+
   const extraCourseTotal = useMemo(() => {
-    if (!state.isBundleActive && !state.isHalfBundleActive) return 0;
-    return state.selectedCourses
-      .filter((c) => !state.bundleCourseCodes.includes(c.code))
-      .reduce((sum, c) => sum + (c.price || 0), 0);
-  }, [state.selectedCourses, state.isBundleActive, state.isHalfBundleActive, state.bundleCourseCodes]);
+    if (state.isBundleActive) {
+      return state.selectedCourses
+        .filter((c) => !state.bundleCourseCodes.includes(c.code))
+        .reduce((sum, c) => sum + (c.price || 0), 0);
+    }
+    if (state.isHalfBundleActive) {
+      return state.selectedCourses
+        .filter((c) => !halfBundleCoveredCodes.includes(c.code))
+        .reduce((sum, c) => sum + (c.price || 0), 0);
+    }
+    return 0;
+  }, [state.selectedCourses, state.isBundleActive, state.isHalfBundleActive, state.bundleCourseCodes, halfBundleCoveredCodes]);
 
   const sessionTotal = useMemo(() => {
     return state.sessions.reduce((sum, s) => sum + s.hours * s.pricePerHour, 0);
@@ -200,14 +228,15 @@ export function CartProvider({ children }) {
     [state.selectedCourses, state.sessions]
   );
 
-  const totalCredits = useMemo(() => {
-    return state.selectedCourses.reduce((sum, c) => sum + (c.credits || 0), 0);
-  }, [state.selectedCourses]);
+  const halfBundleIsFull = useMemo(() => {
+    if (!state.isHalfBundleActive) return false;
+    return halfBundleCreditsUsed >= HALF_BUNDLE_MAX_CREDITS;
+  }, [state.isHalfBundleActive, halfBundleCreditsUsed]);
 
   const halfBundleCreditsLeft = useMemo(() => {
     if (!state.isHalfBundleActive) return HALF_BUNDLE_MAX_CREDITS;
-    return Math.max(0, HALF_BUNDLE_MAX_CREDITS - totalCredits);
-  }, [state.isHalfBundleActive, totalCredits]);
+    return Math.max(0, HALF_BUNDLE_MAX_CREDITS - halfBundleCreditsUsed);
+  }, [state.isHalfBundleActive, halfBundleCreditsUsed]);
 
   const canAddToHalfBundle = useCallback(
     (courseCredits) => {
@@ -249,7 +278,10 @@ export function CartProvider({ children }) {
     sessionTotal,
     totalPrice,
     totalCredits,
+    halfBundleCreditsUsed,
     halfBundleCreditsLeft,
+    halfBundleCoveredCodes,
+    halfBundleIsFull,
     canAddToHalfBundle,
     HALF_BUNDLE_MAX_CREDITS,
   };

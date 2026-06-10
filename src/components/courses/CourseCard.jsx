@@ -8,6 +8,7 @@ import {
   User,
   Minus,
   Users,
+  Zap,
 } from "lucide-react";
 import { useCart } from "../../context/CartContext";
 import Card from "../ui/Card";
@@ -20,10 +21,8 @@ export default function CourseCard({ course, index }) {
     isCourseSelected,
     isBundleActive,
     isHalfBundleActive,
-    bundleCourseCodes,
-    bundleYear,
-    bundleSemester,
-    canAddToHalfBundle,
+    halfBundleCoveredCodes,
+    halfBundleIsFull,
     addSession,
     removeSession,
     isSessionSelected,
@@ -31,11 +30,11 @@ export default function CourseCard({ course, index }) {
   } = useCart();
 
   const isSelected = isCourseSelected(course.code);
-  const inBundleScope = bundleCourseCodes.includes(course.code);
-  const locked = isBundleActive && isSelected && inBundleScope;
-  const halfBundleLocked = isHalfBundleActive && isSelected && inBundleScope;
-  const canAdd = isHalfBundleActive && inBundleScope ? canAddToHalfBundle(course.credits) : true;
-  const overLimit = isHalfBundleActive && inBundleScope && !isSelected && !canAdd;
+  const locked = isBundleActive && isSelected;
+  const isCoveredByBundle = isHalfBundleActive && halfBundleCoveredCodes.includes(course.code);
+  const isExtraCourse = isHalfBundleActive && isSelected && !isCoveredByBundle;
+  const canStillAdd = isHalfBundleActive && !isSelected;
+
   const hasSession = isSessionSelected(course.code);
   const session = getSession(course.code);
   const [showSession, setShowSession] = useState(false);
@@ -43,11 +42,6 @@ export default function CourseCard({ course, index }) {
 
   const handleToggle = () => {
     if (locked) return;
-    if (halfBundleLocked) {
-      removeCourse(course.code);
-      return;
-    }
-    if (overLimit) return;
     if (isSelected) {
       removeCourse(course.code);
     } else {
@@ -76,11 +70,11 @@ export default function CourseCard({ course, index }) {
       transition={{ delay: index * 0.05 }}
     >
       <Card
-        hover={!locked && !overLimit}
+        hover={!locked}
         className={`course-card ${!course.available ? "course-card-locked" : ""} ${
           locked ? "course-card-bundle-locked" : ""
-        } ${halfBundleLocked ? "course-card-half-bundle-locked" : ""} ${
-          overLimit ? "course-card-over-limit" : ""
+        } ${isCoveredByBundle ? "course-card-half-bundle" : ""} ${
+          isExtraCourse ? "course-card-extra" : ""
         }`}
       >
         <div className="course-thumbnail">
@@ -98,7 +92,9 @@ export default function CourseCard({ course, index }) {
             <div className="course-badge-locked">Coming Soon</div>
           )}
           <div className="course-badge-code">{course.code}</div>
-          <div className="course-price-badge">${course.price}</div>
+          <div className={`course-price-badge ${isCoveredByBundle ? "course-price-badge-bundle" : ""}`}>
+            {isCoveredByBundle ? "Included" : `$${course.price}`}
+          </div>
         </div>
 
         <div className="course-info">
@@ -112,6 +108,15 @@ export default function CourseCard({ course, index }) {
               <User size={12} />
               {course.instructor}
             </span>
+            {isExtraCourse && (
+              <>
+                <span className="course-divider">·</span>
+                <span className="course-extra-label">
+                  <Zap size={10} />
+                  Extra
+                </span>
+              </>
+            )}
           </div>
 
           <div className="course-actions">
@@ -119,34 +124,32 @@ export default function CourseCard({ course, index }) {
               className={`course-select-btn ${
                 isSelected ? "course-select-btn-active" : ""
               } ${locked ? "course-select-btn-locked" : ""} ${
-                halfBundleLocked ? "course-select-btn-half-bundle" : ""
-              } ${overLimit ? "course-select-btn-over-limit" : ""}`}
+                isCoveredByBundle ? "course-select-btn-bundle" : ""
+              } ${isExtraCourse ? "course-select-btn-extra" : ""} ${
+                canStillAdd && halfBundleIsFull ? "course-select-btn-paid" : ""
+              }`}
               onClick={handleToggle}
-              disabled={!course.available || locked || overLimit}
+              disabled={!course.available || locked}
             >
               {locked ? (
                 <>
                   <Check size={16} />
                   <span>Bundle</span>
                 </>
-              ) : halfBundleLocked ? (
-                <>
-                  <Check size={16} />
-                  <span>Selected</span>
-                </>
               ) : isSelected ? (
                 <>
                   <Check size={16} />
-                  <span>Selected</span>
+                  <span>{isCoveredByBundle ? "Included" : "Selected"}</span>
                 </>
-              ) : overLimit ? (
+              ) : canStillAdd && halfBundleIsFull ? (
                 <>
-                  <span>Limit Reached</span>
+                  <Plus size={16} />
+                  <span>Add · ${course.price}</span>
                 </>
               ) : (
                 <>
                   <Plus size={16} />
-                  <span>Add Course to Cart</span>
+                  <span>{isHalfBundleActive && halfBundleIsFull ? "Add · $59 covers 15cr" : "Add Course to Cart"}</span>
                 </>
               )}
             </button>

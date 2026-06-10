@@ -24,32 +24,35 @@ export default function CartSidebar() {
     isBundleActive,
     isHalfBundleActive,
     bundleCourseCodes,
+    halfBundleCoveredCodes,
     bundleYear,
     bundleSemester,
     setBundleInactive,
     setHalfBundleInactive,
     extraCourseTotal,
+    courseTotal,
     sessionTotal,
     totalPrice,
     itemCount,
   } = useCart();
 
   const hasItems = selectedCourses.length > 0 || sessions.length > 0;
+  const coveredCodes = isHalfBundleActive ? halfBundleCoveredCodes : bundleCourseCodes;
   const extraCourses = isBundleActive || isHalfBundleActive
-    ? selectedCourses.filter((c) => !bundleCourseCodes.includes(c.code))
+    ? selectedCourses.filter((c) => !coveredCodes.includes(c.code))
     : [];
   const bundleCourses = isBundleActive || isHalfBundleActive
-    ? selectedCourses.filter((c) => bundleCourseCodes.includes(c.code))
+    ? selectedCourses.filter((c) => coveredCodes.includes(c.code))
     : [];
 
   const handleRemoveBundle = () => {
+    const toRemove = bundleCourses.map((c) => c.code);
     if (isBundleActive) {
       setBundleInactive();
-      bundleCourses.forEach((c) => removeCourse(c.code));
     } else if (isHalfBundleActive) {
       setHalfBundleInactive();
-      bundleCourses.forEach((c) => removeCourse(c.code));
     }
+    toRemove.forEach((code) => removeCourse(code));
   };
 
   return (
