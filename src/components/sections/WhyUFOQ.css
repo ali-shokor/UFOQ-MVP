@@ -141,12 +141,11 @@
 /* ── scroll column ── */
 .why-scroll-col {
   position: relative;
-  height: 420px;
+  height: 440px;
   overflow: hidden;
   border-radius: var(--radius-xl);
   border: 1px solid var(--border);
   background: rgba(255, 255, 255, 0.015);
-  backdrop-filter: blur(12px);
 }
 
 .why-scroll-fade-top,
@@ -178,7 +177,7 @@
   display: flex;
   flex-direction: column;
   gap: 0;
-  animation: scrollVertical 20s linear infinite;
+  animation: scrollVertical 30s linear infinite;
 }
 
 .why-scroll-track.paused .why-scroll-inner {
@@ -187,13 +186,17 @@
 
 .why-scroll-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 16px;
-  padding: 18px 24px;
+  padding: 20px 24px;
   border-bottom: 1px solid var(--border);
-  transition: all 0.3s ease;
+  transition: background 0.3s ease;
   cursor: default;
   flex-shrink: 0;
+}
+
+.why-scroll-item:last-child {
+  border-bottom: none;
 }
 
 .why-scroll-item:hover {
@@ -201,9 +204,9 @@
 }
 
 .why-scroll-icon {
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
   background: var(--accent-subtle);
   border: 1px solid var(--border-glow);
   display: flex;
@@ -222,18 +225,19 @@
 .why-scroll-text {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
 }
 
 .why-scroll-title {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 700;
   color: var(--text-primary);
 }
 
 .why-scroll-desc {
-  font-size: 0.75rem;
+  font-size: 0.76rem;
   color: var(--text-muted);
+  line-height: 1.55;
 }
 
 @keyframes scrollVertical {
@@ -254,6 +258,9 @@
     font-size: 2rem;
   }
   .why-scroll-col {
-    height: 340px;
+    height: 360px;
+  }
+  .why-scroll-item {
+    padding: 16px 18px;
   }
 }

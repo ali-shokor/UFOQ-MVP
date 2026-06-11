@@ -1,25 +1,67 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import {
-  Layers, GraduationCap, MessageCircle, Rocket, Shield,
-  BookOpen, FileText, Brain, Target, Headphones, Compass,
-  Play, Clock, Award, Users, Zap
+  Package, Layers, BookOpen, Headphones, Compass,
+  Users, Clock, Target, Zap, GraduationCap,
 } from "lucide-react";
 import "./WhyUFOQ.css";
 
-const reasons = [
-  { icon: Layers, title: "Structured Courses", desc: "Semester-ready curriculum" },
-  { icon: FileText, title: "Study Summaries", desc: "Concise, exam-focused notes" },
-  { icon: Brain, title: "Past Exam Solving", desc: "Real practice, real results" },
-  { icon: Target, title: "Project Guidance", desc: "Hands-on mentorship" },
-  { icon: Headphones, title: "1:1 Sessions", desc: "Personal expert support" },
-  { icon: GraduationCap, title: "Career Mapping", desc: "Your path to success" },
-  { icon: Play, title: "Video Lectures", desc: "Learn at your pace" },
-  { icon: Clock, title: "Flexible Schedule", desc: "Study anytime" },
-  { icon: Award, title: "Certified Content", desc: "Quality guaranteed" },
-  { icon: Users, title: "Student Community", desc: "Learn together" },
-  { icon: Zap, title: "Quick Revisions", desc: "Last-minute prep" },
-  { icon: Compass, title: "Full Roadmap", desc: "Year-long guidance" },
+const offerings = [
+  {
+    icon: Package,
+    title: "Full Semester Package",
+    desc: "Complete access to every course in the semester with a structured learning path built to carry you from the first lecture to the final exam.",
+  },
+  {
+    icon: Layers,
+    title: "Half Bundle",
+    desc: "A flexible option for students who want part of the semester. Pick the credits you need and build your own focused plan.",
+  },
+  {
+    icon: BookOpen,
+    title: "Separate Courses",
+    desc: "Choose only the subjects you need. No bundles, no commitments — just the exact courses that matter to you right now.",
+  },
+  {
+    icon: Headphones,
+    title: "1:1 Private Sessions",
+    desc: "Personal, one-on-one support when you need direct guidance. Book hours with expert instructors on the topics you find hardest.",
+  },
+  {
+    icon: Compass,
+    title: "Full Academic Roadmap",
+    desc: "A complete plan from the start of the semester to the final exam. Know exactly what to study, when, and how — no guesswork.",
+  },
+  {
+    icon: Users,
+    title: "Weekly Online Sessions",
+    desc: "Live problem-solving and question sessions with fellow students. Real-time support that keeps you on track every week.",
+  },
+  {
+    icon: Target,
+    title: "Community of Committed Learners",
+    desc: "A focused student environment built for serious progress. Connect, share, and grow alongside peers who take their education seriously.",
+  },
+  {
+    icon: Clock,
+    title: "Flexible Schedule",
+    desc: "Learn at a pace that fits your time. All content is available on demand, so you study when it works for you — not the other way around.",
+  },
+  {
+    icon: Zap,
+    title: "Structured Support",
+    desc: "Organized help that keeps students from getting lost. Every resource is sequenced, every path is clear, and every question has a place.",
+  },
+  {
+    icon: GraduationCap,
+    title: "Course-by-Course Choice",
+    desc: "Mix and match individual courses across semesters. Build a custom plan that matches your goals without paying for what you don't need.",
+  },
+  {
+    icon: Target,
+    title: "Practical Help & Guidance",
+    desc: "Not just theory. Real assignments, real projects, and real exam preparation — the kind of support that turns knowledge into results.",
+  },
 ];
 
 export default function WhyUFOQ() {
@@ -38,13 +80,13 @@ export default function WhyUFOQ() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
         >
-          <span className="why-tag">Why UFOQ</span>
+          <span className="why-tag">What We Offer</span>
           <h2 className="why-title">
             Everything You Need to <span className="why-title-accent">Succeed</span>
           </h2>
           <p className="why-desc">
-            From structured courses to 1:1 mentoring, we built the complete academic
-            support system. Not just content — a real path to your degree.
+            From structured packages to 1:1 mentoring, UFOQ Academy is the complete
+            academic support system built for university students who want real results.
           </p>
           <div className="why-stats">
             <div className="why-stat">
@@ -72,7 +114,7 @@ export default function WhyUFOQ() {
           <div className="why-scroll-fade-top" />
           <div className={`why-scroll-track ${hovered ? "paused" : ""}`}>
             <div className="why-scroll-inner">
-              {[...reasons, ...reasons].map((r, i) => (
+              {[...offerings, ...offerings].map((r, i) => (
                 <div key={i} className="why-scroll-item">
                   <div className="why-scroll-icon">
                     <r.icon size={20} />

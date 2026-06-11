@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import "./Testimonials.css";
@@ -66,19 +66,48 @@ export default function Testimonials() {
   const scrollRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const checkScroll = () => {
+  const getActiveIndex = useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return 0;
+    const cards = el.querySelectorAll(".testimonial-card");
+    const trackLeft = el.scrollLeft;
+    const trackCenter = trackLeft + el.clientWidth / 2;
+    let closest = 0;
+    let minDist = Infinity;
+    cards.forEach((card, i) => {
+      const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+      const dist = Math.abs(trackCenter - cardCenter);
+      if (dist < minDist) {
+        minDist = dist;
+        closest = i;
+      }
+    });
+    return closest;
+  }, []);
+
+  const checkScroll = useCallback(() => {
     const el = scrollRef.current;
     if (!el) return;
     setCanScrollLeft(el.scrollLeft > 10);
     setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10);
-  };
+    setActiveIndex(getActiveIndex());
+  }, [getActiveIndex]);
 
   const scroll = (dir) => {
     const el = scrollRef.current;
     if (!el) return;
     const cardWidth = el.querySelector(".testimonial-card")?.offsetWidth || 340;
     el.scrollBy({ left: dir * (cardWidth + 20), behavior: "smooth" });
+  };
+
+  const scrollToIndex = (index) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const card = el.querySelectorAll(".testimonial-card")[index];
+    if (!card) return;
+    el.scrollTo({ left: card.offsetLeft - 16, behavior: "smooth" });
   };
 
   return (
@@ -154,7 +183,12 @@ export default function Testimonials() {
 
         <div className="testimonials-dots">
           {testimonials.map((_, i) => (
-            <span key={i} className="testimonials-dot" />
+            <button
+              key={i}
+              className={`testimonials-dot ${i === activeIndex ? "testimonials-dot-active" : ""}`}
+              onClick={() => scrollToIndex(i)}
+              aria-label={`Go to testimonial ${i + 1}`}
+            />
           ))}
         </div>
       </div>

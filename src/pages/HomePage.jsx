@@ -11,12 +11,33 @@ const AboutUs = lazy(() => import("../components/sections/AboutUs"));
 const FAQ = lazy(() => import("../components/sections/FAQ"));
 const ContactSection = lazy(() => import("../components/contact/ContactSection"));
 
+function SectionSkeleton() {
+  return (
+    <div style={{
+      minHeight: "40vh",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    }}>
+      <div style={{
+        width: 40,
+        height: 40,
+        border: "3px solid rgba(124, 92, 252, 0.15)",
+        borderTopColor: "#7c5cfc",
+        borderRadius: "50%",
+        animation: "spin 0.8s linear infinite",
+      }} />
+      <style>{`@keyframes spin { to { transform: rotate(360deg) } }`}</style>
+    </div>
+  );
+}
+
 export default function HomePage() {
   return (
     <>
       <Hero />
       <Marquee />
-      <Suspense fallback={null}>
+      <Suspense fallback={<SectionSkeleton />}>
         <ProblemSolution />
         <WhyUFOQ />
         <YearSelector />

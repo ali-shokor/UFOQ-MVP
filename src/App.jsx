@@ -24,7 +24,7 @@ export default function App() {
   return (
     <AuthProvider>
       <CartProvider>
-        {/* <CustomCursor /> */}
+        <CustomCursor />
         <BrowserRouter>
           <ScrollToTop />
           <Layout>

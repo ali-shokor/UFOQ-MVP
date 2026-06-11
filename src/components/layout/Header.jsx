@@ -54,10 +54,12 @@ export default function Header() {
             <Link
               key={link.path}
               to={link.path}
-              className={`nav-link ${location.pathname === link.path ? "nav-link-active" : ""}`}
+              className={`nav-link ${(link.path === "/" ? location.pathname === link.path : location.pathname.startsWith(link.path)) ? "nav-link-active" : ""}`}
             >
               {link.label}
-              {location.pathname === link.path && (
+              {(link.path === "/"
+                ? location.pathname === link.path
+                : location.pathname.startsWith(link.path)) && (
                 <motion.div className="nav-indicator" layoutId="nav-indicator" />
               )}
             </Link>
@@ -123,7 +125,7 @@ export default function Header() {
                 >
                   <Link
                     to={link.path}
-                    className={`mobile-nav-link ${location.pathname === link.path ? "mobile-nav-link-active" : ""}`}
+                    className={`mobile-nav-link ${(link.path === "/" ? location.pathname === link.path : location.pathname.startsWith(link.path)) ? "mobile-nav-link-active" : ""}`}
                   >
                     {link.label}
                   </Link>

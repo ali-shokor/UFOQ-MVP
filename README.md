@@ -379,6 +379,14 @@ Layout wraps all routes with Header, Footer, CartSidebar, and ChatbotWidget.
   isCourseSelected(code),       // Check if course is in cart
   courseCount,                  // Number of selected courses
 
+  // Session selection
+  sessions: [],                 // Array of 1:1 session objects
+  addSession(code, title, hrs), // Add a 1:1 session
+  removeSession(code),          // Remove a 1:1 session
+  isSessionSelected(code),      // Check if session is booked
+  getSession(code),             // Get session details
+  sessionCount,                 // Number of booked sessions
+
   // Bundle state
   activeBundle: null,           // 'full' | 'half' | null
   halfBundleCoveredCodes: [],   // Auto-calculated first 15 credits
@@ -397,7 +405,7 @@ Layout wraps all routes with Header, Footer, CartSidebar, and ChatbotWidget.
   // Pricing
   courseTotal,                  // Individual course total
   extraCourseTotal,             // Extra courses beyond bundle
-  bundlePrice,                  // Bundle price
+  sessionTotal,                 // 1:1 sessions total
   totalPrice,                   // Final calculated price
 }
 ```

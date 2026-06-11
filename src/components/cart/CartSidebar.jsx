@@ -106,7 +106,7 @@ export default function CartSidebar() {
                         </span>
                       </div>
                       <span className="cart-item-title">
-                        {bundleCourses.length} courses · Year {bundleYear} - Semester {bundleSemester}
+                        {bundleCourses.length} courses{bundleYear != null ? ` · Year ${bundleYear} - Semester ${bundleSemester}` : ""}
                       </span>
                       <span className="cart-item-credits">
                         {bundleCourses.reduce((sum, c) => sum + c.credits, 0)} credits · ${isBundleActive ? "99" : "59"}

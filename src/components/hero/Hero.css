@@ -312,170 +312,7 @@
   position: relative;
   width: 100%;
   max-width: 420px;
-  aspect-ratio: 0.8;
-}
-
-/* compass */
-.edu-compass {
-  position: absolute;
-  top: 6%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3;
-}
-
-.edu-compass-ring {
-  position: absolute;
-  border-radius: 50%;
-  border: 1px solid;
-}
-
-.edu-ring-outer {
-  width: 100px;
-  height: 100px;
-  border-color: rgba(139, 92, 246, 0.2);
-  border-style: dashed;
-  top: -30px;
-  left: -30px;
-  box-shadow: 0 0 12px rgba(139, 92, 246, 0.08);
-  animation: ringRotate 20s linear infinite;
-}
-
-.edu-ring-middle {
-  width: 78px;
-  height: 78px;
-  border-color: rgba(167, 139, 250, 0.2);
-  top: -19px;
-  left: -19px;
-  box-shadow: 0 0 10px rgba(167, 139, 250, 0.06);
-  animation: ringPulse 4s ease-in-out infinite;
-}
-
-.edu-ring-inner {
-  width: 60px;
-  height: 60px;
-  border-color: rgba(167, 139, 250, 0.25);
-  top: -10px;
-  left: -10px;
-  box-shadow: 0 0 8px rgba(167, 139, 250, 0.08);
-  animation: ringPulse 4s ease-in-out infinite 0.5s;
-}
-
-.edu-compass-core {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), var(--violet));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  position: relative;
-  overflow: hidden;
-  box-shadow:
-    0 0 24px var(--accent-glow),
-    0 0 48px rgba(139, 92, 246, 0.25),
-    0 0 96px rgba(167, 139, 250, 0.15),
-    inset 0 0 12px rgba(255, 255, 255, 0.15);
-  animation: compassPulse 3s ease-in-out infinite;
-}
-
-.edu-compass-inner-glow {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), transparent 60%);
-  pointer-events: none;
-}
-
-.edu-compass-pulse {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 2px solid var(--accent);
-  top: 0;
-  left: 0;
-  animation: compassRipple 2.5s ease-out infinite;
-  pointer-events: none;
-}
-
-.edu-compass-pulse-2 {
-  animation-delay: 1.25s;
-}
-
-/* orbital rings around the scene */
-.edu-orbit {
-  position: absolute;
-  border-radius: 50%;
-  border: 1px solid;
-  pointer-events: none;
-}
-
-.edu-orbit-1 {
-  width: 280px;
-  height: 280px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotateX(65deg) rotateZ(15deg);
-  border-color: rgba(139, 92, 246, 0.15);
-  box-shadow: 0 0 16px rgba(139, 92, 246, 0.06);
-  animation: orbitSpin1 30s linear infinite;
-}
-
-.edu-orbit-2 {
-  width: 320px;
-  height: 320px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotateX(70deg) rotateZ(-20deg);
-  border-color: rgba(167, 139, 250, 0.1);
-  box-shadow: 0 0 20px rgba(167, 139, 250, 0.04);
-  animation: orbitSpin2 40s linear infinite;
-}
-
-@keyframes orbitSpin1 {
-  from { transform: translate(-50%, -50%) rotateX(65deg) rotateZ(15deg); }
-  to { transform: translate(-50%, -50%) rotateX(65deg) rotateZ(375deg); }
-}
-
-@keyframes orbitSpin2 {
-  from { transform: translate(-50%, -50%) rotateX(70deg) rotateZ(-20deg); }
-  to { transform: translate(-50%, -50%) rotateX(70deg) rotateZ(340deg); }
-}
-
-@keyframes ringRotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes ringPulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.08); opacity: 0.6; }
-}
-
-@keyframes compassPulse {
-  0%, 100% {
-    box-shadow:
-      0 0 24px var(--accent-glow),
-      0 0 48px rgba(139, 92, 246, 0.25),
-      0 0 96px rgba(167, 139, 250, 0.15),
-      inset 0 0 12px rgba(255, 255, 255, 0.15);
-  }
-  50% {
-    box-shadow:
-      0 0 36px var(--accent-glow),
-      0 0 72px rgba(139, 92, 246, 0.3),
-      0 0 120px rgba(167, 139, 250, 0.2),
-      0 0 160px rgba(139, 92, 246, 0.08),
-      inset 0 0 16px rgba(255, 255, 255, 0.2);
-  }
-}
-
-@keyframes compassRipple {
-  0% { transform: scale(1); opacity: 0.6; }
-  100% { transform: scale(3); opacity: 0; }
+  aspect-ratio: 0.91;
 }
 
 /* SVG path */
@@ -487,9 +324,15 @@
 }
 
 .edu-path-line {
-  stroke-dasharray: 600;
-  stroke-dashoffset: 600;
-  animation: drawPath 3s ease-out 0.5s forwards;
+  stroke-dasharray: 700;
+  stroke-dashoffset: 700;
+  animation: drawPath 2.5s ease-out 0.5s forwards;
+}
+
+.edu-path-glow {
+  stroke-dasharray: 700;
+  stroke-dashoffset: 700;
+  animation: drawPath 2.5s ease-out 0.5s forwards;
 }
 
 @keyframes drawPath {
@@ -498,70 +341,157 @@
 
 .edu-dot {
   opacity: 0;
-  animation: dotAppear 0.4s ease-out forwards;
+  animation: dotAppear 0.5s ease-out forwards, dotGlowPulse 3s ease-in-out infinite;
 }
 
-.edu-dot-1 { animation-delay: 0.8s; }
-.edu-dot-2 { animation-delay: 1.4s; }
-.edu-dot-3 { animation-delay: 2.0s; }
-.edu-dot-4 { animation-delay: 2.6s; }
-
-.edu-dot-ring {
-  opacity: 0;
-  animation: dotRingAppear 0.6s ease-out forwards, dotRingPulse 3s ease-in-out infinite;
-}
-
-.edu-dot-ring.edu-dot-1 { animation-delay: 0.8s, 1.4s; }
-.edu-dot-ring.edu-dot-2 { animation-delay: 1.4s, 2.0s; }
-.edu-dot-ring.edu-dot-3 { animation-delay: 2.0s, 2.6s; }
-.edu-dot-ring.edu-dot-4 { animation-delay: 2.6s, 3.2s; }
+.edu-dot-1 { animation-delay: 0.8s, 1.3s; }
+.edu-dot-2 { animation-delay: 1.3s, 1.8s; }
+.edu-dot-3 { animation-delay: 2.0s, 2.5s; }
+.edu-dot-4 { animation-delay: 2.5s, 3.0s; }
 
 @keyframes dotAppear {
-  0% { opacity: 0; r: 0; }
+  0% { opacity: 0; }
   100% { opacity: 1; }
 }
 
-@keyframes dotRingAppear {
+@keyframes dotGlowPulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+/* flowing light along the path */
+.edu-path-flow {
+  opacity: 0.6;
+}
+
+/* particles — staggered fade in/out */
+.edu-particle { opacity: 0; }
+.edu-p1 { animation: particleFade 2.8s ease-in-out infinite 0s; }
+.edu-p2 { animation: particleFade 3.2s ease-in-out infinite 0.5s; }
+.edu-p3 { animation: particleFade 2.5s ease-in-out infinite 1s; }
+.edu-p4 { animation: particleFade 3.5s ease-in-out infinite 1.5s; }
+.edu-p5 { animation: particleFade 2.2s ease-in-out infinite 0.3s; }
+.edu-p6 { animation: particleFade 3s ease-in-out infinite 0.8s; }
+
+@keyframes particleFade {
   0% { opacity: 0; }
-  100% { opacity: 0.3; }
+  10% { opacity: 0.9; }
+  90% { opacity: 0.9; }
+  100% { opacity: 0; }
 }
 
-@keyframes dotRingPulse {
-  0%, 100% { r: 10; opacity: 0.3; }
-  50% { r: 14; opacity: 0.1; }
+/* sparkles — small dots that pop in and out along the path */
+.edu-sparkle { opacity: 0; }
+.edu-sparkle-1 { animation: sparklePop 2s ease-in-out infinite 0.2s; }
+.edu-sparkle-2 { animation: sparklePop 2.4s ease-in-out infinite 0.8s; }
+.edu-sparkle-3 { animation: sparklePop 1.8s ease-in-out infinite 1.4s; }
+.edu-sparkle-4 { animation: sparklePop 2.2s ease-in-out infinite 0.5s; }
+.edu-sparkle-5 { animation: sparklePop 2.6s ease-in-out infinite 1.1s; }
+.edu-sparkle-6 { animation: sparklePop 2s ease-in-out infinite 1.8s; }
+
+@keyframes sparklePop {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 0.8; transform: scale(1.3); }
 }
 
-/* floating milestone cards */
+/* === FOUNDATION — start burst === */
+.edu-start-ring {
+  transform-origin: 60px 400px;
+}
+.edu-start-ring-1 {
+  animation: startRingExpand 2.5s ease-out 0.6s infinite;
+}
+.edu-start-ring-2 {
+  animation: startRingExpand 2.5s ease-out 1.8s infinite;
+}
+
+@keyframes startRingExpand {
+  0% { opacity: 0.5; r: 7; }
+  100% { opacity: 0; r: 35; }
+}
+
+.edu-start-burst {
+  animation: startBurstPulse 3s infinite;
+}
+
+@keyframes startBurstPulse {
+  0%, 100% { opacity: 0.1; transform: scale(1); }
+  50% { opacity: 0.25; transform: scale(1); }
+}
+
+/* === GRADUATE — end burst + rays === */
+.edu-end-burst {
+  transform-origin: 360px 40px;
+  animation: endBurstPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes endBurstPulse {
+  0%, 100% { opacity: 0.08; transform: scale(1); }
+  50% { opacity: 0.2; transform: scale(1.3); }
+}
+
+.edu-end-ring {
+  transform-origin: 360px 40px;
+}
+.edu-end-ring-1 {
+  animation: endRingExpand 2s ease-out 2.5s infinite;
+}
+.edu-end-ring-2 {
+  animation: endRingExpand 2s ease-out 3.2s infinite;
+}
+.edu-end-ring-3 {
+  animation: endRingExpand 2s ease-out 3.9s infinite;
+}
+
+@keyframes endRingExpand {
+  0% { opacity: 0.6; r: 8; }
+  100% { opacity: 0; r: 40; }
+}
+
+/* rays radiating from Graduate */
+.edu-ray {
+  transform-origin: 360px 40px;
+}
+.edu-ray-1 { animation: rayAppear 2s ease-in-out infinite 2.6s; }
+.edu-ray-2 { animation: rayAppear 2s ease-in-out infinite 2.8s; }
+.edu-ray-3 { animation: rayAppear 2s ease-in-out infinite 3.0s; }
+.edu-ray-4 { animation: rayAppear 2s ease-in-out infinite 3.2s; }
+.edu-ray-5 { animation: rayAppear 2s ease-in-out infinite 3.4s; }
+
+@keyframes rayAppear {
+  0%, 100% { opacity: 0; transform: scale(0.8); }
+  40% { opacity: 0.7; transform: scale(1); }
+  70% { opacity: 0.4; transform: scale(1.05); }
+}
+
+/* floating milestone labels — behind dots */
 .edu-float {
   position: absolute;
   display: flex;
   align-items: center;
   gap: 10px;
   padding: 10px 14px;
-  background: rgba(6, 6, 14, 0.65);
+  background: rgba(6, 6, 14, 0.7);
   backdrop-filter: blur(16px) saturate(150%);
   border: 1px solid rgba(139, 92, 246, 0.15);
   border-radius: var(--radius-md);
-  z-index: 2;
+  z-index: 1;
   opacity: 0;
-  animation: floatAppear 0.5s ease-out forwards, floatGlow 4s ease-in-out infinite;
+  animation: floatAppear 0.5s ease-out forwards, floatGlowPulse 4s ease-in-out infinite;
   transition: border-color 0.3s, box-shadow 0.3s;
+  white-space: nowrap;
 }
 
 .edu-float:hover {
-  border-color: rgba(139, 92, 246, 0.4);
-  background: rgba(6, 6, 14, 0.85);
-  box-shadow: 0 0 24px rgba(139, 92, 246, 0.12);
-}
-
-.edu-float-dot-connector {
-  display: none;
+  border-color: rgba(139, 92, 246, 0.5);
+  background: rgba(6, 6, 14, 0.9);
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.2), 0 0 60px rgba(139, 92, 246, 0.08);
 }
 
 .edu-float-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
   background: var(--accent-subtle);
   border: 1px solid var(--border-glow);
   display: flex;
@@ -573,10 +503,10 @@
 }
 
 .edu-float-icon-blue {
-  background: rgba(167, 139, 250, 0.08);
-  border-color: rgba(167, 139, 250, 0.2);
-  color: var(--violet);
-  box-shadow: 0 0 12px rgba(167, 139, 250, 0.15);
+  background: rgba(99, 102, 241, 0.08);
+  border-color: rgba(99, 102, 241, 0.2);
+  color: #818cf8;
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.15);
 }
 
 .edu-float-icon-violet {
@@ -606,38 +536,105 @@
   color: var(--text-muted);
 }
 
+/* positions — labels sit just beside their dots on the zigzag */
 .edu-float-1 {
-  top: 5%;
-  left: 2%;
+  bottom: -4%;
+  left: 18%;
   animation-delay: 1s, 1.5s;
 }
 
 .edu-float-2 {
-  top: 23%;
-  right: 2%;
-  animation-delay: 1.6s, 2.1s;
+  bottom: 35%;
+  left: 0%;
+  animation-delay: 1.5s, 2.0s;
 }
 
 .edu-float-3 {
-  top: 59%;
-  left: 2%;
+  top: 32%;
+  right: 1%;
   animation-delay: 2.2s, 2.7s;
 }
 
 .edu-float-4 {
-  top: 77%;
-  right: 2%;
-  animation-delay: 2.8s, 3.3s;
+  top: -3%;
+  right: 25%;
+  animation-delay: 2.7s, 3.2s;
+}
+
+/* per-label glow colors matching their dot */
+.edu-float-1.edu-float {
+  animation-delay: 1s, 1.5s;
+  border-color: rgba(99, 102, 241, 0.18);
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.08), 0 0 30px rgba(99, 102, 241, 0.04);
+}
+.edu-float-1.edu-float:hover {
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.2), 0 0 50px rgba(99, 102, 241, 0.08);
+}
+
+.edu-float-2.edu-float {
+  animation-delay: 1.5s, 2.0s;
+  border-color: rgba(139, 92, 246, 0.18);
+  box-shadow: 0 0 12px rgba(139, 92, 246, 0.08), 0 0 30px rgba(139, 92, 246, 0.04);
+}
+.edu-float-2.edu-float:hover {
+  border-color: rgba(139, 92, 246, 0.4);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.2), 0 0 50px rgba(139, 92, 246, 0.08);
+}
+
+.edu-float-3.edu-float {
+  animation-delay: 2.2s, 2.7s;
+  border-color: rgba(167, 139, 250, 0.18);
+  box-shadow: 0 0 12px rgba(167, 139, 250, 0.08), 0 0 30px rgba(167, 139, 250, 0.04);
+}
+.edu-float-3.edu-float:hover {
+  border-color: rgba(167, 139, 250, 0.4);
+  box-shadow: 0 0 20px rgba(167, 139, 250, 0.2), 0 0 50px rgba(167, 139, 250, 0.08);
+}
+
+.edu-float-4.edu-float {
+  animation-delay: 2.7s, 3.2s;
+  border-color: rgba(52, 211, 153, 0.18);
+  box-shadow: 0 0 12px rgba(52, 211, 153, 0.08), 0 0 30px rgba(52, 211, 153, 0.04);
+}
+.edu-float-4.edu-float:hover {
+  border-color: rgba(52, 211, 153, 0.45);
+  box-shadow: 0 0 20px rgba(52, 211, 153, 0.25), 0 0 50px rgba(52, 211, 153, 0.1);
+}
+
+/* peak glow — accent at the graduate point */
+.edu-peak-glow {
+  position: absolute;
+  top: 4%;
+  right: 10%;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(52, 211, 153, 0.2), transparent 70%);
+  filter: blur(12px);
+  pointer-events: none;
+  animation: peakPulse 3s ease-in-out infinite;
 }
 
 @keyframes floatAppear {
-  0% { opacity: 0; transform: translateY(10px); }
+  0% { opacity: 0; transform: translateY(20px); }
   100% { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes floatGlow {
-  0%, 100% { box-shadow: 0 0 8px rgba(139, 92, 246, 0.06); }
-  50% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.1); }
+@keyframes floatGlowPulse {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.08), 0 0 25px rgba(139, 92, 246, 0.04);
+    border-color: rgba(139, 92, 246, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(139, 92, 246, 0.18), 0 0 45px rgba(139, 92, 246, 0.08);
+    border-color: rgba(139, 92, 246, 0.3);
+  }
+}
+
+@keyframes peakPulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.15); }
 }
 
 /* ── responsive ── */
