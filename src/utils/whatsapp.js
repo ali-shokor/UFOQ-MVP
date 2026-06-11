@@ -65,5 +65,5 @@ export const sendToEmail = (formData, selectedCourses, sessions = []) => {
 
   const subject = encodeURIComponent("Enrollment Request - UFOQ Academy");
   const body = encodeURIComponent(lines.join("\n"));
-  window.location.href = `mailto:info@ufuqacademy.com?subject=${subject}&body=${body}`;
+  window.location.href = `mailto:ali.shokor.dev@gmail.com?subject=${subject}&body=${body}`;
 };

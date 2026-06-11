@@ -38,8 +38,8 @@ UFOQ Academy is an MVP educational platform that provides structured, expert-led
 
 | Layer | Technology |
 |-------|-----------|
-| Framework | React 19 |
-| Build Tool | Vite 6 |
+| Framework | React 19.1 |
+| Build Tool | Vite 6.3 |
 | Routing | React Router DOM 7 |
 | Animations | Framer Motion 12 |
 | Icons | Lucide React |
@@ -140,11 +140,12 @@ src/
 - **Subtle glow effects** — purple accent glow on interactive elements
 - **Noise texture** — subtle SVG noise overlay for depth
 - **Grid pattern** — faded grid lines on hero for futuristic feel
+- **3D abstract background** — perspective-transformed gradient planes for depth
 - **No emojis** — all icons are vector (Lucide React)
 
 ### Visual Style Keywords
 
-`dark` · `glassmorphism` · `gradient accents` · `glow effects` · `soft borders` · `smooth transitions` · `floating cards` · `noise texture`
+`dark` · `glassmorphism` · `gradient accents` · `glow effects` · `soft borders` · `smooth transitions` · `floating cards` · `noise texture` · `3D perspective`
 
 ---
 
@@ -178,6 +179,7 @@ src/
 | `--accent-subtle` | `rgba(124, 92, 252, 0.08)` | Subtle accent backgrounds |
 | `--green` | `#34d399` | Success, checkmarks, active states |
 | `--green-glow` | `rgba(52, 211, 153, 0.2)` | Green glow shadow |
+| `--violet` | `#a78bfa` | Secondary purple accent |
 
 ### Border Colors
 
@@ -185,6 +187,7 @@ src/
 |-------|-------|-------|
 | `--border` | `rgba(255, 255, 255, 0.06)` | Default borders |
 | `--border-hover` | `rgba(255, 255, 255, 0.12)` | Hover state borders |
+| `--border-glow` | `rgba(139, 92, 246, 0.2)` | Glowing borders on featured elements |
 
 ### Border Radius
 
@@ -279,10 +282,10 @@ src/
 
 ### HomePage Marketing Flow (in order)
 
-1. **Hero** — Full viewport, animated gradient orbs, floating cards, $99 price tag, stats, dual CTA
+1. **Hero** — Full viewport, animated gradient orbs, 3D perspective plane, compass/education path visual, $99 price tag, stats, dual CTA
 2. **Problem/Solution** — Side-by-side columns: 3 problems vs 3 UFOQ solutions
 3. **Year/Major Selector** — 3 year tabs + 9 major cards (only CS active)
-4. **Package/Pricing** — 2 cards: Full Package ($99) and Semester Package ($49)
+4. **Package/Pricing** — 2 cards: Full Package ($99) and Half Bundle ($59) with 15-credit pool
 5. **Why UFOQ** — 5 benefit cards in a grid
 6. **About Us** — Mission/Vision/Promise + stats cards
 7. **Testimonials** — 6 student review cards with star ratings
@@ -311,6 +314,16 @@ src/
 - Course cards with code, title, description, credits, thumbnail placeholder
 - Play button overlay for preview
 - Add-to-cart toggle
+- Credit system for bundle tracking
+
+### Bundle Package System
+- **Full Bundle ($99)** — All courses included, lifetime access
+- **Half Bundle ($59)** — 15-credit global pool across all semesters
+  - Credits auto-calculated based on first 15 credits worth of courses
+  - Courses beyond 15 credits charged at individual price
+  - Visual distinction: included courses (violet) vs extra courses (amber)
+  - Toast notification when credit limit reached
+  - Progress bar shows `15/15 +N extra` when over limit
 
 ### Cart System
 - Context-based state management (CartContext)
@@ -318,6 +331,7 @@ src/
 - Add/remove individual courses
 - Clear all
 - Total credits calculation
+- Bundle breakdown (included + extras)
 - Direct link to enrollment
 
 ### Contact & Enrollment
@@ -332,12 +346,6 @@ src/
 - Quick action buttons
 - Simulated bot responses
 - Ready for real API integration
-
-### Package System
-- Data-driven from `packages.js`
-- Featured card highlight with glow
-- Discount percentage calculation
-- Star badge for "Best Value"
 
 ---
 
@@ -366,16 +374,31 @@ Layout wraps all routes with Header, Footer, CartSidebar, and ChatbotWidget.
 
 ```jsx
 {
-  selectedCourses: [],    // Array of course objects
-  isCartOpen: false,      // Sidebar visibility
-  addCourse(course),      // Add by course object
-  removeCourse(code),     // Remove by course code
-  clearCart(),            // Empty cart
-  toggleCart(),           // Toggle sidebar
-  openCart(),             // Force open
-  closeCart(),            // Force close
-  isCourseSelected(code), // Check if course is in cart
-  courseCount,            // Number of selected courses
+  // Course selection
+  selectedCourses: [],          // Array of course objects
+  isCourseSelected(code),       // Check if course is in cart
+  courseCount,                  // Number of selected courses
+
+  // Bundle state
+  activeBundle: null,           // 'full' | 'half' | null
+  halfBundleCoveredCodes: [],   // Auto-calculated first 15 credits
+  halfBundleIsFull: boolean,    // Whether 15-credit limit reached
+  canAddToHalfBundle(credits),  // Check if course fits in bundle
+
+  // Cart UI
+  isCartOpen: false,            // Sidebar visibility
+  addCourse(course),            // Add by course object
+  removeCourse(code),           // Remove by course code
+  clearCart(),                  // Empty cart
+  toggleCart(),                 // Toggle sidebar
+  openCart(),                   // Force open
+  closeCart(),                  // Force close
+
+  // Pricing
+  courseTotal,                  // Individual course total
+  extraCourseTotal,             // Extra courses beyond bundle
+  bundlePrice,                  // Bundle price
+  totalPrice,                   // Final calculated price
 }
 ```
 
@@ -412,7 +435,14 @@ courseDatabase[majorId][year][semester] = [
 
 ### `packages.js`
 ```js
-{ id: "full-package", name: "Full Package", price: 99, originalPrice: 299, features: [...], highlighted: true }
+{
+  id: "full-package",
+  name: "Full Package",
+  price: 99,
+  originalPrice: 299,
+  features: [...],
+  highlighted: true
+}
 ```
 
 ### `years.js`
@@ -454,6 +484,9 @@ All animations use **Framer Motion**:
 | Cards | Staggered fade-in, hover lift (`y: -4 to -8`) |
 | Hero floating cards | Infinite float keyframes (5-7s) |
 | Hero gradient orbs | Infinite drift (18-25s) |
+| Hero 3D plane | Perspective-transformed gradient with blur |
+| Education path SVG | Path draw animation (3s) + staggered dot appearance |
+| Compass | Rotating rings + pulsing core |
 | Cart sidebar | Slide from right |
 | Chatbot window | Scale + fade in |
 | FAQ accordion | Height animation |

@@ -26,7 +26,7 @@
 .hero-orb-purple {
   width: 700px;
   height: 700px;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.12), transparent 65%);
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.15), transparent 65%);
   top: -20%;
   right: -10%;
   animation: orbDrift1 22s ease-in-out infinite;
@@ -35,7 +35,7 @@
 .hero-orb-blue {
   width: 550px;
   height: 550px;
-  background: radial-gradient(circle, rgba(79, 140, 255, 0.08), transparent 65%);
+  background: radial-gradient(circle, rgba(79, 140, 255, 0.1), transparent 65%);
   bottom: -15%;
   left: -8%;
   animation: orbDrift2 26s ease-in-out infinite;
@@ -44,7 +44,7 @@
 .hero-orb-violet {
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba(167, 139, 250, 0.07), transparent 65%);
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.09), transparent 65%);
   top: 35%;
   left: 30%;
   animation: orbDrift3 20s ease-in-out infinite;
@@ -53,7 +53,7 @@
 .hero-orb-deep {
   width: 300px;
   height: 300px;
-  background: radial-gradient(circle, rgba(109, 40, 217, 0.06), transparent 65%);
+  background: radial-gradient(circle, rgba(109, 40, 217, 0.08), transparent 65%);
   top: 10%;
   left: 15%;
   animation: orbDrift1 18s ease-in-out infinite reverse;
@@ -63,10 +63,22 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 50% at 20% 80%, rgba(139, 92, 246, 0.032), transparent),
-    radial-gradient(ellipse 60% 40% at 80% 20%, rgba(79, 140, 255, 0.035), transparent),
-    radial-gradient(ellipse 50% 30% at 50% 50%, rgba(167, 139, 250, 0.03), transparent);
+    radial-gradient(ellipse 80% 50% at 20% 80%, rgba(139, 92, 246, 0.045), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 20%, rgba(79, 140, 255, 0.05), transparent),
+    radial-gradient(ellipse 50% 30% at 50% 50%, rgba(167, 139, 250, 0.04), transparent),
+    radial-gradient(ellipse 70% 35% at 50% 95%, rgba(139, 92, 246, 0.06), transparent);
   animation: auroraPulse 12s ease-in-out infinite alternate;
+}
+
+.hero-3d-plane {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(52, 211, 153, 0.1) 100%),
+    radial-gradient(ellipse 50% 30% at 50% 100%, rgba(139, 92, 246, 0.12), transparent);
+  transform: perspective(1000px) rotateX(65deg) rotateZ(45deg) scale(1.6);
+  filter: blur(20px);
+  z-index: -1;
 }
 
 .hero-grid-pattern {
@@ -147,7 +159,7 @@
 
 /* ── title ── */
 .hero-title {
-  font-size: 3.8rem;
+  font-size: 4.1rem;
   font-weight: 900;
   color: var(--text-primary);
   line-height: 1.08;

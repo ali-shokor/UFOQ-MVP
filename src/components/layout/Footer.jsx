@@ -40,9 +40,9 @@ export default function Footer() {
               structured academic support.
             </p>
             <div className="footer-contact">
-              <a href="mailto:info@ufuqacademy.com" className="footer-contact-item">
+              <a href="mailto:ali.shokor.dev@gmail.com" className="footer-contact-item">
                 <Mail size={16} />
-                info@ufuqacademy.com
+                ali.shokor.dev@gmail.com
               </a>
               <a href="tel:+96178957" className="footer-contact-item">
                 <Phone size={16} />
@@ -50,7 +50,7 @@ export default function Footer() {
               </a>
               <div className="footer-contact-item">
                 <MapPin size={16} />
-                Morocco
+                Lebanon
               </div>
             </div>
           </div>

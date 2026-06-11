@@ -22,6 +22,7 @@ export default function Hero() {
         <div className="hero-gradient-orb hero-orb-violet" />
         <div className="hero-gradient-orb hero-orb-deep" />
         <div className="hero-aurora" />
+        <div className="hero-3d-plane" />
         <div className="hero-grid-pattern" />
         <div className="hero-noise-overlay" />
       </div>
