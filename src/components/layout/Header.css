@@ -279,4 +279,7 @@
   .nav-desktop { display: none; }
   .header-cta { display: none; }
   .mobile-menu-btn { display: flex; }
+  .logo-badge { display: none; }
+  .header-enroll-btn span { display: none; }
+  .header-enroll-btn { padding: 10px; }
 }

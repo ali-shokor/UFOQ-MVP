@@ -122,3 +122,18 @@ select {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ── phone performance: reduce heavy effects ── */
+@media (max-width: 768px) {
+  *,
+  *::before,
+  *::after {
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+  }
+
+  .hero-bg,
+  .page-bg {
+    filter: none;
+  }
+}

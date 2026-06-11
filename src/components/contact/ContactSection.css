@@ -218,5 +218,5 @@
     gap: 24px;
   }
   .contact-form { padding: 24px; }
-  .contact-spline-wrap spline-viewer { height: 300px; }
+  .contact-spline-wrap { display: none; }
 }

@@ -656,14 +656,27 @@
   .edu-float { display: none; }
 }
 
+@media (max-width: 768px) {
+  .hero { padding-top: 80px; }
+  .hero-orb-purple, .hero-orb-blue, .hero-orb-violet, .hero-orb-deep {
+    filter: blur(60px);
+    opacity: 0.6;
+  }
+}
+
 @media (max-width: 480px) {
   .hero { padding: 30px 0 30px; }
+  .hero-badge { display: none; }
   .hero-title { font-size: 2rem; letter-spacing: -1px; }
   .hero-description { font-size: 0.95rem; }
   .hero-stats { flex-direction: column; gap: 10px; align-items: center; }
   .hero-actions { flex-direction: column; width: 100%; }
   .hero-actions a { width: 100%; }
   .hero-price-pill { flex-direction: column; text-align: center; gap: 10px; }
-  .hero-visual { max-width: 220px; }
-  .hero-edu-scene { max-width: 220px; }
+  .hero-visual { max-width: 180px; }
+  .hero-edu-scene { max-width: 180px; }
+  .edu-path-glow, .edu-path-line, .edu-path-flow { display: none; }
+  .edu-particle, .edu-sparkle { display: none; }
+  .edu-start-ring, .edu-end-ring, .edu-ray { display: none; }
+  .edu-start-burst, .edu-end-burst { display: none; }
 }
