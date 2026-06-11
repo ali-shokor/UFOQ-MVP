@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSearchParams } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
@@ -9,14 +9,29 @@ import "./YearSelector.css";
 
 const MOBILE_INITIAL = 3;
 
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== "undefined" && window.innerWidth <= 640
+  );
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 640);
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+  return isMobile;
+}
+
 export default function YearSelector({ onMajorSelect }) {
   const [searchParams] = useSearchParams();
   const bundle = searchParams.get("bundle");
   const [selectedYear, setSelectedYear] = useState(2);
   const [showAll, setShowAll] = useState(false);
+  const isMobile = useIsMobile();
 
-  const visibleMajors = showAll ? majors : majors.slice(0, MOBILE_INITIAL);
-  const hasMore = majors.length > MOBILE_INITIAL;
+  const visibleMajors = isMobile && !showAll
+    ? majors.slice(0, MOBILE_INITIAL)
+    : majors;
+  const hasMore = isMobile && majors.length > MOBILE_INITIAL;
 
   return (
     <section className="year-selector">
@@ -69,7 +84,7 @@ export default function YearSelector({ onMajorSelect }) {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
           >
-            {(showAll ? majors : visibleMajors).map((major, index) => (
+            {visibleMajors.map((major, index) => (
               <MajorCard
                 key={major.id}
                 major={major}
