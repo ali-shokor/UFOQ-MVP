@@ -125,15 +125,19 @@ select {
 
 /* ── phone performance: reduce heavy effects ── */
 @media (max-width: 768px) {
-  *,
-  *::before,
-  *::after {
-    backdrop-filter: blur(8px) !important;
-    -webkit-backdrop-filter: blur(8px) !important;
+  .hero-orb-purple,
+  .hero-orb-blue,
+  .hero-orb-violet,
+  .hero-orb-deep,
+  .page-bg-orb-1,
+  .page-bg-orb-2,
+  .page-bg-orb-3 {
+    filter: blur(50px);
+    opacity: 0.7;
   }
 
-  .hero-bg,
-  .page-bg {
-    filter: none;
+  .hero-aurora,
+  .page-bg-aurora {
+    opacity: 0.4;
   }
 }

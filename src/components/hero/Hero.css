@@ -658,10 +658,6 @@
 
 @media (max-width: 768px) {
   .hero { padding-top: 80px; }
-  .hero-orb-purple, .hero-orb-blue, .hero-orb-violet, .hero-orb-deep {
-    filter: blur(60px);
-    opacity: 0.6;
-  }
 }
 
 @media (max-width: 480px) {
