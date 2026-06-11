@@ -269,15 +269,15 @@
 @media (max-width: 640px) {
   .packages-grid {
     grid-template-columns: 1fr;
-    max-width: 320px;
-    gap: 14px;
+    max-width: 340px;
+    gap: 12px;
   }
-  .package-card { padding: 18px 16px; }
-  .package-price { font-size: 2rem; }
-  .package-range-text { font-size: 1.4rem; }
-  .package-icon { width: 40px; height: 40px; border-radius: 10px; margin-bottom: 10px; }
-  .package-name { font-size: 0.95rem; }
-  .package-feature { font-size: 0.75rem; }
-  .package-header { margin-bottom: 14px; }
-  .package-badge { padding: 4px 12px; font-size: 0.65rem; }
+  .package-card { padding: 16px 14px; }
+  .package-price { font-size: 1.75rem; }
+  .package-range-text { font-size: 1.25rem; }
+  .package-icon { width: 36px; height: 36px; border-radius: 8px; margin-bottom: 8px; }
+  .package-name { font-size: 0.88rem; }
+  .package-feature { font-size: 0.7rem; }
+  .package-header { margin-bottom: 12px; }
+  .package-badge { padding: 3px 10px; font-size: 0.6rem; }
 }

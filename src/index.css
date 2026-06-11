@@ -140,4 +140,28 @@ select {
   .page-bg-aurora {
     opacity: 0.4;
   }
+
+  .section-header {
+    text-align: left;
+    align-items: flex-start;
+  }
+  .section-description {
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-orb-purple,
+  .hero-orb-blue,
+  .hero-orb-violet,
+  .hero-orb-deep {
+    filter: blur(40px);
+    opacity: 0.5;
+  }
+  .page-bg-orb-1,
+  .page-bg-orb-2,
+  .page-bg-orb-3 {
+    filter: blur(40px);
+    opacity: 0.4;
+  }
 }

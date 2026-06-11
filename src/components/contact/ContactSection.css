@@ -215,8 +215,12 @@
 @media (max-width: 768px) {
   .contact-grid {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 20px;
   }
-  .contact-form { padding: 24px; }
+  .contact-form { padding: 20px; }
   .contact-spline-wrap { display: none; }
+}
+
+@media (max-width: 480px) {
+  .contact-form { padding: 16px; }
 }

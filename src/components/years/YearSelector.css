@@ -221,17 +221,31 @@
   border-color: rgba(139, 92, 246, 0.4);
 }
 
-@media (max-width: 640px) {
-  .majors-show-more { display: inline-flex; }
-}
-
 @media (max-width: 968px) {
   .majors-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 640px) {
   .section-title { font-size: 1.75rem; }
-  .year-tabs { flex-direction: column; align-items: stretch; }
+  .year-tabs {
+    flex-direction: row;
+    gap: 8px;
+  }
+  .year-tab {
+    flex: 1;
+    padding: 10px 12px;
+    gap: 8px;
+    justify-content: center;
+  }
+  .year-tab-number {
+    width: 28px;
+    height: 28px;
+    font-size: 0.75rem;
+    border-radius: 8px;
+  }
+  .year-tab-label { font-size: 0.78rem; }
+  .year-tab-desc { display: none; }
+  .year-tab-info { text-align: center; }
   .majors-grid { grid-template-columns: 1fr; }
-  .year-tab { justify-content: center; }
+  .majors-show-more { display: inline-flex; }
 }

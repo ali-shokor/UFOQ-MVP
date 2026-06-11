@@ -179,16 +179,33 @@
 
 @media (max-width: 768px) {
   .testimonials-section {
-    padding: 50px 0;
+    padding: 48px 0;
+  }
+  .testimonials-container {
+    padding: 0 16px;
+  }
+  .testimonials-track {
+    gap: 14px;
+    padding: 8px 2px 16px;
   }
   .testimonial-card {
-    min-width: 280px;
-    padding: 22px;
+    min-width: 260px;
+    max-width: 300px;
+    padding: 20px;
+    gap: 12px;
   }
+  .testimonial-text {
+    font-size: 0.82rem;
+    line-height: 1.6;
+  }
+  .testimonial-name { font-size: 0.8rem; }
+  .testimonial-role { font-size: 0.68rem; }
+  .testimonial-avatar { width: 32px; height: 32px; font-size: 0.75rem; }
   .carousel-arrow {
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
   }
-  .carousel-arrow-left { left: -4px; }
-  .carousel-arrow-right { right: -4px; }
+  .carousel-arrow svg { width: 16px; height: 16px; }
+  .carousel-arrow-left { left: -2px; }
+  .carousel-arrow-right { right: -2px; }
 }

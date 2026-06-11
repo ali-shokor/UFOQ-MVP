@@ -117,3 +117,8 @@
 }
 
 @keyframes spin { 100% { transform: rotate(360deg); } }
+
+@media (max-width: 480px) {
+  .btn-lg { padding: 12px 24px; font-size: 0.88rem; }
+  .btn-md { padding: 10px 20px; font-size: 0.85rem; }
+}

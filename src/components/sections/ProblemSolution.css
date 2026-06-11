@@ -119,5 +119,14 @@
 }
 
 @media (max-width: 768px) {
-  .ps-grid { grid-template-columns: 1fr; gap: 24px; }
+  .ps-section { padding: 48px 0; }
+  .ps-grid { grid-template-columns: 1fr; gap: 20px; }
+  .ps-card { padding: 14px; }
+  .ps-card-desc { font-size: 0.76rem; }
+}
+
+@media (max-width: 480px) {
+  .ps-section { padding: 36px 0; }
+  .ps-card { padding: 12px; gap: 10px; }
+  .ps-card-icon { width: 34px; height: 34px; }
 }
