@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { HashRouter, Routes, Route, useLocation } from "react-router-dom";
 import { CartProvider } from "./context/CartContext";
 import { AuthProvider } from "./context/AuthContext";
 import Layout from "./components/layout/Layout";
@@ -25,7 +25,7 @@ export default function App() {
     <AuthProvider>
       <CartProvider>
         <CustomCursor />
-        <BrowserRouter>
+        <HashRouter>
           <ScrollToTop />
           <Layout>
             <Routes>
@@ -37,7 +37,7 @@ export default function App() {
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </Layout>
-        </BrowserRouter>
+        </HashRouter>
       </CartProvider>
     </AuthProvider>
   );
