@@ -1,15 +1,22 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSearchParams } from "react-router-dom";
+import { ChevronDown } from "lucide-react";
 import MajorCard from "./MajorCard";
 import { years } from "../../data/years";
 import { majors } from "../../data/majors";
 import "./YearSelector.css";
 
+const MOBILE_INITIAL = 3;
+
 export default function YearSelector({ onMajorSelect }) {
   const [searchParams] = useSearchParams();
   const bundle = searchParams.get("bundle");
   const [selectedYear, setSelectedYear] = useState(2);
+  const [showAll, setShowAll] = useState(false);
+
+  const visibleMajors = showAll ? majors : majors.slice(0, MOBILE_INITIAL);
+  const hasMore = majors.length > MOBILE_INITIAL;
 
   return (
     <section className="year-selector">
@@ -62,7 +69,7 @@ export default function YearSelector({ onMajorSelect }) {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
           >
-            {majors.map((major, index) => (
+            {(showAll ? majors : visibleMajors).map((major, index) => (
               <MajorCard
                 key={major.id}
                 major={major}
@@ -74,6 +81,13 @@ export default function YearSelector({ onMajorSelect }) {
             ))}
           </motion.div>
         </AnimatePresence>
+
+        {hasMore && !showAll && (
+          <button className="majors-show-more" onClick={() => setShowAll(true)}>
+            <span>Show All Majors</span>
+            <ChevronDown size={16} />
+          </button>
+        )}
       </div>
     </section>
   );

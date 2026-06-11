@@ -7,7 +7,6 @@ export const sendToWhatsApp = (formData, selectedCourses, sessions = []) => {
   lines.push("");
   lines.push(`*Name:* ${formData.name}`);
   lines.push(`*Phone:* ${formData.phone}`);
-  if (formData.email) lines.push(`*Email:* ${formData.email}`);
   lines.push("");
 
   if (selectedCourses.length > 0) {
@@ -42,7 +41,6 @@ export const sendToEmail = (formData, selectedCourses, sessions = []) => {
   lines.push("");
   lines.push(`Name: ${formData.name}`);
   lines.push(`Phone: ${formData.phone}`);
-  if (formData.email) lines.push(`Email: ${formData.email}`);
   lines.push("");
 
   if (selectedCourses.length > 0) {

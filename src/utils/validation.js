@@ -22,8 +22,5 @@ export const validateContactForm = (formData) => {
   if (!validatePhone(formData.phone)) {
     errors.phone = "Please enter a valid phone number";
   }
-  if (!validateEmail(formData.email)) {
-    errors.email = "Please enter a valid email address";
-  }
   return { isValid: Object.keys(errors).length === 0, errors };
 };

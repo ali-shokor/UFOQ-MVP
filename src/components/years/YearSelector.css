@@ -1,7 +1,7 @@
 .year-selector {
   padding: 100px 0;
   position: relative;
-  background: transparent;
+  background: var(--bg-primary);
   overflow: hidden;
   min-height: 80vh;
   border-top: 1px solid rgba(139, 92, 246, 0.08);
@@ -196,6 +196,33 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
+}
+
+/* ── Show More button ── */
+.majors-show-more {
+  display: none;
+  margin: 24px auto 0;
+  padding: 10px 24px;
+  background: rgba(139, 92, 246, 0.08);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  border-radius: 100px;
+  color: var(--accent-light);
+  font-family: "Inter", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  align-items: center;
+  gap: 6px;
+}
+
+.majors-show-more:hover {
+  background: rgba(139, 92, 246, 0.14);
+  border-color: rgba(139, 92, 246, 0.4);
+}
+
+@media (max-width: 640px) {
+  .majors-show-more { display: inline-flex; }
 }
 
 @media (max-width: 968px) {

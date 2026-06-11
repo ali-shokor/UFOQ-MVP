@@ -6,7 +6,7 @@
   align-items: center;
   overflow: hidden;
   padding: 40px 0 8px;
-  background: transparent;
+  background: var(--bg-primary);
 }
 
 /* ── alive background ── */
@@ -651,8 +651,9 @@
   .hero-actions { justify-content: center; }
   .hero-price-pill { margin: 0 auto; }
   .hero-stats { justify-content: center; }
-  .hero-visual { order: -1; }
-  .hero-edu-scene { max-width: 320px; }
+  .hero-visual { max-width: 300px; margin: 0 auto; }
+  .hero-edu-scene { max-width: 300px; }
+  .edu-float { display: none; }
 }
 
 @media (max-width: 480px) {
@@ -663,6 +664,6 @@
   .hero-actions { flex-direction: column; width: 100%; }
   .hero-actions a { width: 100%; }
   .hero-price-pill { flex-direction: column; text-align: center; gap: 10px; }
-  .edu-float { display: none; }
-  .hero-edu-scene { max-width: 240px; }
+  .hero-visual { max-width: 220px; }
+  .hero-edu-scene { max-width: 220px; }
 }

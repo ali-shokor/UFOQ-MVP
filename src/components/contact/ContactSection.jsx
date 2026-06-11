@@ -4,7 +4,6 @@ import {
   Send,
   Phone,
   User,
-  Mail,
   MessageSquare,
   BookOpen,
   DollarSign,
@@ -30,7 +29,6 @@ export default function ContactSection() {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
-    email: "",
     message: "",
   });
   const [errors, setErrors] = useState({});
@@ -140,22 +138,6 @@ export default function ContactSection() {
                 onChange={handleChange}
               />
               {errors.phone && <span className="form-error">{errors.phone}</span>}
-            </div>
-
-            <div className="form-group">
-              <label className="form-label">
-                <Mail size={16} />
-                Email Address (optional)
-              </label>
-              <input
-                type="email"
-                name="email"
-                className={`form-input ${errors.email ? "form-input-error" : ""}`}
-                placeholder="your.email@example.com"
-                value={formData.email}
-                onChange={handleChange}
-              />
-              {errors.email && <span className="form-error">{errors.email}</span>}
             </div>
 
             <div className="form-group">
