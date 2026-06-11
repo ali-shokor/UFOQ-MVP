@@ -9,23 +9,48 @@
   backdrop-filter: blur(12px);
 }
 
+/* ── Active card ── */
 .major-card-active {
   cursor: pointer;
 }
 
-.major-card-active:hover {
-  border-color: var(--border-glow);
-  background: var(--bg-card-hover);
-  box-shadow: 0 0 30px rgba(139, 92, 246, 0.06), var(--shadow-md);
-  transform: translateY(-3px);
+.major-card-active::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: var(--radius-lg);
+  padding: 1px;
+  background: linear-gradient(135deg, transparent 30%, var(--major-color, var(--accent)) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s;
+  pointer-events: none;
 }
 
+.major-card-active:hover::after {
+  opacity: 0.5;
+}
+
+.major-card-active:hover {
+  border-color: transparent;
+  background: var(--bg-card-hover);
+  box-shadow:
+    0 0 20px color-mix(in srgb, var(--major-color, var(--accent)), transparent 80%),
+    0 8px 32px rgba(0, 0, 0, 0.3);
+  transform: translateY(-4px);
+}
+
+/* ── Disabled card ── */
 .major-card-disabled {
   opacity: 0.35;
   cursor: not-allowed;
   filter: grayscale(0.8);
 }
 
+/* ── Icon ── */
 .major-card-icon {
   width: 52px;
   height: 52px;
@@ -35,12 +60,22 @@
   justify-content: center;
   margin-bottom: 16px;
   transition: all 0.35s;
+  position: relative;
 }
 
 .major-card-active .major-card-icon {
   background: linear-gradient(135deg, var(--major-color, var(--accent)), color-mix(in srgb, var(--major-color, var(--accent)), white 25%));
   color: #fff;
-  box-shadow: 0 0 24px color-mix(in srgb, var(--major-color, var(--accent)), transparent 65%);
+  box-shadow:
+    0 0 20px color-mix(in srgb, var(--major-color, var(--accent)), transparent 60%),
+    0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.major-card-active:hover .major-card-icon {
+  box-shadow:
+    0 0 30px color-mix(in srgb, var(--major-color, var(--accent)), transparent 50%),
+    0 4px 16px rgba(0, 0, 0, 0.25);
+  transform: scale(1.05);
 }
 
 .major-card-disabled .major-card-icon {
@@ -49,6 +84,7 @@
   border: 1px solid var(--border);
 }
 
+/* ── Content ── */
 .major-card-content {
   display: flex;
   flex-direction: column;
@@ -72,22 +108,51 @@
   gap: 6px;
   font-size: 0.8rem;
   font-weight: 500;
+  transition: all 0.3s;
 }
 
 .major-card-active .major-card-status { color: var(--accent-light); }
 .major-card-disabled .major-card-status { color: var(--text-muted); }
 
+.major-card-active:hover .major-card-status {
+  color: var(--major-color, var(--accent-light));
+}
+
+/* ── Corner glow ── */
 .major-card-glow {
   position: absolute;
-  top: -50%;
-  right: -50%;
-  width: 100%;
-  height: 100%;
+  top: -60%;
+  right: -60%;
+  width: 120%;
+  height: 120%;
   background: radial-gradient(circle, var(--major-color, var(--accent)), transparent 70%);
   opacity: 0.03;
   pointer-events: none;
+  transition: opacity 0.35s;
 }
 
 .major-card-active:hover .major-card-glow {
-  opacity: 0.07;
+  opacity: 0.08;
+}
+
+/* ── Featured card pulse (CS) ── */
+.major-card-active:first-child {
+  border-color: rgba(99, 102, 241, 0.2);
+}
+
+.major-card-active:first-child::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--major-color), transparent);
+  opacity: 0.6;
+  animation: featuredPulse 3s ease-in-out infinite;
+}
+
+@keyframes featuredPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
 }

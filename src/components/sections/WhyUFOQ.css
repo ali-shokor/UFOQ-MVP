@@ -2,7 +2,7 @@
   position: relative;
   padding: 100px 0;
   overflow: hidden;
-  background: var(--bg-primary);
+  background: transparent;
 }
 
 /* ── glowing orbs ── */
@@ -160,12 +160,12 @@
 
 .why-scroll-fade-top {
   top: 0;
-  background: linear-gradient(180deg, var(--bg-primary), transparent);
+  background: linear-gradient(180deg, var(--bg-deep), transparent);
 }
 
 .why-scroll-fade-bottom {
   bottom: 0;
-  background: linear-gradient(0deg, var(--bg-primary), transparent);
+  background: linear-gradient(0deg, var(--bg-deep), transparent);
 }
 
 .why-scroll-track {

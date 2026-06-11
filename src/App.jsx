@@ -4,6 +4,7 @@ import { CartProvider } from "./context/CartContext";
 import { AuthProvider } from "./context/AuthContext";
 import Layout from "./components/layout/Layout";
 import CustomCursor from "./components/ui/CustomCursor";
+import AmbientGlow from "./components/ui/AmbientGlow";
 import HomePage from "./pages/HomePage";
 import AcademicsPage from "./pages/AcademicsPage";
 import MajorPage from "./pages/MajorPage";
@@ -25,6 +26,7 @@ export default function App() {
     <AuthProvider>
       <CartProvider>
         <CustomCursor />
+        <AmbientGlow count={18} />
         <BrowserRouter>
           <ScrollToTop />
           <Layout>

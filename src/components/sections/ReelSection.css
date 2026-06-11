@@ -2,7 +2,7 @@
   position: relative;
   padding: 70px 0;
   overflow: hidden;
-  background: var(--bg-primary);
+  background: transparent;
 }
 
 .reel-bg-gradient {

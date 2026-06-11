@@ -6,7 +6,7 @@
   align-items: center;
   overflow: hidden;
   padding: 40px 0 8px;
-  background: var(--bg-primary);
+  background: transparent;
 }
 
 /* ── alive background ── */
@@ -556,7 +556,7 @@
 }
 
 .edu-float-4 {
-  top: -3%;
+  top: -4%;
   right: 25%;
   animation-delay: 2.7s, 3.2s;
 }
