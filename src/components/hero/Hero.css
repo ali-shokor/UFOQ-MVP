@@ -663,7 +663,7 @@
   }
 
   .hero-content { align-items: center; }
-  .hero-title { font-size: 2.6rem; letter-spacing: -1.5px; }
+  .hero-title { font-size: 3.1rem; letter-spacing: -1.5px; }
   .hero-description { max-width: 100%; }
   .hero-actions { justify-content: center; }
   .hero-price-pill { margin: 0 auto; }
@@ -689,7 +689,7 @@
     gap: 16px;
   }
   .hero-badge { font-size: 0.7rem; padding: 5px 12px; }
-  .hero-title { font-size: 2.1rem; letter-spacing: -1px; line-height: 1.12; }
+  .hero-title { font-size: 3rem; letter-spacing: -1px; line-height: 1.12; }
   .hero-description { font-size: 0.9rem; max-width: 100%; line-height: 1.6; }
   .hero-actions { justify-content: flex-start; gap: 10px; }
   .hero-price-pill { margin: 0; padding: 12px 14px; gap: 16px; }
@@ -701,9 +701,7 @@
   .hero-stat-icon svg { width: 16px; height: 16px; }
   .hero-stat-value { font-size: 0.9rem; }
   .hero-stat-label { font-size: 0.6rem; }
-  .hero-visual { max-width: 220px; margin: 0 auto; }
-  .hero-edu-scene { max-width: 220px; }
-  .edu-float { display: none; }
+  .hero-visual { display: none; }
 }
 
 @media (max-width: 480px) {
@@ -714,7 +712,7 @@
   }
   .hero-container { padding: 0 16px; gap: 20px; }
   .hero-badge { display: none; }
-  .hero-title { font-size: 1.8rem; letter-spacing: -0.6px; line-height: 1.15; }
+  .hero-title { font-size: 2.55rem; letter-spacing: -0.6px; line-height: 1.15; }
   .hero-description { font-size: 0.82rem; line-height: 1.55; }
   .hero-actions { flex-direction: column; width: 100%; gap: 8px; }
   .hero-actions > a { width: 100%; }
@@ -738,10 +736,4 @@
   .hero-stat-icon svg { width: 14px; height: 14px; }
   .hero-stat-value { font-size: 0.82rem; }
   .hero-stat-label { font-size: 0.55rem; }
-  .hero-visual { max-width: 150px; margin-top: 4px; }
-  .hero-edu-scene { max-width: 150px; }
-  .edu-path-glow, .edu-path-line, .edu-path-flow { display: none; }
-  .edu-particle, .edu-sparkle { display: none; }
-  .edu-start-ring, .edu-end-ring, .edu-ray { display: none; }
-  .edu-start-burst, .edu-end-burst { display: none; }
 }
