@@ -1,6 +1,7 @@
 const WHATSAPP_NUMBER = "+96178957416";
 
-export const sendToWhatsApp = (formData, selectedCourses, sessions = []) => {
+export const sendToWhatsApp = (formData, selectedCourses, sessions = [], cartInfo = {}) => {
+  const { isBundleActive, isHalfBundleActive, totalPrice, courseTotal, sessionTotal, extraCourseTotal } = cartInfo;
   const lines = [];
 
   lines.push("*New Enrollment Request*");
@@ -9,23 +10,48 @@ export const sendToWhatsApp = (formData, selectedCourses, sessions = []) => {
   lines.push(`*Phone:* ${formData.phone}`);
   lines.push("");
 
-  if (selectedCourses.length > 0) {
-    lines.push("*Selected Courses:*");
-    selectedCourses.forEach((c) => {
-      lines.push(`- ${c.code}: ${c.title} ($${c.price})`);
-    });
+  if (isBundleActive || isHalfBundleActive) {
+    const bundleName = isBundleActive ? "Full Bundle" : "Half Bundle";
+    const bundlePrice = isBundleActive ? 99 : 59;
+    lines.push(`*Package:* ${bundleName} - $${bundlePrice}`);
+    if (selectedCourses.length > 0) {
+      lines.push("*Courses Included:*");
+      selectedCourses.forEach((c) => {
+        lines.push(`- ${c.code}: ${c.title}`);
+      });
+    }
+    if (extraCourseTotal > 0) {
+      lines.push(`*Extra Courses:* +$${extraCourseTotal}`);
+    }
+    if (sessions.length > 0) {
+      lines.push("*1:1 Sessions:*");
+      sessions.forEach((s) => {
+        lines.push(`- ${s.courseCode}: ${s.courseTitle} (${s.hours}hr x $${s.pricePerHour}/hr = $${s.hours * s.pricePerHour})`);
+      });
+    }
     lines.push("");
-  }
-
-  if (sessions.length > 0) {
-    lines.push("*1:1 Sessions:*");
-    sessions.forEach((s) => {
-      lines.push(`- ${s.courseCode}: ${s.courseTitle} (${s.hours}hr × $${s.pricePerHour}/hr = $${s.hours * s.pricePerHour})`);
-    });
+    lines.push(`*Total: $${totalPrice}*`);
+  } else {
+    if (selectedCourses.length > 0) {
+      lines.push("*Selected Courses:*");
+      selectedCourses.forEach((c) => {
+        lines.push(`- ${c.code}: ${c.title} - $${c.price}`);
+      });
+      lines.push(`*Courses Subtotal: $${courseTotal}*`);
+    }
+    if (sessions.length > 0) {
+      lines.push("*1:1 Sessions:*");
+      sessions.forEach((s) => {
+        lines.push(`- ${s.courseCode}: ${s.courseTitle} (${s.hours}hr x $${s.pricePerHour}/hr = $${s.hours * s.pricePerHour})`);
+      });
+      lines.push(`*Sessions Subtotal: $${sessionTotal}*`);
+    }
     lines.push("");
+    lines.push(`*Total: $${totalPrice}*`);
   }
 
   if (formData.message) {
+    lines.push("");
     lines.push(`*Message:* ${formData.message}`);
   }
 
@@ -34,7 +60,8 @@ export const sendToWhatsApp = (formData, selectedCourses, sessions = []) => {
   window.open(url, "_blank", "noopener,noreferrer");
 };
 
-export const sendToEmail = (formData, selectedCourses, sessions = []) => {
+export const sendToEmail = (formData, selectedCourses, sessions = [], cartInfo = {}) => {
+  const { isBundleActive, isHalfBundleActive, totalPrice, courseTotal, sessionTotal, extraCourseTotal } = cartInfo;
   const lines = [];
 
   lines.push("New Enrollment Request");
@@ -43,20 +70,44 @@ export const sendToEmail = (formData, selectedCourses, sessions = []) => {
   lines.push(`Phone: ${formData.phone}`);
   lines.push("");
 
-  if (selectedCourses.length > 0) {
-    lines.push("Selected Courses:");
-    selectedCourses.forEach((c) => {
-      lines.push(`- ${c.code}: ${c.title} ($${c.price})`);
-    });
+  if (isBundleActive || isHalfBundleActive) {
+    const bundleName = isBundleActive ? "Full Bundle" : "Half Bundle";
+    const bundlePrice = isBundleActive ? 99 : 59;
+    lines.push(`Package: ${bundleName} - $${bundlePrice}`);
+    if (selectedCourses.length > 0) {
+      lines.push("Courses Included:");
+      selectedCourses.forEach((c) => {
+        lines.push(`- ${c.code}: ${c.title}`);
+      });
+    }
+    if (extraCourseTotal > 0) {
+      lines.push(`Extra Courses: +$${extraCourseTotal}`);
+    }
+    if (sessions.length > 0) {
+      lines.push("1:1 Sessions:");
+      sessions.forEach((s) => {
+        lines.push(`- ${s.courseCode}: ${s.courseTitle} (${s.hours}hr x $${s.pricePerHour}/hr = $${s.hours * s.pricePerHour})`);
+      });
+    }
     lines.push("");
-  }
-
-  if (sessions.length > 0) {
-    lines.push("1:1 Sessions:");
-    sessions.forEach((s) => {
-      lines.push(`- ${s.courseCode}: ${s.courseTitle} (${s.hours}hr × $${s.pricePerHour}/hr = $${s.hours * s.pricePerHour})`);
-    });
+    lines.push(`Total: $${totalPrice}`);
+  } else {
+    if (selectedCourses.length > 0) {
+      lines.push("Selected Courses:");
+      selectedCourses.forEach((c) => {
+        lines.push(`- ${c.code}: ${c.title} - $${c.price}`);
+      });
+      lines.push(`Courses Subtotal: $${courseTotal}`);
+    }
+    if (sessions.length > 0) {
+      lines.push("1:1 Sessions:");
+      sessions.forEach((s) => {
+        lines.push(`- ${s.courseCode}: ${s.courseTitle} (${s.hours}hr x $${s.pricePerHour}/hr = $${s.hours * s.pricePerHour})`);
+      });
+      lines.push(`Sessions Subtotal: $${sessionTotal}`);
+    }
     lines.push("");
+    lines.push(`Total: $${totalPrice}`);
   }
 
   if (formData.message) lines.push(`Message: ${formData.message}`);

@@ -38,7 +38,12 @@ export default function ContactSection() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (name === "phone") {
+      const filtered = value.replace(/[^0-9+]/g, "");
+      setFormData((prev) => ({ ...prev, [name]: filtered }));
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: null }));
     }
@@ -62,8 +67,17 @@ export default function ContactSection() {
 
     setIsSubmitting(true);
 
+    const cartInfo = {
+      isBundleActive,
+      isHalfBundleActive,
+      totalPrice,
+      courseTotal,
+      sessionTotal,
+      extraCourseTotal,
+    };
+
     setTimeout(() => {
-      sendToWhatsApp(formData, selectedCourses, sessions);
+      sendToWhatsApp(formData, selectedCourses, sessions, cartInfo);
       setIsSubmitting(false);
     }, 500);
   };

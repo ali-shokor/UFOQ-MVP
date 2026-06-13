@@ -11,9 +11,7 @@ export const packages = [
     features: [
       "Access to all semester courses",
       "HD video lectures",
-      "Downloadable study materials",
       "Practice assignments & quizzes",
-      "Certificate of completion",
       "Priority support",
       "Lifetime access",
     ],

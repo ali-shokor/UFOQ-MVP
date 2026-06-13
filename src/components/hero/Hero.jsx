@@ -86,7 +86,7 @@ export default function Hero() {
             transition={{ delay: 0.62 }}
           >
             <div className="hero-price-left">
-              <span className="hero-price-badge">Full Package</span>
+              <span className="hero-price-badge">Full Semester Package</span>
               <div className="hero-price-amount">
                 <span className="hero-price-dollar">$</span>
                 <span className="hero-price-num">99</span>
