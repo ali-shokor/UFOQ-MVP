@@ -282,7 +282,7 @@ src/
 
 ### HomePage Marketing Flow (in order)
 
-1. **Hero** — Full viewport, animated gradient orbs, 3D perspective plane, compass/education path visual, $99 price tag, stats, dual CTA
+1. **Hero** — Full viewport, animated gradient orbs, 3D perspective plane, compass/education path visual, $120 price tag, stats, dual CTA
 2. **Problem/Solution** — Side-by-side columns: 3 problems vs 3 UFOQ solutions
 3. **Year/Major Selector** — 3 year tabs + 9 major cards (only CS active)
 4. **Package/Pricing** — 2 cards: Full Package ($99) and Half Bundle ($59) with 15-credit pool
@@ -446,8 +446,8 @@ courseDatabase[majorId][year][semester] = [
 {
   id: "full-package",
   name: "Full Package",
-  price: 99,
-  originalPrice: 299,
+  price: 120,
+  originalPrice: 200,
   features: [...],
   highlighted: true
 }

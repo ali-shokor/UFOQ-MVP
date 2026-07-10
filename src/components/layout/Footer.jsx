@@ -33,14 +33,14 @@ export default function Footer() {
               <div className="footer-logo-icon">
                 <GraduationCap size={24} />
               </div>
-              <span className="footer-logo-text">UFOQ Academy</span>
+              <span className="footer-logo-text">IMKAN Academy</span>
             </Link>
             <p className="footer-tagline">
               Empowering university students with world-class education and
               structured academic support.
             </p>
             <div className="footer-contact">
-              <a href="mailto:ali.shokor.dev@gmail.com" className="footer-contact-item">
+              <a href="mailto:imkanacademy@gmail.com" className="footer-contact-item">
                 <Mail size={16} />
                 ali.shokor.dev@gmail.com
               </a>
@@ -97,7 +97,7 @@ export default function Footer() {
 
         <div className="footer-bottom">
           <p className="footer-copyright">
-            &copy; {new Date().getFullYear()} UFOQ Academy. All rights reserved.
+            &copy; {new Date().getFullYear()} IMKAN Academy. All rights reserved.
           </p>
           <div className="footer-bottom-links">
             <Link to="#">Privacy Policy</Link>

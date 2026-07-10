@@ -5,15 +5,15 @@ import "./FAQ.css";
 
 const faqs = [
   {
-    question: "What is UFOQ Academy?",
-    answer: "UFOQ Academy is an online educational platform designed specifically for university students. We provide structured courses, expert-led video lectures, and study materials aligned with university curricula — starting with Computer Science.",
+    question: "What is IMKAN Academy?",
+    answer: "IMKAN Academy is an online educational platform designed specifically for university students. We provide structured courses, expert-led video lectures, and study materials aligned with university curricula — starting with Computer Science.",
   },
   {
-    question: "Who is UFOQ for?",
-    answer: "UFOQ is built for university students who want a clear, structured learning path. Whether you're a first-year student or preparing for advanced courses, our platform provides the resources and support you need to succeed.",
+    question: "Who is IMKAN for?",
+    answer: "IMKAN is built for university students who want a clear, structured learning path. Whether you're a first-year student or preparing for advanced courses, our platform provides the resources and support you need to succeed.",
   },
   {
-    question: "What does the $99 package include?",
+    question: "What does the $119 package include?",
     answer: "The Full Package gives you lifetime access to all available courses in your selected program. This includes HD video lectures, downloadable study materials, practice assignments, quizzes, and a certificate of completion. You also get priority support.",
   },
   {

@@ -13,12 +13,12 @@ export default function AboutUs() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <span className="section-tag">About UFOQ</span>
+            <span className="section-tag">About IMKAN</span>
             <h2 className="section-title about-title">
               Empowering Students to <span className="gradient-text">Achieve More</span>
             </h2>
             <p className="about-text">
-              UFOQ Academy was founded with a simple belief: every university
+              IMKAN Academy was founded with a simple belief: every university
               student deserves access to structured, high-quality academic support —
               regardless of their background or resources.
             </p>

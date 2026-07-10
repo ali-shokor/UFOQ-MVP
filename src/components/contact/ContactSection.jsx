@@ -215,7 +215,7 @@ export default function ContactSection() {
                   {(isBundleActive || isHalfBundleActive) ? (
                     <>
                       <span className="contact-total-line">
-                        {isBundleActive ? "Full Bundle" : "Half Bundle"}: ${isBundleActive ? "99" : "59"}
+                        {isBundleActive ? "Full Bundle" : "Half Bundle"}: ${isBundleActive ? "119" : "79"}
                       </span>
                       {extraCourseTotal > 0 && (
                         <span className="contact-total-line">

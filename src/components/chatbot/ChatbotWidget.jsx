@@ -9,7 +9,7 @@ export default function ChatbotWidget() {
     {
       id: 1,
       role: "bot",
-      text: "Hello! Welcome to UFOQ Academy. How can I help you today?",
+      text: "Hello! Welcome to IMKAN Academy. How can I help you today?",
     },
   ]);
   const [input, setInput] = useState("");
@@ -54,7 +54,7 @@ export default function ChatbotWidget() {
               <div className="chatbot-header-info">
                 <div className="chatbot-avatar">U</div>
                 <div>
-                  <h4>UFOQ Support</h4>
+                  <h4>IMKAN Support</h4>
                   <span className="chatbot-status">
                     <span className="chatbot-status-dot" />
                     Online

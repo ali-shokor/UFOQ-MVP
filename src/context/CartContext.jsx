@@ -218,8 +218,8 @@ export function CartProvider({ children }) {
   }, [state.sessions]);
 
   const totalPrice = useMemo(() => {
-    if (state.isBundleActive) return 99 + extraCourseTotal + sessionTotal;
-    if (state.isHalfBundleActive) return 59 + extraCourseTotal + sessionTotal;
+    if (state.isBundleActive) return 119 + extraCourseTotal + sessionTotal;
+    if (state.isHalfBundleActive) return 79 + extraCourseTotal + sessionTotal;
     return courseTotal + sessionTotal;
   }, [courseTotal, extraCourseTotal, sessionTotal, state.isBundleActive, state.isHalfBundleActive]);
 

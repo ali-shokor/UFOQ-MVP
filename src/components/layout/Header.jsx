@@ -45,7 +45,7 @@ export default function Header() {
           <div className="logo-icon">
             <GraduationCap size={24} />
           </div>
-          <span className="logo-text">UFOQ</span>
+          <span className="logo-text">IMKAN</span>
           <span className="logo-badge">Academy</span>
         </Link>
 

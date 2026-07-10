@@ -54,7 +54,7 @@ export default function ProblemSolution() {
           </h2>
           <p className="section-description">
             Most students face the same struggle: too many resources, no structure, and
-            zero support. UFOQ changes that.
+            zero support. IMKAN changes that.
           </p>
         </motion.div>
 
@@ -101,7 +101,7 @@ export default function ProblemSolution() {
           >
             <div className="ps-column-header ps-column-solution">
               <Zap size={20} />
-              <span>The UFOQ Solution</span>
+              <span>The IMKAN Solution</span>
             </div>
             <div className="ps-cards">
               {solutions.map((item, i) => (

@@ -12,7 +12,7 @@ export const sendToWhatsApp = (formData, selectedCourses, sessions = [], cartInf
 
   if (isBundleActive || isHalfBundleActive) {
     const bundleName = isBundleActive ? "Full Bundle" : "Half Bundle";
-    const bundlePrice = isBundleActive ? 99 : 59;
+    const bundlePrice = isBundleActive ? 119 : 79;
     lines.push(`*Package:* ${bundleName} - $${bundlePrice}`);
     if (selectedCourses.length > 0) {
       lines.push("*Courses Included:*");
@@ -72,7 +72,7 @@ export const sendToEmail = (formData, selectedCourses, sessions = [], cartInfo =
 
   if (isBundleActive || isHalfBundleActive) {
     const bundleName = isBundleActive ? "Full Bundle" : "Half Bundle";
-    const bundlePrice = isBundleActive ? 99 : 59;
+    const bundlePrice = isBundleActive ? 119 : 79;
     lines.push(`Package: ${bundleName} - $${bundlePrice}`);
     if (selectedCourses.length > 0) {
       lines.push("Courses Included:");
@@ -112,7 +112,7 @@ export const sendToEmail = (formData, selectedCourses, sessions = [], cartInfo =
 
   if (formData.message) lines.push(`Message: ${formData.message}`);
 
-  const subject = encodeURIComponent("Enrollment Request - UFOQ Academy");
+  const subject = encodeURIComponent("Enrollment Request - IMKAN Academy");
   const body = encodeURIComponent(lines.join("\n"));
-  window.location.href = `mailto:ali.shokor.dev@gmail.com?subject=${subject}&body=${body}`;
+  window.location.href = `mailto:imkanacademy@gmail.com?subject=${subject}&body=${body}`;
 };

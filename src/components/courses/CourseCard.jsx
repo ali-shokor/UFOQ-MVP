@@ -149,7 +149,7 @@ export default function CourseCard({ course, index }) {
               ) : (
                 <>
                   <Plus size={16} />
-                  <span>{isHalfBundleActive && halfBundleIsFull ? "Add · $59 covers 15cr" : "Add Course to Cart"}</span>
+                  <span>{isHalfBundleActive && halfBundleIsFull ? "Add · $79 covers 15cr" : "Add Course to Cart"}</span>
                 </>
               )}
             </button>

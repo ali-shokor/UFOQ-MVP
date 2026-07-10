@@ -56,7 +56,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.35 }}
           >
-            UFOQ Academy maps your university journey with structured courses,
+            IMKAN Academy maps your university journey with structured courses,
             expert mentors, and a clear path from where you are to where you
             want to be.
           </motion.p>

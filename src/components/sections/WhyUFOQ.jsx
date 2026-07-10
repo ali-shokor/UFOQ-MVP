@@ -85,7 +85,7 @@ export default function WhyUFOQ() {
             Everything You Need to <span className="why-title-accent">Succeed</span>
           </h2>
           <p className="why-desc">
-            From structured packages to 1:1 mentoring, UFOQ Academy is the complete
+            From structured packages to 1:1 mentoring, IMKAN Academy is the complete
             academic support system built for university students who want real results.
           </p>
           <div className="why-stats">
