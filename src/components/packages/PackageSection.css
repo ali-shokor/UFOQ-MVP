@@ -9,9 +9,9 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 50% 45% at 50% 0%, rgba(139, 92, 246, 0.1), transparent),
-    radial-gradient(ellipse 40% 35% at 20% 80%, rgba(167, 139, 250, 0.08), transparent),
-    radial-gradient(ellipse 35% 30% at 80% 60%, rgba(167, 139, 250, 0.08), transparent);
+    radial-gradient(ellipse 50% 45% at 50% 0%, var(--accent-subtle), transparent),
+    radial-gradient(ellipse 40% 35% at 20% 80%, var(--accent-subtle), transparent),
+    radial-gradient(ellipse 35% 30% at 80% 60%, var(--accent-subtle), transparent);
   pointer-events: none;
 }
 
@@ -37,7 +37,7 @@
 .package-section .pkg-orb-1 {
   width: 300px;
   height: 300px;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.06), transparent 70%);
+  background: radial-gradient(circle, var(--accent-subtle), transparent 70%);
   top: -100px;
   right: -50px;
   animation-delay: 0s;
@@ -46,7 +46,7 @@
 .package-section .pkg-orb-2 {
   width: 250px;
   height: 250px;
-  background: radial-gradient(circle, rgba(167, 139, 250, 0.05), transparent 70%);
+  background: radial-gradient(circle, rgba(224, 179, 90, 0.05), transparent 70%);
   bottom: -80px;
   left: -40px;
   animation-delay: 5s;
@@ -79,7 +79,7 @@
   padding: 28px 24px;
   border-radius: var(--radius-2xl);
   border: 1px solid var(--border);
-  background: rgba(139, 92, 246, 0.025);
+  background: rgba(120, 170, 242, 0.025);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   backdrop-filter: blur(16px);
   display: flex;
@@ -90,20 +90,20 @@
 
 .package-card:hover {
   border-color: var(--border-glow);
-  box-shadow: var(--shadow-md), 0 0 40px rgba(139, 92, 246, 0.05);
+  box-shadow: var(--shadow-md), 0 0 40px var(--accent-wash);
 }
 
 .package-card-featured {
   border-color: var(--border-glow);
   background: linear-gradient(180deg,
-    rgba(139, 92, 246, 0.08),
-    rgba(167, 139, 250, 0.04),
-    rgba(139, 92, 246, 0.02));
-  box-shadow: 0 0 60px rgba(139, 92, 246, 0.1), 0 0 120px rgba(139, 92, 246, 0.04);
+    var(--accent-subtle),
+    var(--accent-subtle),
+    rgba(120, 170, 242, 0.02));
+  box-shadow: 0 0 60px var(--accent-subtle), 0 0 120px var(--accent-wash);
 }
 
 .package-card-featured:hover {
-  box-shadow: 0 0 80px rgba(139, 92, 246, 0.15), 0 0 160px rgba(139, 92, 246, 0.06), var(--shadow-lg);
+  box-shadow: 0 0 80px var(--accent-glow), 0 0 160px var(--accent-subtle), var(--shadow-lg);
 }
 
 .package-badge {
@@ -220,7 +220,7 @@
   text-align: center;
   padding: 5px 14px;
   background: rgba(52, 211, 153, 0.06);
-  border: 1px solid rgba(52, 211, 153, 0.12);
+  border: 1px solid rgba(76, 201, 166, 0.12);
   color: var(--green);
   font-size: 0.75rem;
   font-weight: 700;

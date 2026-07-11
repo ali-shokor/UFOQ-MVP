@@ -36,7 +36,7 @@ export default function Hero() {
             transition={{ delay: 0.1 }}
           >
             <Sparkles size={14} />
-            <span>Academic Year 2025-2026 Now Open</span>
+            <span>Academic Year 2026-2027 Now Open</span>
           </motion.div>
 
           <motion.h1
@@ -89,7 +89,7 @@ export default function Hero() {
               <span className="hero-price-badge">Full Semester Package</span>
               <div className="hero-price-amount">
                 <span className="hero-price-dollar">$</span>
-                <span className="hero-price-num">99</span>
+                <span className="hero-price-num">119</span>
               </div>
               <span className="hero-price-detail">All courses · Lifetime access</span>
             </div>
@@ -131,21 +131,21 @@ export default function Hero() {
             <svg className="edu-path-svg" viewBox="0 0 420 460" fill="none">
               <defs>
                 <linearGradient id="pathGrad" x1="40" y1="420" x2="380" y2="30" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stopColor="#6366f1" stopOpacity="0.5" />
-                  <stop offset="40%" stopColor="#8b5cf6" stopOpacity="0.7" />
-                  <stop offset="70%" stopColor="#a78bfa" stopOpacity="0.8" />
+                  <stop offset="0%" stopColor="#6d28d9" stopOpacity="0.5" />
+                  <stop offset="40%" stopColor="#a78bfa" stopOpacity="0.7" />
+                  <stop offset="70%" stopColor="#c4b5fd" stopOpacity="0.8" />
                   <stop offset="100%" stopColor="#34d399" stopOpacity="1" />
                 </linearGradient>
                 <linearGradient id="pathGlowGrad" x1="40" y1="420" x2="380" y2="30" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stopColor="#6366f1" stopOpacity="0" />
-                  <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.25" />
+                  <stop offset="0%" stopColor="#6d28d9" stopOpacity="0" />
+                  <stop offset="50%" stopColor="#a78bfa" stopOpacity="0.25" />
                   <stop offset="100%" stopColor="#34d399" stopOpacity="0.4" />
                 </linearGradient>
                 <linearGradient id="flowGrad" x1="0" y1="1" x2="0" y2="0">
-                  <stop offset="0%" stopColor="#6366f1" stopOpacity="0">
+                  <stop offset="0%" stopColor="#6d28d9" stopOpacity="0">
                     <animate attributeName="offset" values="-0.3;1" dur="2.5s" repeatCount="indefinite" />
                   </stop>
-                  <stop offset="10%" stopColor="#8b5cf6" stopOpacity="0.8">
+                  <stop offset="10%" stopColor="#a78bfa" stopOpacity="0.8">
                     <animate attributeName="offset" values="-0.2;1" dur="2.5s" repeatCount="indefinite" />
                   </stop>
                   <stop offset="20%" stopColor="#34d399" stopOpacity="0">
@@ -199,22 +199,22 @@ export default function Hero() {
               <path id="particlePath" d="M60 400 C100 400, 90 340, 130 320 C170 300, 160 250, 200 230 C240 210, 230 160, 270 140 C310 120, 300 70, 360 40" fill="none" stroke="none" />
 
               {/* === PARTICLES — 6 flowing upward at different speeds === */}
-              <circle r="2.5" fill="#8b5cf6" filter="url(#particleGlow)" className="edu-particle edu-p1">
+              <circle r="2.5" fill="#a78bfa" filter="url(#particleGlow)" className="edu-particle edu-p1">
                 <animateMotion dur="2.8s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear">
                   <mpath href="#particlePath" />
                 </animateMotion>
               </circle>
-              <circle r="2" fill="#a78bfa" filter="url(#particleGlow)" className="edu-particle edu-p2">
+              <circle r="2" fill="#c4b5fd" filter="url(#particleGlow)" className="edu-particle edu-p2">
                 <animateMotion dur="3.2s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear">
                   <mpath href="#particlePath" />
                 </animateMotion>
               </circle>
-              <circle r="1.8" fill="#c4b5fd" filter="url(#particleGlow)" className="edu-particle edu-p3">
+              <circle r="1.8" fill="#fbbf24" filter="url(#particleGlow)" className="edu-particle edu-p3">
                 <animateMotion dur="2.5s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear">
                   <mpath href="#particlePath" />
                 </animateMotion>
               </circle>
-              <circle r="2" fill="#818cf8" filter="url(#particleGlow)" className="edu-particle edu-p4">
+              <circle r="2" fill="#6d28d9" filter="url(#particleGlow)" className="edu-particle edu-p4">
                 <animateMotion dur="3.5s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear">
                   <mpath href="#particlePath" />
                 </animateMotion>
@@ -224,31 +224,31 @@ export default function Hero() {
                   <mpath href="#particlePath" />
                 </animateMotion>
               </circle>
-              <circle r="2.2" fill="#6366f1" filter="url(#particleGlow)" className="edu-particle edu-p6">
+              <circle r="2.2" fill="#a78bfa" filter="url(#particleGlow)" className="edu-particle edu-p6">
                 <animateMotion dur="3s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear">
                   <mpath href="#particlePath" />
                 </animateMotion>
               </circle>
 
               {/* === SPARKLES — small dots that pop in/out along the path === */}
-              <circle cx="95" cy="370" r="1.5" fill="#c4b5fd" filter="url(#sparkleGlow)" className="edu-sparkle edu-sparkle-1" />
-              <circle cx="160" cy="275" r="1.2" fill="#a78bfa" filter="url(#sparkleGlow)" className="edu-sparkle edu-sparkle-2" />
-              <circle cx="235" cy="185" r="1.5" fill="#818cf8" filter="url(#sparkleGlow)" className="edu-sparkle edu-sparkle-3" />
+              <circle cx="95" cy="370" r="1.5" fill="#fbbf24" filter="url(#sparkleGlow)" className="edu-sparkle edu-sparkle-1" />
+              <circle cx="160" cy="275" r="1.2" fill="#c4b5fd" filter="url(#sparkleGlow)" className="edu-sparkle edu-sparkle-2" />
+              <circle cx="235" cy="185" r="1.5" fill="#6d28d9" filter="url(#sparkleGlow)" className="edu-sparkle edu-sparkle-3" />
               <circle cx="315" cy="90" r="1.3" fill="#34d399" filter="url(#sparkleGlow)" className="edu-sparkle edu-sparkle-4" />
-              <circle cx="195" cy="245" r="1" fill="#c4b5fd" filter="url(#sparkleGlow)" className="edu-sparkle edu-sparkle-5" />
+              <circle cx="195" cy="245" r="1" fill="#fbbf24" filter="url(#sparkleGlow)" className="edu-sparkle edu-sparkle-5" />
               <circle cx="290" cy="115" r="1.2" fill="#a78bfa" filter="url(#sparkleGlow)" className="edu-sparkle edu-sparkle-6" />
 
               {/* === FOUNDATION — powerful start burst === */}
-              <circle cx="60" cy="400" r="18" fill="none" stroke="#6366f1" strokeWidth="1" opacity="0" className="edu-start-ring edu-start-ring-1" />
-              <circle cx="60" cy="400" r="18" fill="none" stroke="#6366f1" strokeWidth="0.8" opacity="0" className="edu-start-ring edu-start-ring-2" />
-              <circle cx="60" cy="400" r="25" fill="#6366f1" opacity="0.15" filter="url(#bigGlow)" className="edu-start-burst" />
-              <circle cx="60" cy="400" r="7" fill="#6366f1" filter="url(#bigGlow)" className="edu-dot edu-dot-1" />
+              <circle cx="60" cy="400" r="18" fill="none" stroke="#6d28d9" strokeWidth="1" opacity="0" className="edu-start-ring edu-start-ring-1" />
+              <circle cx="60" cy="400" r="18" fill="none" stroke="#6d28d9" strokeWidth="0.8" opacity="0" className="edu-start-ring edu-start-ring-2" />
+              <circle cx="60" cy="400" r="25" fill="#6d28d9" opacity="0.15" filter="url(#bigGlow)" className="edu-start-burst" />
+              <circle cx="60" cy="400" r="7" fill="#6d28d9" filter="url(#bigGlow)" className="edu-dot edu-dot-1" />
 
               {/* Core Skills dot */}
-              <circle cx="130" cy="320" r="5" fill="#8b5cf6" filter="url(#dotGlow)" className="edu-dot edu-dot-2" />
+              <circle cx="130" cy="320" r="5" fill="#a78bfa" filter="url(#dotGlow)" className="edu-dot edu-dot-2" />
 
               {/* Advanced dot */}
-              <circle cx="270" cy="140" r="5" fill="#a78bfa" filter="url(#dotGlow)" className="edu-dot edu-dot-3" />
+              <circle cx="270" cy="140" r="5" fill="#c4b5fd" filter="url(#dotGlow)" className="edu-dot edu-dot-3" />
 
               {/* === GRADUATE — powerful end with rays === */}
               <circle cx="360" cy="40" r="20" fill="#34d399" opacity="0.1" filter="url(#bigGlow)" className="edu-end-burst" />

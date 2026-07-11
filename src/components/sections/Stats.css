@@ -12,7 +12,7 @@
   transform: translate(-50%, -50%);
   width: 600px;
   height: 120px;
-  background: radial-gradient(ellipse, rgba(139, 92, 246, 0.12), transparent 70%);
+  background: radial-gradient(ellipse, var(--accent-subtle), transparent 70%);
   filter: blur(40px);
   pointer-events: none;
   animation: statsPulse 4s ease-in-out infinite;
@@ -32,13 +32,13 @@
   align-items: center;
   justify-content: center;
   gap: 0;
-  background: rgba(139, 92, 246, 0.04);
-  border: 1px solid rgba(139, 92, 246, 0.1);
+  background: var(--accent-wash);
+  border: 1px solid var(--accent-subtle);
   border-radius: var(--radius-xl);
   backdrop-filter: blur(12px);
   position: relative;
   box-shadow:
-    0 0 30px rgba(139, 92, 246, 0.06),
+    0 0 30px var(--accent-subtle),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
@@ -48,7 +48,7 @@
   inset: -1px;
   border-radius: var(--radius-xl);
   padding: 1px;
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), transparent 40%, transparent 60%, rgba(167, 139, 250, 0.15));
+  background: linear-gradient(135deg, var(--border-glow), transparent 40%, transparent 60%, var(--accent-glow));
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -74,7 +74,7 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   line-height: 1.1;
-  filter: drop-shadow(0 0 12px rgba(139, 92, 246, 0.3));
+  filter: drop-shadow(0 0 12px var(--accent-glow));
 }
 
 .stat-label {
@@ -93,7 +93,7 @@
   transform: translateY(-50%);
   width: 1px;
   height: 40px;
-  background: linear-gradient(180deg, transparent, rgba(139, 92, 246, 0.25), transparent);
+  background: linear-gradient(180deg, transparent, var(--border-glow), transparent);
 }
 
 @media (max-width: 768px) {

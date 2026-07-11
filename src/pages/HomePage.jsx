@@ -22,8 +22,8 @@ function SectionSkeleton() {
       <div style={{
         width: 40,
         height: 40,
-        border: "3px solid rgba(124, 92, 252, 0.15)",
-        borderTopColor: "#7c5cfc",
+        border: "3px solid rgba(120, 170, 242, 0.15)",
+        borderTopColor: "#a78bfa",
         borderRadius: "50%",
         animation: "spin 0.8s linear infinite",
       }} />

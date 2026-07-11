@@ -2,8 +2,8 @@
 .course-card-locked { opacity: 0.45; }
 .course-card-bundle-locked { opacity: 0.7; }
 .course-card-half-bundle {
-  border: 1px solid rgba(139, 92, 246, 0.3);
-  box-shadow: 0 0 16px rgba(139, 92, 246, 0.06);
+  border: 1px solid var(--accent-glow);
+  box-shadow: 0 0 16px var(--accent-subtle);
 }
 .course-card-extra {
   border: 1px solid rgba(234, 179, 8, 0.3);
@@ -22,8 +22,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.12), rgba(167, 139, 250, 0.06));
-  color: rgba(139, 92, 246, 0.25);
+  background: linear-gradient(135deg, var(--accent-subtle), var(--accent-subtle));
+  color: var(--border-glow);
 }
 
 .course-thumbnail-overlay {
@@ -98,8 +98,8 @@
 
 .course-price-badge-bundle {
   color: var(--accent-light);
-  border-color: rgba(139, 92, 246, 0.3);
-  background: rgba(139, 92, 246, 0.15);
+  border-color: var(--accent-glow);
+  background: var(--accent-glow);
 }
 
 .course-info {
@@ -145,7 +145,7 @@
   display: flex;
   align-items: center;
   gap: 3px;
-  color: #fbbf24;
+  color: #a78bfa;
   font-weight: 600;
 }
 
@@ -175,40 +175,40 @@
 }
 
 .course-select-btn:hover:not(:disabled) {
-  background: rgba(139, 92, 246, 0.14);
-  border-color: rgba(139, 92, 246, 0.3);
+  background: var(--accent-subtle);
+  border-color: var(--accent-glow);
 }
 
 .course-select-btn:disabled { opacity: 0.3; cursor: not-allowed; }
 
 .course-select-btn-active {
-  background: rgba(139, 92, 246, 0.12);
+  background: var(--accent-subtle);
   color: var(--accent-light);
-  border-color: rgba(139, 92, 246, 0.3);
+  border-color: var(--accent-glow);
 }
 
 .course-select-btn-active:hover {
-  background: rgba(139, 92, 246, 0.18);
+  background: var(--accent-glow);
 }
 
 .course-select-btn-locked {
-  background: rgba(139, 92, 246, 0.08);
+  background: var(--accent-subtle);
   color: var(--accent-light);
-  border-color: rgba(139, 92, 246, 0.2);
+  border-color: var(--border-glow);
   opacity: 0.7;
   cursor: not-allowed;
 }
 
 .course-select-btn-half-bundle {
-  background: rgba(251, 191, 36, 0.08);
-  color: #fbbf24;
-  border-color: rgba(251, 191, 36, 0.2);
+  background: var(--accent-subtle);
+  color: #a78bfa;
+  border-color: var(--accent-glow);
   cursor: pointer;
 }
 
 .course-select-btn-half-bundle:hover {
   background: rgba(239, 68, 68, 0.08);
-  border-color: rgba(239, 68, 68, 0.2);
+  border-color: rgba(244, 123, 123, 0.2);
   color: #f87171;
 }
 
@@ -221,21 +221,21 @@
 }
 
 .course-select-btn-bundle {
-  background: rgba(139, 92, 246, 0.12);
+  background: var(--accent-subtle);
   color: var(--accent-light);
-  border-color: rgba(139, 92, 246, 0.3);
+  border-color: var(--accent-glow);
   cursor: default;
 }
 
 .course-select-btn-extra {
   background: rgba(234, 179, 8, 0.08);
-  color: #fbbf24;
+  color: #a78bfa;
   border-color: rgba(234, 179, 8, 0.25);
 }
 
 .course-select-btn-extra:hover {
   background: rgba(239, 68, 68, 0.08);
-  border-color: rgba(239, 68, 68, 0.2);
+  border-color: rgba(244, 123, 123, 0.2);
   color: #f87171;
 }
 
@@ -249,7 +249,7 @@
 
 .course-select-btn-paid {
   background: rgba(234, 179, 8, 0.06);
-  color: #fbbf24;
+  color: #a78bfa;
   border-color: rgba(234, 179, 8, 0.2);
 }
 
@@ -299,22 +299,22 @@
 }
 
 .course-session-btn:hover {
-  border-color: rgba(167, 139, 250, 0.3);
+  border-color: rgba(224, 179, 90, 0.3);
   color: var(--violet);
-  background: rgba(167, 139, 250, 0.06);
+  background: var(--accent-subtle);
 }
 
 .course-session-btn-active {
-  border-color: rgba(167, 139, 250, 0.3);
+  border-color: rgba(224, 179, 90, 0.3);
   color: var(--violet);
-  background: rgba(167, 139, 250, 0.08);
+  background: var(--accent-subtle);
 }
 
 .session-panel {
   margin-top: 10px;
   padding: 12px;
-  background: rgba(167, 139, 250, 0.04);
-  border: 1px solid rgba(167, 139, 250, 0.15);
+  background: var(--accent-subtle);
+  border: 1px solid var(--accent-glow);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -347,8 +347,8 @@
   width: 30px;
   height: 30px;
   border-radius: 8px;
-  border: 1px solid rgba(167, 139, 250, 0.2);
-  background: rgba(167, 139, 250, 0.06);
+  border: 1px solid var(--accent-glow);
+  background: var(--accent-subtle);
   color: var(--violet);
   display: flex;
   align-items: center;
@@ -358,7 +358,7 @@
 }
 
 .session-hours-btn:hover {
-  border-color: rgba(167, 139, 250, 0.35);
+  border-color: rgba(224, 179, 90, 0.35);
   background: rgba(167, 139, 250, 0.12);
 }
 
@@ -419,12 +419,12 @@
   transition: all 0.2s;
   background: rgba(167, 139, 250, 0.12);
   color: var(--violet);
-  border: 1px solid rgba(167, 139, 250, 0.2);
+  border: 1px solid var(--accent-glow);
 }
 
 .session-confirm-btn:hover {
-  background: rgba(167, 139, 250, 0.2);
-  border-color: rgba(167, 139, 250, 0.35);
+  background: var(--accent-glow);
+  border-color: rgba(224, 179, 90, 0.35);
 }
 
 .session-badge {
@@ -433,8 +433,8 @@
   gap: 6px;
   margin-top: 8px;
   padding: 6px 10px;
-  background: rgba(167, 139, 250, 0.06);
-  border: 1px solid rgba(167, 139, 250, 0.15);
+  background: var(--accent-subtle);
+  border: 1px solid var(--accent-glow);
   border-radius: 8px;
   font-size: 0.7rem;
   font-weight: 600;
@@ -457,5 +457,5 @@
 }
 
 .session-badge-remove:hover {
-  background: rgba(239, 68, 68, 0.2);
+  background: rgba(244, 123, 123, 0.2);
 }

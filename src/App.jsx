@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { HashRouter, Routes, Route, useLocation } from "react-router-dom";
 import { CartProvider } from "./context/CartContext";
 import { AuthProvider } from "./context/AuthContext";
+import { ThemeProvider } from "./context/ThemeContext";
 import Layout from "./components/layout/Layout";
 import CustomCursor from "./components/ui/CustomCursor";
 import HomePage from "./pages/HomePage";
@@ -22,23 +23,25 @@ function ScrollToTop() {
 
 export default function App() {
   return (
-    <AuthProvider>
-      <CartProvider>
-        <CustomCursor />
-        <HashRouter>
-          <ScrollToTop />
-          <Layout>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/academics" element={<AcademicsPage />} />
-              <Route path="/academics/:majorId" element={<MajorPage />} />
-              <Route path="/packages" element={<PackagesPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-          </Layout>
-        </HashRouter>
-      </CartProvider>
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <CartProvider>
+          <CustomCursor />
+          <HashRouter>
+            <ScrollToTop />
+            <Layout>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/academics" element={<AcademicsPage />} />
+                <Route path="/academics/:majorId" element={<MajorPage />} />
+                <Route path="/packages" element={<PackagesPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="*" element={<NotFoundPage />} />
+              </Routes>
+            </Layout>
+          </HashRouter>
+        </CartProvider>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }

@@ -8,7 +8,7 @@
   pointer-events: none;
   z-index: 9999;
   will-change: transform;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.18) 0%, rgba(139, 92, 246, 0.08) 30%, rgba(109, 40, 217, 0.03) 55%, transparent 70%);
+  background: radial-gradient(circle, var(--accent-glow) 0%, var(--accent-subtle) 30%, rgba(139, 92, 246, 0.03) 55%, transparent 70%);
   filter: blur(20px);
   mix-blend-mode: screen;
 }

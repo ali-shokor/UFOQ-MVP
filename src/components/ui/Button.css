@@ -29,15 +29,15 @@
 
 /* ── primary ── */
 .btn-primary {
-  background: rgba(139, 92, 246, 0.12);
+  background: var(--accent-subtle);
   color: var(--accent-light);
-  border: 1px solid rgba(139, 92, 246, 0.2);
+  border: 1px solid var(--border-glow);
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: rgba(139, 92, 246, 0.18);
-  border-color: rgba(139, 92, 246, 0.35);
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.08);
+  background: var(--accent-glow);
+  border-color: var(--accent);
+  box-shadow: 0 0 20px var(--accent-subtle);
 }
 
 /* ── secondary ── */
@@ -57,12 +57,12 @@
 .btn-outline {
   background: transparent;
   color: var(--accent-light);
-  border: 1px solid rgba(139, 92, 246, 0.2);
+  border: 1px solid var(--border-glow);
 }
 
 .btn-outline:hover:not(:disabled) {
-  background: rgba(139, 92, 246, 0.06);
-  border-color: rgba(139, 92, 246, 0.35);
+  background: var(--accent-subtle);
+  border-color: var(--accent);
 }
 
 /* ── ghost ── */
@@ -80,12 +80,12 @@
 .btn-danger {
   background: rgba(239, 68, 68, 0.1);
   color: #f87171;
-  border: 1px solid rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(244, 123, 123, 0.2);
 }
 
 .btn-danger:hover:not(:disabled) {
-  background: rgba(239, 68, 68, 0.16);
-  border-color: rgba(239, 68, 68, 0.35);
+  background: rgba(244, 123, 123, 0.16);
+  border-color: rgba(244, 123, 123, 0.35);
 }
 
 /* ── whatsapp ── */

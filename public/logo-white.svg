@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="120 150 520 590"
+  role="img"
+  aria-labelledby="logo-title logo-description"
+  preserveAspectRatio="xMidYMid meet"
+>
+  <title id="logo-title">IMKAN Academy logo</title>
+  <desc id="logo-description">
+    A stylized letter I and letter A joined by a rising indigo arrow,
+    with gold circular and triangular accents.
+  </desc>
+
+  <g>
+    <!-- Gold dot above the I -->
+    <circle cx="294" cy="224" r="49" fill="#DFA438"/>
+
+    <!-- Left navy pillar -->
+    <path
+      d="M236 291H356
+         C334 304 323 325 323 349
+         V455
+         L236 536Z"
+      fill="#162F50"
+    />
+
+    <!-- Navy right leg of the A -->
+    <path
+      d="M455 420
+         L593 712
+         H489
+         L408 550
+         C398 530 399 506 412 486Z"
+      fill="#162F50"
+    />
+
+    <!-- Rising arrow forming the left leg and cross-motion of the A -->
+    <path
+      d="M146 712
+         C158 649 188 604 236 551
+         C281 501 326 456 374 403
+         C422 350 463 297 499 267
+         L451 261
+         L549 204
+         L544 320
+         L516 274
+         C481 345 429 422 373 489
+         C321 551 286 606 281 712Z"
+      fill="#536DD7"
+    />
+
+    <!-- Gold counter/accent inside the A -->
+    <path d="M432 632L469 712H394Z" fill="#DFA438"/>
+  </g>
+</svg>

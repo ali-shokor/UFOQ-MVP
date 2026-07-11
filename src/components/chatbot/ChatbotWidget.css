@@ -33,7 +33,7 @@
   background: var(--bg-secondary);
   border: 1px solid var(--border);
   border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-lg), 0 0 60px rgba(139, 92, 246, 0.06);
+  box-shadow: var(--shadow-lg), 0 0 60px var(--accent-subtle);
   z-index: 301;
   display: flex;
   flex-direction: column;
@@ -162,8 +162,8 @@
 }
 
 .chatbot-quick-btn:hover {
-  background: rgba(139, 92, 246, 0.12);
-  box-shadow: 0 0 12px rgba(139, 92, 246, 0.1);
+  background: var(--accent-subtle);
+  box-shadow: 0 0 12px var(--accent-subtle);
 }
 
 .chatbot-input-area {

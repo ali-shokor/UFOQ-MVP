@@ -20,10 +20,39 @@
   will-change: transform;
 }
 
+/* Dark theme orbs */
+[data-theme="dark"] .page-bg-orb-1 {
+  width: 900px;
+  height: 900px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.12), transparent 60%);
+  top: -30%;
+  right: -15%;
+  animation: pageOrb1 25s ease-in-out infinite;
+}
+
+[data-theme="dark"] .page-bg-orb-2 {
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(109, 40, 217, 0.08), transparent 60%);
+  bottom: -20%;
+  left: -10%;
+  animation: pageOrb2 30s ease-in-out infinite;
+}
+
+[data-theme="dark"] .page-bg-orb-3 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.06), transparent 60%);
+  top: 40%;
+  left: 50%;
+  animation: pageOrb3 22s ease-in-out infinite;
+}
+
+/* Light theme orbs — very subtle */
 .page-bg-orb-1 {
   width: 900px;
   height: 900px;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.064), transparent 60%);
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.04), transparent 60%);
   top: -30%;
   right: -15%;
   animation: pageOrb1 25s ease-in-out infinite;
@@ -32,7 +61,7 @@
 .page-bg-orb-2 {
   width: 700px;
   height: 700px;
-  background: radial-gradient(circle, rgba(79, 140, 255, 0.05), transparent 60%);
+  background: radial-gradient(circle, var(--accent-wash), transparent 60%);
   bottom: -20%;
   left: -10%;
   animation: pageOrb2 30s ease-in-out infinite;
@@ -41,7 +70,7 @@
 .page-bg-orb-3 {
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(167, 139, 250, 0.04), transparent 60%);
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.025), transparent 60%);
   top: 40%;
   left: 50%;
   animation: pageOrb3 22s ease-in-out infinite;
@@ -51,10 +80,11 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 70% 45% at 20% 80%, rgba(139, 92, 246, 0.024), transparent),
-    radial-gradient(ellipse 55% 35% at 80% 20%, rgba(79, 140, 255, 0.025), transparent),
-    radial-gradient(ellipse 45% 25% at 50% 50%, rgba(167, 139, 250, 0.02), transparent);
+    radial-gradient(ellipse 70% 45% at 20% 80%, var(--accent-glow), transparent),
+    radial-gradient(ellipse 55% 35% at 80% 20%, var(--accent-subtle), transparent),
+    radial-gradient(ellipse 45% 25% at 50% 50%, var(--violet-glow), transparent);
   animation: pageAurora 15s ease-in-out infinite alternate;
+  opacity: 0.3;
 }
 
 /* visible grid pattern */
@@ -62,21 +92,35 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(139, 92, 246, 0.032) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(139, 92, 246, 0.032) 1px, transparent 1px);
+    linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px);
   background-size: 60px 60px;
   mask-image: radial-gradient(ellipse 85% 75% at 50% 40%, black 10%, transparent 100%);
   -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 40%, black 10%, transparent 100%);
+  opacity: 0.15;
 }
 
 /* dot pattern overlay */
 .page-bg-dots {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(139, 92, 246, 0.048) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(139, 92, 246, 0.08) 1px, transparent 1px);
   background-size: 30px 30px;
   mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 100%);
   -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 100%);
+  opacity: 0.12;
+}
+
+[data-theme="dark"] .page-bg-aurora {
+  opacity: 0.8;
+}
+
+[data-theme="dark"] .page-bg-grid {
+  opacity: 0.4;
+}
+
+[data-theme="dark"] .page-bg-dots {
+  opacity: 0.3;
 }
 
 @keyframes pageOrb1 {
@@ -114,11 +158,11 @@
 @media (max-width: 768px) {
   .page-bg-grid {
     background-size: 40px 40px;
-    opacity: 0.5;
+    opacity: 0.1;
   }
   .page-bg-dots {
     background-size: 24px 24px;
-    opacity: 0.4;
+    opacity: 0.08;
   }
   .main-page {
     padding-top: 80px;

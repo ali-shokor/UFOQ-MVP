@@ -9,9 +9,9 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 40% 35% at 10% 50%, rgba(139, 92, 246, 0.06), transparent),
-    radial-gradient(ellipse 35% 30% at 90% 30%, rgba(167, 139, 250, 0.05), transparent),
-    radial-gradient(ellipse 30% 25% at 50% 80%, rgba(167, 139, 250, 0.05), transparent);
+    radial-gradient(ellipse 40% 35% at 10% 50%, var(--accent-subtle), transparent),
+    radial-gradient(ellipse 35% 30% at 90% 30%, rgba(224, 179, 90, 0.05), transparent),
+    radial-gradient(ellipse 30% 25% at 50% 80%, rgba(224, 179, 90, 0.05), transparent);
   pointer-events: none;
 }
 
@@ -48,7 +48,7 @@
   justify-content: center;
   border-radius: var(--radius-2xl);
   overflow: hidden;
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.04), rgba(167, 139, 250, 0.02));
+  background: linear-gradient(135deg, var(--accent-wash), rgba(224, 179, 90, 0.02));
   border: 1px solid var(--border);
   backdrop-filter: blur(12px);
   position: relative;
@@ -78,7 +78,7 @@
 /* ── form ── */
 .contact-form {
   padding: 32px;
-  background: rgba(139, 92, 246, 0.025);
+  background: rgba(120, 170, 242, 0.025);
   border: 1px solid var(--border);
   border-radius: var(--radius-2xl);
   backdrop-filter: blur(16px);
@@ -119,11 +119,11 @@
 .form-textarea:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-glow), 0 0 20px rgba(139, 92, 246, 0.06);
+  box-shadow: 0 0 0 3px var(--accent-glow), 0 0 20px var(--accent-subtle);
 }
 
 .form-input-error { border-color: #ef4444; }
-.form-input-error:focus { box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12); }
+.form-input-error:focus { box-shadow: 0 0 0 3px rgba(244, 123, 123, 0.12); }
 
 .form-textarea { resize: vertical; min-height: 100px; }
 
@@ -151,8 +151,8 @@
 }
 
 .selected-course-tag-session {
-  background: rgba(167, 139, 250, 0.06);
-  border-color: rgba(167, 139, 250, 0.2);
+  background: var(--accent-subtle);
+  border-color: var(--accent-glow);
   color: var(--violet);
 }
 
@@ -162,8 +162,8 @@
   align-items: center;
   gap: 12px;
   padding: 14px 18px;
-  background: rgba(52, 211, 153, 0.05);
-  border: 1px solid rgba(52, 211, 153, 0.15);
+  background: rgba(76, 201, 166, 0.05);
+  border: 1px solid rgba(76, 201, 166, 0.15);
   border-radius: var(--radius-md);
   margin-bottom: 16px;
 }

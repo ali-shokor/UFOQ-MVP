@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
-import { GraduationCap, Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
+import { useTheme } from "../../context/ThemeContext";
+
 import "./Footer.css";
 
 const footerLinks = {
@@ -24,15 +26,14 @@ const footerLinks = {
 };
 
 export default function Footer() {
+  const { theme } = useTheme();
   return (
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-grid">
           <div className="footer-brand">
             <Link to="/" className="footer-logo">
-              <div className="footer-logo-icon">
-                <GraduationCap size={24} />
-              </div>
+              <img src={theme === "dark" ? "public/logo-dark.svg" : "public/logo-white.svg"} alt="IMKAN Academy logo" className="footer-logo-icon-img" />
               <span className="footer-logo-text">IMKAN Academy</span>
             </Link>
             <p className="footer-tagline">

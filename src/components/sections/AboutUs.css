@@ -9,9 +9,9 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 40% 35% at 0% 50%, rgba(139, 92, 246, 0.06), transparent),
-    radial-gradient(ellipse 30% 25% at 100% 30%, rgba(167, 139, 250, 0.05), transparent),
-    radial-gradient(ellipse 35% 30% at 50% 80%, rgba(167, 139, 250, 0.05), transparent);
+    radial-gradient(ellipse 40% 35% at 0% 50%, var(--accent-subtle), transparent),
+    radial-gradient(ellipse 30% 25% at 100% 30%, rgba(224, 179, 90, 0.05), transparent),
+    radial-gradient(ellipse 35% 30% at 50% 80%, rgba(224, 179, 90, 0.05), transparent);
   pointer-events: none;
 }
 
@@ -66,7 +66,7 @@
   height: 44px;
   border-radius: 12px;
   background: rgba(52, 211, 153, 0.06);
-  border: 1px solid rgba(52, 211, 153, 0.12);
+  border: 1px solid rgba(76, 201, 166, 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,7 +81,7 @@
 }
 
 .about-value-icon-violet {
-  background: rgba(167, 139, 250, 0.06);
+  background: var(--accent-subtle);
   border: 1px solid rgba(167, 139, 250, 0.12);
   color: #a78bfa;
 }
@@ -110,7 +110,7 @@
   padding: 28px;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border);
-  background: rgba(139, 92, 246, 0.025);
+  background: rgba(120, 170, 242, 0.025);
   text-align: center;
   transition: all 0.35s;
   backdrop-filter: blur(12px);
@@ -118,13 +118,13 @@
 
 .about-card:hover {
   border-color: var(--border-glow);
-  background: rgba(139, 92, 246, 0.05);
+  background: var(--accent-wash);
   transform: translateY(-2px);
-  box-shadow: 0 0 30px rgba(139, 92, 246, 0.06);
+  box-shadow: 0 0 30px var(--accent-subtle);
 }
 
 .about-card-main {
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(167, 139, 250, 0.04));
+  background: linear-gradient(135deg, var(--accent-subtle), var(--accent-subtle));
   border-color: var(--border-glow);
 }
 

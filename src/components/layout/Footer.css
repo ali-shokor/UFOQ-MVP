@@ -13,7 +13,7 @@
   left: 0;
   right: 0;
   height: 120px;
-  background: linear-gradient(180deg, rgba(139, 92, 246, 0.03), transparent);
+  background: linear-gradient(180deg, var(--accent-wash), transparent);
   pointer-events: none;
 }
 
@@ -53,6 +53,12 @@
   justify-content: center;
   color: #fff;
   box-shadow: 0 0 16px var(--accent-glow);
+}
+
+.footer-logo-icon-img {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
 }
 
 .footer-logo-text {

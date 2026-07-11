@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ShoppingCart, GraduationCap, ArrowRight } from "lucide-react";
+import { Menu, X, ShoppingCart, ArrowRight, Sun, Moon } from "lucide-react";
 import { useCart } from "../../context/CartContext";
+import { useTheme } from "../../context/ThemeContext";
+
 import "./Header.css";
 
 const navLinks = [
@@ -16,6 +18,7 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { itemCount, toggleCart, totalPrice, isBundleActive, isHalfBundleActive, selectedCourses, sessions } = useCart();
+  const { theme, toggleTheme } = useTheme();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -42,9 +45,7 @@ export default function Header() {
     >
       <div className="header-inner">
         <Link to="/" className="logo">
-          <div className="logo-icon">
-            <GraduationCap size={24} />
-          </div>
+          <img src={theme === "dark" ? "public/logo-dark.svg" : "public/logo-white.svg"} alt="IMKAN Academy logo" className="logo-icon-img" />
           <span className="logo-text">IMKAN</span>
           <span className="logo-badge">Academy</span>
         </Link>
@@ -90,6 +91,15 @@ export default function Header() {
               {`$${totalPrice}`}
             </span>
           )}
+
+          <motion.button
+            className="theme-toggle-btn"
+            onClick={toggleTheme}
+            whileTap={{ scale: 0.9 }}
+            aria-label="Toggle theme"
+          >
+            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+          </motion.button>
 
           <button onClick={handleEnroll} className="header-enroll-btn">
             <span>Enroll Now</span>

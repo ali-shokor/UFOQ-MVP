@@ -4,7 +4,7 @@
   background: var(--bg-primary);
   overflow: hidden;
   min-height: 80vh;
-  border-top: 1px solid rgba(139, 92, 246, 0.08);
+  border-top: 1px solid var(--accent-subtle);
 }
 
 /* ── decorative background orbs ── */
@@ -13,8 +13,8 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 50% 40% at 0% 50%, rgba(139, 92, 246, 0.06), transparent),
-    radial-gradient(ellipse 40% 30% at 100% 30%, rgba(167, 139, 250, 0.04), transparent);
+    radial-gradient(ellipse 50% 40% at 0% 50%, var(--accent-subtle), transparent),
+    radial-gradient(ellipse 40% 30% at 100% 30%, var(--accent-subtle), transparent);
   pointer-events: none;
 }
 
@@ -26,7 +26,7 @@
   width: 500px;
   height: 500px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.06), transparent 60%);
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.06), transparent 60%);
   filter: blur(60px);
   pointer-events: none;
   animation: academicOrb 20s ease-in-out infinite;
@@ -120,7 +120,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.06), transparent 70%);
+  background: radial-gradient(circle at 50% 50%, var(--accent-subtle), transparent 70%);
   opacity: 0;
   transition: opacity 0.35s;
 }
@@ -130,32 +130,32 @@
 }
 
 .year-tab:hover {
-  border-color: rgba(139, 92, 246, 0.25);
+  border-color: var(--border-glow);
   color: var(--text-primary);
   transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.06);
+  box-shadow: 0 4px 20px var(--accent-subtle);
 }
 
 .year-tab-active {
-  background: rgba(139, 92, 246, 0.08);
-  border-color: rgba(139, 92, 246, 0.4);
+  background: var(--accent-subtle);
+  border-color: var(--accent);
   color: var(--accent-light);
   box-shadow:
-    0 0 20px rgba(139, 92, 246, 0.1),
-    0 0 40px rgba(139, 92, 246, 0.04),
+    0 0 20px var(--accent-subtle),
+    0 0 40px var(--accent-wash),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .year-tab-active::before {
   opacity: 1;
-  background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.12), transparent 70%);
+  background: radial-gradient(circle at 50% 50%, var(--accent-subtle), transparent 70%);
 }
 
 .year-tab-active:hover {
-  border-color: rgba(139, 92, 246, 0.55);
+  border-color: var(--accent);
   box-shadow:
-    0 0 28px rgba(139, 92, 246, 0.14),
-    0 0 50px rgba(139, 92, 246, 0.06);
+    0 0 28px var(--accent-subtle),
+    0 0 50px var(--accent-subtle);
   color: var(--accent-light);
 }
 
@@ -168,18 +168,18 @@
   justify-content: center;
   font-weight: 700;
   font-size: 0.85rem;
-  background: rgba(139, 92, 246, 0.08);
+  background: var(--accent-subtle);
   color: var(--accent-light);
   transition: all 0.35s;
 }
 
 .year-tab:hover .year-tab-number {
-  background: rgba(139, 92, 246, 0.14);
+  background: var(--accent-subtle);
 }
 
 .year-tab-active .year-tab-number {
-  background: rgba(139, 92, 246, 0.2);
-  box-shadow: 0 0 12px rgba(139, 92, 246, 0.2);
+  background: var(--border-glow);
+  box-shadow: 0 0 12px var(--border-glow);
 }
 
 .year-tab-info {
@@ -203,8 +203,8 @@
   display: none;
   margin: 24px auto 0;
   padding: 10px 24px;
-  background: rgba(139, 92, 246, 0.08);
-  border: 1px solid rgba(139, 92, 246, 0.25);
+  background: var(--accent-subtle);
+  border: 1px solid var(--border-glow);
   border-radius: 100px;
   color: var(--accent-light);
   font-family: "Inter", sans-serif;
@@ -217,8 +217,8 @@
 }
 
 .majors-show-more:hover {
-  background: rgba(139, 92, 246, 0.14);
-  border-color: rgba(139, 92, 246, 0.4);
+  background: var(--accent-subtle);
+  border-color: var(--accent);
 }
 
 @media (max-width: 968px) {

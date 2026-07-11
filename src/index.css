@@ -1,13 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
 
+/* ════════════════════════════════════════
+   DARK THEME (original, default)
+   ════════════════════════════════════════ */
 :root {
-  --bg-deep: #06060e;
-  --bg-primary: #0a0a16;
-  --bg-secondary: #0e0e22;
-  --bg-elevated: #131330;
-  --bg-card: rgba(255, 255, 255, 0.025);
-  --bg-card-hover: rgba(255, 255, 255, 0.05);
-  --bg-glass: rgba(255, 255, 255, 0.035);
+  --bg-deep: #0a0815;
+  --bg-primary: #0e0b20;
+  --bg-secondary: #120e28;
+  --bg-elevated: #1a1438;
+  --bg-card: rgba(30, 22, 60, 0.45);
+  --bg-card-hover: rgba(40, 30, 70, 0.55);
+  --bg-glass: rgba(20, 15, 45, 0.5);
 
   --text-primary: #eeeeF5;
   --text-secondary: #9d9db8;
@@ -43,6 +46,49 @@
   --shadow-glow: 0 0 40px var(--accent-glow);
 }
 
+/* ════════════════════════════════════════
+   LIGHT THEME (toggle)
+   ════════════════════════════════════════ */
+[data-theme="light"] {
+  --bg-deep: #f3f2f9;
+  --bg-primary: #f6f5fc;
+  --bg-secondary: #fcfbff;
+  --bg-elevated: #ede9fa;
+  --bg-card: rgba(255, 255, 255, 0.85);
+  --bg-card-hover: #ffffff;
+  --bg-glass: rgba(255, 255, 255, 0.7);
+
+  --text-primary: #1a1530;
+  --text-secondary: #5a5478;
+  --text-muted: #8a839e;
+
+  --accent: #7c3aed;
+  --accent-light: #a78bfa;
+  --accent-deep: #5b21b6;
+  --accent-glow: rgba(124, 58, 237, 0.15);
+  --accent-subtle: rgba(124, 58, 237, 0.06);
+  --accent-wash: rgba(124, 58, 237, 0.03);
+
+  --violet: #7c3aed;
+  --violet-glow: rgba(124, 58, 237, 0.12);
+
+  --green: #059669;
+  --green-glow: rgba(5, 150, 105, 0.12);
+  --amber: #d97706;
+
+  --border: rgba(0, 0, 0, 0.06);
+  --border-hover: rgba(0, 0, 0, 0.1);
+  --border-glow: rgba(124, 58, 237, 0.12);
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.08);
+  --shadow-glow: 0 0 20px var(--accent-glow);
+}
+
+/* ════════════════════════════════════════
+   GLOBAL RESETS
+   ════════════════════════════════════════ */
 *,
 *::before,
 *::after {
@@ -64,6 +110,7 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   cursor: default;
+  transition: background 0.3s, color 0.3s;
 }
 
 a, button, input, textarea, select {
@@ -92,8 +139,8 @@ select {
 }
 
 ::selection {
-  background: rgba(139, 92, 246, 0.35);
-  color: #fff;
+  background: rgba(139, 92, 246, 0.25);
+  color: var(--text-primary);
 }
 
 ::-webkit-scrollbar {
@@ -105,12 +152,12 @@ select {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(139, 92, 246, 0.25);
+  background: var(--border);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(139, 92, 246, 0.4);
+  background: var(--border-hover);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -125,9 +172,9 @@ select {
 
 /* ── phone performance: reduce heavy effects ── */
 @media (max-width: 768px) {
-  .hero-orb-purple,
   .hero-orb-blue,
-  .hero-orb-violet,
+  .hero-orb-teal,
+  .hero-orb-navy,
   .hero-orb-deep,
   .page-bg-orb-1,
   .page-bg-orb-2,
@@ -151,9 +198,9 @@ select {
 }
 
 @media (max-width: 480px) {
-  .hero-orb-purple,
   .hero-orb-blue,
-  .hero-orb-violet,
+  .hero-orb-teal,
+  .hero-orb-navy,
   .hero-orb-deep {
     filter: blur(40px);
     opacity: 0.5;
