@@ -209,3 +209,21 @@
   .carousel-arrow-left { left: -2px; }
   .carousel-arrow-right { right: -2px; }
 }
+
+[data-theme="light"] .carousel-arrow {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #1a1530;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .carousel-arrow:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(83, 109, 215, 0.3);
+  box-shadow: 0 2px 12px rgba(83, 109, 215, 0.15);
+}
+
+[data-theme="light"] .testimonial-card {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(0, 0, 0, 0.06);
+}

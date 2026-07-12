@@ -23,7 +23,7 @@ function SectionSkeleton() {
         width: 40,
         height: 40,
         border: "3px solid rgba(120, 170, 242, 0.15)",
-        borderTopColor: "#a78bfa",
+        borderTopColor: "#b4a1ff",
         borderRadius: "50%",
         animation: "spin 0.8s linear infinite",
       }} />
@@ -39,12 +39,19 @@ export default function HomePage() {
       <Marquee />
       <Suspense fallback={<SectionSkeleton />}>
         <ProblemSolution />
+        <div className="home-section-gap" />
         <WhyUFOQ />
+        <div className="home-section-gap" />
         <YearSelector />
+        <div className="home-section-gap" />
         <PackageSection />
+        <div className="home-section-gap" />
         <Testimonials />
+        <div className="home-section-gap" />
         <AboutUs />
+        <div className="home-section-gap" />
         <FAQ />
+        <div className="home-section-gap" />
         <ContactSection />
       </Suspense>
     </>

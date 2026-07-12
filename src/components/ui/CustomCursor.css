@@ -2,15 +2,22 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
   will-change: transform;
-  background: radial-gradient(circle, var(--accent-glow) 0%, var(--accent-subtle) 30%, rgba(139, 92, 246, 0.03) 55%, transparent 70%);
-  filter: blur(20px);
+  background: radial-gradient(circle, var(--accent-glow) 0%, var(--accent-subtle) 30%, rgba(155, 123, 255, 0.03) 55%, transparent 70%);
+  filter: blur(16px);
   mix-blend-mode: screen;
+  contain: layout style;
+  transition: background 0.3s ease;
+}
+
+[data-theme="light"] .cursor-glow {
+  background: radial-gradient(circle, rgba(218, 164, 56, 0.2) 0%, rgba(218, 164, 56, 0.08) 30%, rgba(218, 164, 56, 0.02) 55%, transparent 70%);
+  mix-blend-mode: multiply;
 }
 
 @media (hover: none), (pointer: coarse) {

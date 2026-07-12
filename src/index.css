@@ -16,23 +16,27 @@
   --text-secondary: #9d9db8;
   --text-muted: #5e5e78;
 
-  --accent: #8b5cf6;
-  --accent-light: #a78bfa;
-  --accent-deep: #6d28d9;
-  --accent-glow: rgba(139, 92, 246, 0.3);
-  --accent-subtle: rgba(139, 92, 246, 0.07);
-  --accent-wash: rgba(139, 92, 246, 0.04);
+  --accent: #9B7BFF;
+  --accent-light: #b4a1ff;
+  --accent-deep: #7B5BD6;
+  --accent-glow: rgba(155, 123, 255, 0.3);
+  --accent-subtle: rgba(155, 123, 255, 0.07);
+  --accent-wash: rgba(155, 123, 255, 0.04);
 
-  --violet: #a78bfa;
-  --violet-glow: rgba(167, 139, 250, 0.2);
+  --violet: #b4a1ff;
+  --violet-glow: rgba(155, 123, 255, 0.2);
 
   --green: #34d399;
   --green-glow: rgba(52, 211, 153, 0.2);
-  --amber: #fbbf24;
+  --amber: #F6C453;
+
+  --svg-start: #9B7BFF;
+  --svg-mid: #b4a1ff;
+  --svg-end: #F6C453;
 
   --border: rgba(255, 255, 255, 0.055);
   --border-hover: rgba(255, 255, 255, 0.1);
-  --border-glow: rgba(139, 92, 246, 0.2);
+  --border-glow: rgba(155, 123, 255, 0.2);
 
   --radius-sm: 8px;
   --radius-md: 14px;
@@ -62,23 +66,27 @@
   --text-secondary: #5a5478;
   --text-muted: #8a839e;
 
-  --accent: #7c3aed;
-  --accent-light: #a78bfa;
-  --accent-deep: #5b21b6;
-  --accent-glow: rgba(124, 58, 237, 0.15);
-  --accent-subtle: rgba(124, 58, 237, 0.06);
-  --accent-wash: rgba(124, 58, 237, 0.03);
+  --accent: #536DD7;
+  --accent-light: #6B82E0;
+  --accent-deep: #3D52B0;
+  --accent-glow: rgba(83, 109, 215, 0.15);
+  --accent-subtle: rgba(83, 109, 215, 0.06);
+  --accent-wash: rgba(83, 109, 215, 0.03);
 
-  --violet: #7c3aed;
-  --violet-glow: rgba(124, 58, 237, 0.12);
+  --violet: #6B82E0;
+  --violet-glow: rgba(83, 109, 215, 0.12);
 
   --green: #059669;
   --green-glow: rgba(5, 150, 105, 0.12);
-  --amber: #d97706;
+  --amber: #DFA438;
+
+  --svg-start: #536DD7;
+  --svg-mid: #6B82E0;
+  --svg-end: #DFA438;
 
   --border: rgba(0, 0, 0, 0.06);
   --border-hover: rgba(0, 0, 0, 0.1);
-  --border-glow: rgba(124, 58, 237, 0.12);
+  --border-glow: rgba(83, 109, 215, 0.12);
 
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06);
@@ -110,7 +118,14 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   cursor: default;
-  transition: background 0.3s, color 0.3s;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+.section-header,
+.section-description,
+.hero-title,
+.hero-description {
+  transition: color 0.4s ease;
 }
 
 a, button, input, textarea, select {
@@ -139,7 +154,7 @@ select {
 }
 
 ::selection {
-  background: rgba(139, 92, 246, 0.25);
+  background: rgba(155, 123, 255, 0.25);
   color: var(--text-primary);
 }
 
@@ -211,4 +226,19 @@ select {
     filter: blur(40px);
     opacity: 0.4;
   }
+  button, a, [role="button"] {
+    min-height: 44px;
+  }
+}
+
+.home-section-gap {
+  height: 1px;
+}
+
+[data-theme="light"] ::selection {
+  background: rgba(83, 109, 215, 0.2);
+}
+
+[data-theme="light"] .hero-grid-pattern {
+  opacity: 0.4;
 }

@@ -86,7 +86,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #4ade80;
+  background: #34d399;
   box-shadow: 0 0 8px rgba(74, 222, 128, 0.4);
 }
 
@@ -216,4 +216,12 @@
     border-radius: 0;
   }
   .chatbot-fab { bottom: 16px; right: 16px; }
+}
+
+[data-theme="light"] .chatbot-fab {
+  box-shadow: 0 0 20px var(--accent-glow), 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="light"] .chatbot-fab:hover {
+  box-shadow: 0 0 30px var(--accent-glow), 0 6px 16px rgba(0, 0, 0, 0.15);
 }

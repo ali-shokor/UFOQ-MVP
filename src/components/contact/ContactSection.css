@@ -224,3 +224,17 @@
 @media (max-width: 480px) {
   .contact-form { padding: 16px; }
 }
+
+[data-theme="light"] .form-input,
+[data-theme="light"] .form-textarea {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #1a1530;
+}
+
+[data-theme="light"] .form-input:focus,
+[data-theme="light"] .form-textarea:focus {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: #536DD7;
+  box-shadow: 0 0 0 3px rgba(83, 109, 215, 0.12);
+}

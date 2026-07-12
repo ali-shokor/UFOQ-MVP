@@ -1,19 +1,27 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
-  ArrowRight, Play, Users, BookOpen, Award, Sparkles,
-  ChevronRight, GraduationCap, Code, Lightbulb, Rocket
+  ArrowRight, Play, Sparkles,
+  ChevronRight, GraduationCap, Code, Lightbulb, Rocket, BookOpen
 } from "lucide-react";
 import Button from "../ui/Button";
 import "./Hero.css";
 
-const stats = [
-  { icon: Users, value: "400+", label: "Active Students" },
-  { icon: BookOpen, value: "40+", label: "Expert-Led Courses" },
-  { icon: Award, value: "90%", label: "Success Rate" },
-];
+function useIsMobile(breakpoint = 768) {
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== "undefined" && window.innerWidth <= breakpoint
+  );
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= breakpoint);
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, [breakpoint]);
+  return isMobile;
+}
 
 export default function Hero() {
+  const isMobile = useIsMobile();
   return (
     <section className="hero">
       <div className="hero-bg">
@@ -86,10 +94,10 @@ export default function Hero() {
             transition={{ delay: 0.62 }}
           >
             <div className="hero-price-left">
-              <span className="hero-price-badge">Full Semester Package</span>
+              <span className="hero-price-badge">Complete Semester Package</span>
               <div className="hero-price-amount">
                 <span className="hero-price-dollar">$</span>
-                <span className="hero-price-num">119</span>
+                <span className="hero-price-num">120</span>
               </div>
               <span className="hero-price-detail">All courses · Lifetime access</span>
             </div>
@@ -98,78 +106,60 @@ export default function Hero() {
               <ChevronRight size={16} />
             </Link>
           </motion.div>
-
-          <motion.div
-            className="hero-stats"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.75 }}
-          >
-            {stats.map((stat) => (
-              <div key={stat.label} className="hero-stat">
-                <div className="hero-stat-icon">
-                  <stat.icon size={18} />
-                </div>
-                <div className="hero-stat-info">
-                  <span className="hero-stat-value">{stat.value}</span>
-                  <span className="hero-stat-label">{stat.label}</span>
-                </div>
-              </div>
-            ))}
-          </motion.div>
         </div>
 
-        <motion.div
-          className="hero-visual"
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
-        >
+        {!isMobile && (
+          <motion.div
+            className="hero-visual"
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
+          >
           <div className="hero-edu-scene">
 
             {/* The zigzag success path — bottom-left to top-right */}
             <svg className="edu-path-svg" viewBox="0 0 420 460" fill="none">
               <defs>
                 <linearGradient id="pathGrad" x1="40" y1="420" x2="380" y2="30" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stopColor="#6d28d9" stopOpacity="0.5" />
-                  <stop offset="40%" stopColor="#a78bfa" stopOpacity="0.7" />
-                  <stop offset="70%" stopColor="#c4b5fd" stopOpacity="0.8" />
-                  <stop offset="100%" stopColor="#34d399" stopOpacity="1" />
+                  <stop offset="0%" style={{ stopColor: "var(--svg-start)" }} stopOpacity="0.5" />
+                  <stop offset="40%" style={{ stopColor: "var(--svg-start)" }} stopOpacity="0.7" />
+                  <stop offset="70%" style={{ stopColor: "var(--svg-mid)" }} stopOpacity="0.8" />
+                  <stop offset="100%" style={{ stopColor: "var(--svg-end)" }} stopOpacity="1" />
                 </linearGradient>
                 <linearGradient id="pathGlowGrad" x1="40" y1="420" x2="380" y2="30" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stopColor="#6d28d9" stopOpacity="0" />
-                  <stop offset="50%" stopColor="#a78bfa" stopOpacity="0.25" />
-                  <stop offset="100%" stopColor="#34d399" stopOpacity="0.4" />
+                  <stop offset="0%" style={{ stopColor: "var(--svg-start)" }} stopOpacity="0" />
+                  <stop offset="50%" style={{ stopColor: "var(--svg-start)" }} stopOpacity="0.25" />
+                  <stop offset="100%" style={{ stopColor: "var(--svg-end)" }} stopOpacity="0.4" />
                 </linearGradient>
                 <linearGradient id="flowGrad" x1="0" y1="1" x2="0" y2="0">
-                  <stop offset="0%" stopColor="#6d28d9" stopOpacity="0">
+                  <stop offset="0%" style={{ stopColor: "var(--svg-start)" }} stopOpacity="0">
                     <animate attributeName="offset" values="-0.3;1" dur="2.5s" repeatCount="indefinite" />
                   </stop>
-                  <stop offset="10%" stopColor="#a78bfa" stopOpacity="0.8">
+                  <stop offset="10%" style={{ stopColor: "var(--svg-start)" }} stopOpacity="0.8">
                     <animate attributeName="offset" values="-0.2;1" dur="2.5s" repeatCount="indefinite" />
                   </stop>
-                  <stop offset="20%" stopColor="#34d399" stopOpacity="0">
+                  <stop offset="20%" style={{ stopColor: "var(--svg-end)" }} stopOpacity="0">
                     <animate attributeName="offset" values="-0.1;1" dur="2.5s" repeatCount="indefinite" />
                   </stop>
                 </linearGradient>
                 <filter id="pathGlow">
-                  <feGaussianBlur stdDeviation="5" result="blur" />
+                  <feGaussianBlur stdDeviation="3" result="blur" />
                   <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
                 </filter>
                 <filter id="dotGlow">
-                  <feGaussianBlur stdDeviation="4" result="blur" />
+                  <feGaussianBlur stdDeviation="2.5" result="blur" />
                   <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
                 </filter>
                 <filter id="bigGlow">
-                  <feGaussianBlur stdDeviation="8" result="blur" />
+                  <feGaussianBlur stdDeviation="4" result="blur" />
                   <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
                 </filter>
                 <filter id="particleGlow">
-                  <feGaussianBlur stdDeviation="2" result="blur" />
+                  <feGaussianBlur stdDeviation="1.5" result="blur" />
                   <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
                 </filter>
                 <filter id="sparkleGlow">
-                  <feGaussianBlur stdDeviation="1.5" result="blur" />
+                  <feGaussianBlur stdDeviation="1" result="blur" />
                   <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
                 </filter>
               </defs>
@@ -199,69 +189,69 @@ export default function Hero() {
               <path id="particlePath" d="M60 400 C100 400, 90 340, 130 320 C170 300, 160 250, 200 230 C240 210, 230 160, 270 140 C310 120, 300 70, 360 40" fill="none" stroke="none" />
 
               {/* === PARTICLES — 6 flowing upward at different speeds === */}
-              <circle r="2.5" fill="#a78bfa" filter="url(#particleGlow)" className="edu-particle edu-p1">
+              <circle r="2.5" style={{ fill: "var(--svg-start)" }} filter="url(#particleGlow)" className="edu-particle edu-p1">
                 <animateMotion dur="2.8s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear">
                   <mpath href="#particlePath" />
                 </animateMotion>
               </circle>
-              <circle r="2" fill="#c4b5fd" filter="url(#particleGlow)" className="edu-particle edu-p2">
+              <circle r="2" style={{ fill: "var(--svg-mid)" }} filter="url(#particleGlow)" className="edu-particle edu-p2">
                 <animateMotion dur="3.2s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear">
                   <mpath href="#particlePath" />
                 </animateMotion>
               </circle>
-              <circle r="1.8" fill="#fbbf24" filter="url(#particleGlow)" className="edu-particle edu-p3">
+              <circle r="1.8" style={{ fill: "var(--svg-mid)" }} filter="url(#particleGlow)" className="edu-particle edu-p3">
                 <animateMotion dur="2.5s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear">
                   <mpath href="#particlePath" />
                 </animateMotion>
               </circle>
-              <circle r="2" fill="#6d28d9" filter="url(#particleGlow)" className="edu-particle edu-p4">
+              <circle r="2" style={{ fill: "var(--svg-mid)" }} filter="url(#particleGlow)" className="edu-particle edu-p4">
                 <animateMotion dur="3.5s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear">
                   <mpath href="#particlePath" />
                 </animateMotion>
               </circle>
-              <circle r="1.5" fill="#34d399" filter="url(#particleGlow)" className="edu-particle edu-p5">
+              <circle r="1.5" style={{ fill: "var(--svg-end)" }} filter="url(#particleGlow)" className="edu-particle edu-p5">
                 <animateMotion dur="2.2s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear">
                   <mpath href="#particlePath" />
                 </animateMotion>
               </circle>
-              <circle r="2.2" fill="#a78bfa" filter="url(#particleGlow)" className="edu-particle edu-p6">
+              <circle r="2.2" style={{ fill: "var(--svg-start)" }} filter="url(#particleGlow)" className="edu-particle edu-p6">
                 <animateMotion dur="3s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear">
                   <mpath href="#particlePath" />
                 </animateMotion>
               </circle>
 
               {/* === SPARKLES — small dots that pop in/out along the path === */}
-              <circle cx="95" cy="370" r="1.5" fill="#fbbf24" filter="url(#sparkleGlow)" className="edu-sparkle edu-sparkle-1" />
-              <circle cx="160" cy="275" r="1.2" fill="#c4b5fd" filter="url(#sparkleGlow)" className="edu-sparkle edu-sparkle-2" />
-              <circle cx="235" cy="185" r="1.5" fill="#6d28d9" filter="url(#sparkleGlow)" className="edu-sparkle edu-sparkle-3" />
-              <circle cx="315" cy="90" r="1.3" fill="#34d399" filter="url(#sparkleGlow)" className="edu-sparkle edu-sparkle-4" />
-              <circle cx="195" cy="245" r="1" fill="#fbbf24" filter="url(#sparkleGlow)" className="edu-sparkle edu-sparkle-5" />
-              <circle cx="290" cy="115" r="1.2" fill="#a78bfa" filter="url(#sparkleGlow)" className="edu-sparkle edu-sparkle-6" />
+              <circle cx="95" cy="370" r="1.5" style={{ fill: "var(--svg-mid)" }} filter="url(#sparkleGlow)" className="edu-sparkle edu-sparkle-1" />
+              <circle cx="160" cy="275" r="1.2" style={{ fill: "var(--svg-mid)" }} filter="url(#sparkleGlow)" className="edu-sparkle edu-sparkle-2" />
+              <circle cx="235" cy="185" r="1.5" style={{ fill: "var(--svg-mid)" }} filter="url(#sparkleGlow)" className="edu-sparkle edu-sparkle-3" />
+              <circle cx="315" cy="90" r="1.3" style={{ fill: "var(--svg-end)" }} filter="url(#sparkleGlow)" className="edu-sparkle edu-sparkle-4" />
+              <circle cx="195" cy="245" r="1" style={{ fill: "var(--svg-mid)" }} filter="url(#sparkleGlow)" className="edu-sparkle edu-sparkle-5" />
+              <circle cx="290" cy="115" r="1.2" style={{ fill: "var(--svg-mid)" }} filter="url(#sparkleGlow)" className="edu-sparkle edu-sparkle-6" />
 
               {/* === FOUNDATION — powerful start burst === */}
-              <circle cx="60" cy="400" r="18" fill="none" stroke="#6d28d9" strokeWidth="1" opacity="0" className="edu-start-ring edu-start-ring-1" />
-              <circle cx="60" cy="400" r="18" fill="none" stroke="#6d28d9" strokeWidth="0.8" opacity="0" className="edu-start-ring edu-start-ring-2" />
-              <circle cx="60" cy="400" r="25" fill="#6d28d9" opacity="0.15" filter="url(#bigGlow)" className="edu-start-burst" />
-              <circle cx="60" cy="400" r="7" fill="#6d28d9" filter="url(#bigGlow)" className="edu-dot edu-dot-1" />
+              <circle cx="60" cy="400" r="18" fill="none" style={{ stroke: "var(--svg-start)" }} strokeWidth="1" opacity="0" className="edu-start-ring edu-start-ring-1" />
+              <circle cx="60" cy="400" r="18" fill="none" style={{ stroke: "var(--svg-start)" }} strokeWidth="0.8" opacity="0" className="edu-start-ring edu-start-ring-2" />
+              <circle cx="60" cy="400" r="25" style={{ fill: "var(--svg-start)" }} opacity="0.15" filter="url(#bigGlow)" className="edu-start-burst" />
+              <circle cx="60" cy="400" r="7" style={{ fill: "var(--svg-start)" }} filter="url(#bigGlow)" className="edu-dot edu-dot-1" />
 
               {/* Core Skills dot */}
-              <circle cx="130" cy="320" r="5" fill="#a78bfa" filter="url(#dotGlow)" className="edu-dot edu-dot-2" />
+              <circle cx="130" cy="320" r="5" style={{ fill: "var(--svg-start)" }} filter="url(#dotGlow)" className="edu-dot edu-dot-2" />
 
               {/* Advanced dot */}
-              <circle cx="270" cy="140" r="5" fill="#c4b5fd" filter="url(#dotGlow)" className="edu-dot edu-dot-3" />
+              <circle cx="270" cy="140" r="5" style={{ fill: "var(--svg-mid)" }} filter="url(#dotGlow)" className="edu-dot edu-dot-3" />
 
               {/* === GRADUATE — powerful end with rays === */}
-              <circle cx="360" cy="40" r="20" fill="#34d399" opacity="0.1" filter="url(#bigGlow)" className="edu-end-burst" />
-              <circle cx="360" cy="40" r="14" fill="none" stroke="#34d399" strokeWidth="1.2" opacity="0" className="edu-end-ring edu-end-ring-1" />
-              <circle cx="360" cy="40" r="14" fill="none" stroke="#34d399" strokeWidth="0.8" opacity="0" className="edu-end-ring edu-end-ring-2" />
-              <circle cx="360" cy="40" r="14" fill="none" stroke="#34d399" strokeWidth="0.5" opacity="0" className="edu-end-ring edu-end-ring-3" />
+              <circle cx="360" cy="40" r="20" style={{ fill: "var(--svg-end)" }} opacity="0.1" filter="url(#bigGlow)" className="edu-end-burst" />
+              <circle cx="360" cy="40" r="14" fill="none" style={{ stroke: "var(--svg-end)" }} strokeWidth="1.2" opacity="0" className="edu-end-ring edu-end-ring-1" />
+              <circle cx="360" cy="40" r="14" fill="none" style={{ stroke: "var(--svg-end)" }} strokeWidth="0.8" opacity="0" className="edu-end-ring edu-end-ring-2" />
+              <circle cx="360" cy="40" r="14" fill="none" style={{ stroke: "var(--svg-end)" }} strokeWidth="0.5" opacity="0" className="edu-end-ring edu-end-ring-3" />
               {/* Radiating rays from Graduate */}
-              <line x1="360" y1="40" x2="360" y2="8" stroke="#34d399" strokeWidth="1.5" strokeLinecap="round" opacity="0" className="edu-ray edu-ray-1" />
-              <line x1="360" y1="40" x2="385" y2="18" stroke="#34d399" strokeWidth="1.2" strokeLinecap="round" opacity="0" className="edu-ray edu-ray-2" />
-              <line x1="360" y1="40" x2="392" y2="40" stroke="#34d399" strokeWidth="1" strokeLinecap="round" opacity="0" className="edu-ray edu-ray-3" />
-              <line x1="360" y1="40" x2="385" y2="62" stroke="#34d399" strokeWidth="1.2" strokeLinecap="round" opacity="0" className="edu-ray edu-ray-4" />
-              <line x1="360" y1="40" x2="335" y2="18" stroke="#34d399" strokeWidth="1" strokeLinecap="round" opacity="0" className="edu-ray edu-ray-5" />
-              <circle cx="360" cy="40" r="8" fill="#34d399" filter="url(#bigGlow)" className="edu-dot edu-dot-4" />
+              <line x1="360" y1="40" x2="360" y2="8" style={{ stroke: "var(--svg-end)" }} strokeWidth="1.5" strokeLinecap="round" opacity="0" className="edu-ray edu-ray-1" />
+              <line x1="360" y1="40" x2="385" y2="18" style={{ stroke: "var(--svg-end)" }} strokeWidth="1.2" strokeLinecap="round" opacity="0" className="edu-ray edu-ray-2" />
+              <line x1="360" y1="40" x2="392" y2="40" style={{ stroke: "var(--svg-end)" }} strokeWidth="1" strokeLinecap="round" opacity="0" className="edu-ray edu-ray-3" />
+              <line x1="360" y1="40" x2="385" y2="62" style={{ stroke: "var(--svg-end)" }} strokeWidth="1.2" strokeLinecap="round" opacity="0" className="edu-ray edu-ray-4" />
+              <line x1="360" y1="40" x2="335" y2="18" style={{ stroke: "var(--svg-end)" }} strokeWidth="1" strokeLinecap="round" opacity="0" className="edu-ray edu-ray-5" />
+              <circle cx="360" cy="40" r="8" style={{ fill: "var(--svg-end)" }} filter="url(#bigGlow)" className="edu-dot edu-dot-4" />
             </svg>
 
             {/* Floating milestone labels — positioned behind dots */}
@@ -309,6 +299,7 @@ export default function Hero() {
             <div className="edu-peak-glow" />
           </div>
         </motion.div>
+        )}
       </div>
     </section>
   );

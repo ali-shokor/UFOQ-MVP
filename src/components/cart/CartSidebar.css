@@ -227,3 +227,7 @@
   justify-content: space-between;
   align-items: center;
 }
+
+[data-theme="light"] .cart-sidebar {
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.12), -2px 0 20px var(--accent-wash);
+}

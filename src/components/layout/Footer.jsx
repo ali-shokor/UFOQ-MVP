@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, ChevronDown } from "lucide-react";
 import { useTheme } from "../../context/ThemeContext";
 
 import "./Footer.css";
@@ -27,6 +28,12 @@ const footerLinks = {
 
 export default function Footer() {
   const { theme } = useTheme();
+  const [openSection, setOpenSection] = useState(null);
+
+  const toggleSection = (key) => {
+    setOpenSection(openSection === key ? null : key);
+  };
+
   return (
     <footer className="footer">
       <div className="footer-container">
@@ -43,7 +50,7 @@ export default function Footer() {
             <div className="footer-contact">
               <a href="mailto:imkanacademy@gmail.com" className="footer-contact-item">
                 <Mail size={16} />
-                ali.shokor.dev@gmail.com
+                imkanacademy@gmail.com
               </a>
               <a href="tel:+96178957" className="footer-contact-item">
                 <Phone size={16} />
@@ -57,8 +64,14 @@ export default function Footer() {
           </div>
 
           <div className="footer-links-group">
-            <h4 className="footer-links-title">Programs</h4>
-            <ul className="footer-links">
+            <h4
+              className="footer-links-title"
+              onClick={() => toggleSection("programs")}
+            >
+              <span>Programs</span>
+              <ChevronDown size={16} className="footer-chevron" />
+            </h4>
+            <ul className={`footer-links ${openSection === "programs" ? "footer-links-open" : ""}`}>
               {footerLinks.programs.map((link) => (
                 <li key={link.label}>
                   <Link to={link.to} className="footer-link">
@@ -70,8 +83,14 @@ export default function Footer() {
           </div>
 
           <div className="footer-links-group">
-            <h4 className="footer-links-title">Company</h4>
-            <ul className="footer-links">
+            <h4
+              className="footer-links-title"
+              onClick={() => toggleSection("company")}
+            >
+              <span>Company</span>
+              <ChevronDown size={16} className="footer-chevron" />
+            </h4>
+            <ul className={`footer-links ${openSection === "company" ? "footer-links-open" : ""}`}>
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
                   <Link to={link.to} className="footer-link">
@@ -83,8 +102,14 @@ export default function Footer() {
           </div>
 
           <div className="footer-links-group">
-            <h4 className="footer-links-title">Support</h4>
-            <ul className="footer-links">
+            <h4
+              className="footer-links-title"
+              onClick={() => toggleSection("support")}
+            >
+              <span>Support</span>
+              <ChevronDown size={16} className="footer-chevron" />
+            </h4>
+            <ul className={`footer-links ${openSection === "support" ? "footer-links-open" : ""}`}>
               {footerLinks.support.map((link) => (
                 <li key={link.label}>
                   <Link to={link.to} className="footer-link">
@@ -100,10 +125,6 @@ export default function Footer() {
           <p className="footer-copyright">
             &copy; {new Date().getFullYear()} IMKAN Academy. All rights reserved.
           </p>
-          <div className="footer-bottom-links">
-            <Link to="#">Privacy Policy</Link>
-            <Link to="#">Terms of Service</Link>
-          </div>
         </div>
       </div>
     </footer>

@@ -11,13 +11,16 @@
   inset: 0;
   z-index: -1;
   overflow: hidden;
+  contain: layout style;
 }
 
 .page-bg-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
+  filter: blur(50px);
   will-change: transform;
+  contain: layout style;
+  transition: background 0.4s ease, opacity 0.4s ease;
 }
 
 /* Dark theme orbs */
@@ -92,23 +95,25 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px);
+    linear-gradient(var(--grid-line, rgba(155, 123, 255, 0.1)) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line, rgba(155, 123, 255, 0.1)) 1px, transparent 1px);
   background-size: 60px 60px;
   mask-image: radial-gradient(ellipse 85% 75% at 50% 40%, black 10%, transparent 100%);
   -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 40%, black 10%, transparent 100%);
   opacity: 0.15;
+  transition: opacity 0.4s ease;
 }
 
 /* dot pattern overlay */
 .page-bg-dots {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(139, 92, 246, 0.08) 1px, transparent 1px);
+  background-image: radial-gradient(var(--dot-color, rgba(155, 123, 255, 0.08)) 1px, transparent 1px);
   background-size: 30px 30px;
   mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 100%);
   -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 100%);
   opacity: 0.12;
+  transition: opacity 0.4s ease;
 }
 
 [data-theme="dark"] .page-bg-aurora {
@@ -121,6 +126,23 @@
 
 [data-theme="dark"] .page-bg-dots {
   opacity: 0.3;
+}
+
+[data-theme="light"] .page-bg-grid {
+  --grid-line: rgba(83, 109, 215, 0.15);
+  opacity: 0.2;
+}
+
+[data-theme="light"] .page-bg-dots {
+  --dot-color: rgba(83, 109, 215, 0.12);
+  opacity: 0.15;
+}
+
+[data-theme="light"] .page-bg-orb-1,
+[data-theme="light"] .page-bg-orb-2,
+[data-theme="light"] .page-bg-orb-3 {
+  opacity: 0.04;
+  filter: blur(80px);
 }
 
 @keyframes pageOrb1 {

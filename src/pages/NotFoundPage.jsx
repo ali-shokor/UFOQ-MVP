@@ -23,7 +23,7 @@ export default function NotFoundPage() {
           style={{
             fontSize: "6rem",
             fontWeight: 900,
-            background: "linear-gradient(135deg, #6d28d9, #a78bfa)",
+            background: "linear-gradient(135deg, #7B5BD6, #b4a1ff)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             lineHeight: 1,

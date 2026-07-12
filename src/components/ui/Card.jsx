@@ -7,7 +7,7 @@ export default function Card({
   hover = true,
   glass = false,
   glow = false,
-  glowColor = "#6d28d9",
+  glowColor = "#7B5BD6",
   padding = "md",
   onClick,
 }) {

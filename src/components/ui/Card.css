@@ -36,3 +36,8 @@
   .card-pad-md { padding: 16px; }
   .card-pad-lg { padding: 20px; }
 }
+
+[data-theme="light"] .card-glass {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(0, 0, 0, 0.06);
+}

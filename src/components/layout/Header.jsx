@@ -145,6 +145,22 @@ export default function Header() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 }}
+                className="mobile-menu-divider"
+              />
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.45 }}
+              >
+                <button onClick={toggleTheme} className="mobile-theme-toggle">
+                  {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+                  <span>{theme === "dark" ? "Light Mode" : "Dark Mode"}</span>
+                </button>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.5 }}
               >
                 <button onClick={handleEnroll} className="mobile-enroll-btn">
                   <span>Enroll Now</span>

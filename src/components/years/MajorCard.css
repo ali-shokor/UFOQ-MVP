@@ -156,3 +156,15 @@
   0%, 100% { opacity: 0.3; }
   50% { opacity: 0.8; }
 }
+
+[data-theme="light"] .major-card-active:hover {
+  box-shadow:
+    0 0 16px color-mix(in srgb, var(--major-color, var(--accent)), transparent 85%),
+    0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .major-card-active .major-card-icon {
+  box-shadow:
+    0 0 16px color-mix(in srgb, var(--major-color, var(--accent)), transparent 70%),
+    0 2px 8px rgba(0, 0, 0, 0.1);
+}

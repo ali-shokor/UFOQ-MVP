@@ -1,6 +1,6 @@
 .marquee-strip {
   overflow: hidden;
-  padding: 18px 0;
+  padding: 24px 0;
   background: linear-gradient(90deg, var(--bg-deep), var(--bg-primary), var(--bg-deep));
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
@@ -69,6 +69,6 @@
     padding: 0 14px;
   }
   .marquee-strip {
-    padding: 12px 0;
+    padding: 16px 0;
   }
 }

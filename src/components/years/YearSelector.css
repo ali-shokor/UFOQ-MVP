@@ -105,57 +105,27 @@
   align-items: center;
   gap: 12px;
   padding: 14px 28px;
-  background: rgba(255, 255, 255, 0.025);
-  border: 1px solid var(--border);
+  background: transparent;
+  border: 1px solid transparent;
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: all 0.35s ease;
   font-family: "Inter", sans-serif;
   color: var(--text-secondary);
   position: relative;
-  overflow: hidden;
-}
-
-.year-tab::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 50% 50%, var(--accent-subtle), transparent 70%);
-  opacity: 0;
-  transition: opacity 0.35s;
-}
-
-.year-tab:hover::before {
-  opacity: 1;
 }
 
 .year-tab:hover {
-  border-color: var(--border-glow);
   color: var(--text-primary);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 20px var(--accent-subtle);
 }
 
 .year-tab-active {
   background: var(--accent-subtle);
   border-color: var(--accent);
   color: var(--accent-light);
-  box-shadow:
-    0 0 20px var(--accent-subtle),
-    0 0 40px var(--accent-wash),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-}
-
-.year-tab-active::before {
-  opacity: 1;
-  background: radial-gradient(circle at 50% 50%, var(--accent-subtle), transparent 70%);
 }
 
 .year-tab-active:hover {
-  border-color: var(--accent);
-  box-shadow:
-    0 0 28px var(--accent-subtle),
-    0 0 50px var(--accent-subtle);
   color: var(--accent-light);
 }
 
@@ -248,4 +218,18 @@
   .year-tab-info { text-align: center; }
   .majors-grid { grid-template-columns: 1fr; }
   .majors-show-more { display: inline-flex; }
+}
+
+[data-theme="light"] .year-tab {
+  color: #5a5478;
+}
+
+[data-theme="light"] .year-tab:hover {
+  color: #333;
+}
+
+[data-theme="light"] .year-tab-active {
+  background: rgba(83, 109, 215, 0.08);
+  border-color: rgba(83, 109, 215, 0.25);
+  color: #536DD7;
 }

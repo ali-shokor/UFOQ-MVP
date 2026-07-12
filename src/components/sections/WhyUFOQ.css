@@ -279,3 +279,8 @@
   .why-scroll-title { font-size: 0.82rem; }
   .why-scroll-desc { font-size: 0.72rem; }
 }
+
+[data-theme="light"] .why-scroll-col {
+  background: rgba(255, 255, 255, 0.5);
+  border-color: rgba(0, 0, 0, 0.06);
+}

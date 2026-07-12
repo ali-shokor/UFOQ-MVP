@@ -127,73 +127,57 @@ export default function SemesterView({ majorId = "cs" }) {
           <div className="bundle-bar">
             <div className="bundle-cards">
               <button
-                className={`bundle-card bundle-card-gold ${allSelected ? "bundle-card-active bundle-card-gold-active" : ""}`}
+                className={`bundle-row bundle-row-gold ${allSelected ? "bundle-row-active bundle-row-gold-active" : ""}`}
                 onClick={handleFullBundle}
               >
-                <div className="bundle-card-shine bundle-card-shine-gold" />
-                <div className="bundle-card-glow bundle-card-glow-gold" />
-                <div className="bundle-card-content">
-                  <div className="bundle-card-top">
-                    <div className="bundle-card-icon bundle-card-icon-gold">
-                      <Package size={22} />
-                    </div>
-                    <span className="bundle-card-badge bundle-card-badge-gold">Best Value</span>
-                  </div>
-                  <div className="bundle-card-info">
-                    <h3 className="bundle-card-name">Full Bundle</h3>
-                    <p className="bundle-card-desc">
-                      {allSelected ? "All courses selected" : `All ${availableCourses.length} courses included`}
-                    </p>
-                  </div>
-                  <div className="bundle-card-price">
-                    <span className="bundle-card-currency bundle-card-currency-gold">$</span>
-                    <span className="bundle-card-amount bundle-card-amount-gold">99</span>
-                    <span className="bundle-card-period">one-time</span>
-                  </div>
-                  <div className="bundle-card-footer">
-                    <span className="bundle-card-save bundle-card-save-gold">Save up to 60%</span>
-                    <span className="bundle-card-cta bundle-card-cta-gold">
-                      {allSelected ? "Active" : "Get Bundle"}
-                    </span>
-                  </div>
+                <div className="bundle-row-icon bundle-row-icon-gold">
+                  <Package size={20} />
                 </div>
+                <div className="bundle-row-info">
+                  <div className="bundle-row-top">
+                    <span className="bundle-row-name">Full Bundle</span>
+                    <span className="bundle-row-badge bundle-row-badge-gold">Best Value</span>
+                  </div>
+                  <span className="bundle-row-desc">
+                    {allSelected ? "All courses selected" : `All ${availableCourses.length} courses · Save up to 60%`}
+                  </span>
+                </div>
+                <div className="bundle-row-price">
+                  <span className="bundle-row-currency bundle-row-currency-gold">$</span>
+                  <span className="bundle-row-amount bundle-row-amount-gold">99</span>
+                </div>
+                <span className="bundle-row-cta bundle-row-cta-gold">
+                  {allSelected ? "Active ✓" : "Get Bundle"}
+                </span>
               </button>
 
               <button
-                className={`bundle-card ${isHalfBundleActive ? "bundle-card-active" : ""}`}
+                className={`bundle-row ${isHalfBundleActive ? "bundle-row-active" : ""}`}
                 onClick={handleHalfBundle}
               >
-                <div className="bundle-card-shine" />
-                <div className="bundle-card-glow" />
-                <div className="bundle-card-content">
-                  <div className="bundle-card-top">
-                    <div className="bundle-card-icon">
-                      <Layers size={22} />
-                    </div>
-                    <span className="bundle-card-badge">Flexible</span>
-                  </div>
-                  <div className="bundle-card-info">
-                    <h3 className="bundle-card-name">Half Bundle</h3>
-                    <p className="bundle-card-desc">
-                      {isHalfBundleActive
-                        ? extraCredits > 0
-                          ? `${creditsUsed}/${HALF_BUNDLE_MAX_CREDITS} included · +${extraCredits} extra`
-                          : `${creditsUsed}/${HALF_BUNDLE_MAX_CREDITS} credits included`
-                        : `Up to ${HALF_BUNDLE_MAX_CREDITS} credits`}
-                    </p>
-                  </div>
-                  <div className="bundle-card-price">
-                    <span className="bundle-card-currency">$</span>
-                    <span className="bundle-card-amount">59</span>
-                    <span className="bundle-card-period">one-time</span>
-                  </div>
-                  <div className="bundle-card-footer">
-                    <span className="bundle-card-save">Pick your courses</span>
-                    <span className="bundle-card-cta">
-                      {isHalfBundleActive ? "Active" : "Get Bundle"}
-                    </span>
-                  </div>
+                <div className="bundle-row-icon">
+                  <Layers size={20} />
                 </div>
+                <div className="bundle-row-info">
+                  <div className="bundle-row-top">
+                    <span className="bundle-row-name">Half Bundle</span>
+                    <span className="bundle-row-badge">Flexible</span>
+                  </div>
+                  <span className="bundle-row-desc">
+                    {isHalfBundleActive
+                      ? extraCredits > 0
+                        ? `${creditsUsed}/${HALF_BUNDLE_MAX_CREDITS} credits · +${extraCredits} extra`
+                        : `${creditsUsed}/${HALF_BUNDLE_MAX_CREDITS} credits included`
+                      : `Up to ${HALF_BUNDLE_MAX_CREDITS} credits · Pick your courses`}
+                  </span>
+                </div>
+                <div className="bundle-row-price">
+                  <span className="bundle-row-currency">$</span>
+                  <span className="bundle-row-amount">59</span>
+                </div>
+                <span className="bundle-row-cta">
+                  {isHalfBundleActive ? "Active ✓" : "Get Bundle"}
+                </span>
               </button>
             </div>
 
