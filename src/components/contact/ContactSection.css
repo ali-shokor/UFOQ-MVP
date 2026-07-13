@@ -235,6 +235,6 @@
 [data-theme="light"] .form-input:focus,
 [data-theme="light"] .form-textarea:focus {
   background: rgba(255, 255, 255, 0.9);
-  border-color: #536DD7;
-  box-shadow: 0 0 0 3px rgba(83, 109, 215, 0.12);
+  border-color: #024E95;
+  box-shadow: 0 0 0 3px rgba(2, 78, 149, 0.12);
 }

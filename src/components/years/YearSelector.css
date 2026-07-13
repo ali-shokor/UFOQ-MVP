@@ -120,9 +120,21 @@
 }
 
 .year-tab-active {
-  background: var(--accent-subtle);
-  border-color: var(--accent);
+  background: rgba(155, 123, 255, 0.06);
+  border-color: transparent;
   color: var(--accent-light);
+  position: relative;
+}
+
+.year-tab-active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  right: 20%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  border-radius: 2px;
 }
 
 .year-tab-active:hover {
@@ -148,8 +160,9 @@
 }
 
 .year-tab-active .year-tab-number {
-  background: var(--border-glow);
-  box-shadow: 0 0 12px var(--border-glow);
+  background: linear-gradient(135deg, var(--accent), var(--violet));
+  color: #fff;
+  box-shadow: 0 0 16px var(--border-glow);
 }
 
 .year-tab-info {
@@ -229,7 +242,17 @@
 }
 
 [data-theme="light"] .year-tab-active {
-  background: rgba(83, 109, 215, 0.08);
-  border-color: rgba(83, 109, 215, 0.25);
-  color: #536DD7;
+  background: rgba(2, 78, 149, 0.06);
+  border-color: transparent;
+  color: #024E95;
+}
+
+[data-theme="light"] .year-tab-active::after {
+  background: linear-gradient(90deg, transparent, #024E95, transparent);
+}
+
+[data-theme="light"] .year-tab-active .year-tab-number {
+  background: linear-gradient(135deg, #024E95, #01A8BB);
+  color: #fff;
+  box-shadow: 0 0 14px rgba(2, 78, 149, 0.2);
 }

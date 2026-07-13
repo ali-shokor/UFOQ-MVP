@@ -140,6 +140,10 @@
   border-color: rgba(139, 92, 246, 0.2);
 }
 
+[data-theme="light"] .major-card-active:first-child {
+  border-color: rgba(2, 78, 149, 0.2);
+}
+
 .major-card-active:first-child::before {
   content: '';
   position: absolute;
@@ -157,14 +161,26 @@
   50% { opacity: 0.8; }
 }
 
+[data-theme="light"] .major-card-active::after {
+  background: linear-gradient(135deg, transparent 30%, var(--accent) 100%);
+}
+
+[data-theme="light"] .major-card-active:hover {
+  border-color: transparent;
+  box-shadow:
+    0 0 20px rgba(2, 78, 149, 0.15),
+    0 8px 32px rgba(2, 48, 97, 0.1);
+}
+
 [data-theme="light"] .major-card-active:hover {
   box-shadow:
-    0 0 16px color-mix(in srgb, var(--major-color, var(--accent)), transparent 85%),
-    0 4px 16px rgba(0, 0, 0, 0.08);
+    0 0 16px rgba(2, 78, 149, 0.12),
+    0 4px 16px rgba(2, 48, 97, 0.08);
 }
 
 [data-theme="light"] .major-card-active .major-card-icon {
+  background: linear-gradient(135deg, var(--accent), var(--violet));
   box-shadow:
-    0 0 16px color-mix(in srgb, var(--major-color, var(--accent)), transparent 70%),
+    0 0 16px rgba(2, 78, 149, 0.2),
     0 2px 8px rgba(0, 0, 0, 0.1);
 }

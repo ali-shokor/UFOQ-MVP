@@ -40,7 +40,7 @@ export default function Footer() {
         <div className="footer-grid">
           <div className="footer-brand">
             <Link to="/" className="footer-logo">
-              <img src={theme === "dark" ? "public/logo-dark.svg" : "public/logo-white.svg"} alt="IMKAN Academy logo" className="footer-logo-icon-img" />
+              <img src={`${import.meta.env.BASE_URL}${theme === "dark" ? "logo-dark.svg" : "logo-white.svg"}`} alt="IMKAN Academy logo" className="footer-logo-icon-img" />
               <span className="footer-logo-text">IMKAN Academy</span>
             </Link>
             <p className="footer-tagline">

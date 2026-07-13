@@ -120,18 +120,18 @@
 
 /* ── light theme ── */
 [data-theme="light"] .btn-secondary {
-  background: rgba(83, 109, 215, 0.06);
-  border-color: rgba(83, 109, 215, 0.15);
-  color: #536DD7;
+  background: rgba(2, 78, 149, 0.06);
+  border-color: rgba(2, 78, 149, 0.15);
+  color: #024E95;
 }
 
 [data-theme="light"] .btn-secondary:hover:not(:disabled) {
-  background: rgba(83, 109, 215, 0.12);
-  border-color: rgba(83, 109, 215, 0.25);
+  background: rgba(2, 78, 149, 0.12);
+  border-color: rgba(2, 78, 149, 0.25);
 }
 
 [data-theme="light"] .btn-ghost:hover:not(:disabled) {
-  background: rgba(83, 109, 215, 0.06);
+  background: rgba(2, 78, 149, 0.06);
 }
 
 @media (max-width: 480px) {

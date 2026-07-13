@@ -129,12 +129,12 @@
 }
 
 [data-theme="light"] .page-bg-grid {
-  --grid-line: rgba(83, 109, 215, 0.15);
+  --grid-line: rgba(2, 78, 149, 0.15);
   opacity: 0.2;
 }
 
 [data-theme="light"] .page-bg-dots {
-  --dot-color: rgba(83, 109, 215, 0.12);
+  --dot-color: rgba(2, 78, 149, 0.12);
   opacity: 0.15;
 }
 

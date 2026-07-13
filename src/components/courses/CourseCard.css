@@ -472,8 +472,8 @@
 
 [data-theme="light"] .course-badge-code {
   background: rgba(255, 255, 255, 0.85);
-  color: #536DD7;
-  border-color: rgba(83, 109, 215, 0.2);
+  color: #024E95;
+  border-color: rgba(2, 78, 149, 0.2);
 }
 
 [data-theme="light"] .course-price-badge {
@@ -488,11 +488,11 @@
 
 [data-theme="light"] .session-hours-btn:hover,
 [data-theme="light"] .session-confirm-btn {
-  background: rgba(83, 109, 215, 0.12);
+  background: rgba(2, 78, 149, 0.12);
 }
 
 [data-theme="light"] .course-select-btn-half-bundle,
 [data-theme="light"] .course-select-btn-extra,
 [data-theme="light"] .course-select-btn-paid {
-  color: #536DD7;
+  color: #024E95;
 }

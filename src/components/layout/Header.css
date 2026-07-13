@@ -249,16 +249,16 @@
   left: 0;
   right: 0;
   background: var(--bg-secondary);
-  backdrop-filter: blur(12px) saturate(150%);
+  backdrop-filter: blur(20px) saturate(150%);
   border-bottom: 1px solid var(--border);
   overflow: hidden;
 }
 
 .mobile-nav {
-  padding: 16px 24px 24px;
+  padding: 20px 24px 24px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
 }
 
 .mobile-nav-link {
@@ -269,6 +269,9 @@
   text-decoration: none;
   border-radius: 10px;
   transition: all 0.2s;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
 }
 
 .mobile-nav-link:hover,
@@ -292,14 +295,16 @@
   font-family: "Inter", sans-serif;
   font-weight: 600;
   font-size: 0.95rem;
-  margin-top: 8px;
+  margin-top: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
+  min-height: 48px;
 }
 
 .mobile-enroll-btn:hover {
-  background: var(--accent-subtle);
+  background: var(--accent-glow);
   border-color: var(--accent);
+  box-shadow: 0 0 20px var(--accent-subtle);
 }
 
 @media (max-width: 768px) {
@@ -335,7 +340,7 @@
 .mobile-menu-divider {
   height: 1px;
   background: var(--border);
-  margin: 6px 0;
+  margin: 8px 0;
 }
 
 .mobile-theme-toggle {
@@ -381,4 +386,21 @@
 
 [data-theme="light"] .logo-icon {
   box-shadow: 0 0 16px var(--accent-glow), 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .mobile-menu {
+  background: rgba(249, 247, 247, 0.95);
+  border-bottom-color: rgba(2, 48, 97, 0.08);
+}
+
+[data-theme="light"] .mobile-enroll-btn {
+  background: rgba(2, 78, 149, 0.1);
+  border-color: rgba(2, 78, 149, 0.2);
+  color: #024E95;
+}
+
+[data-theme="light"] .mobile-enroll-btn:hover {
+  background: rgba(2, 78, 149, 0.18);
+  border-color: rgba(2, 78, 149, 0.35);
+  box-shadow: 0 0 20px rgba(2, 78, 149, 0.1);
 }

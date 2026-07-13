@@ -155,26 +155,32 @@
 .testimonials-dots {
   display: flex;
   justify-content: center;
-  gap: 6px;
+  align-items: center;
+  gap: 8px;
   margin-top: 24px;
 }
 
 .testimonials-dot {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
+  min-width: 8px;
+  max-width: 8px;
   border-radius: 50%;
   background: var(--border);
   border: none;
   padding: 0;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: background 0.25s, transform 0.25s;
+  flex: 0 0 8px;
+}
+
+.testimonials-dot:hover {
+  background: var(--text-muted);
 }
 
 .testimonials-dot-active {
   background: var(--accent);
-  width: 20px;
-  border-radius: 3px;
-  box-shadow: 0 0 8px var(--accent-glow);
+  transform: scale(1.15);
 }
 
 @media (max-width: 768px) {
@@ -189,7 +195,7 @@
     padding: 8px 2px 16px;
   }
   .testimonial-card {
-    min-width: 260px;
+    min-width: 280px;
     max-width: 300px;
     padding: 20px;
     gap: 12px;
@@ -201,13 +207,45 @@
   .testimonial-name { font-size: 0.8rem; }
   .testimonial-role { font-size: 0.68rem; }
   .testimonial-avatar { width: 32px; height: 32px; font-size: 0.75rem; }
-  .carousel-arrow {
-    width: 32px;
-    height: 32px;
+  .carousel-arrow { display: none; }
+  .testimonials-dots {
+    margin-top: 20px;
+    gap: 7px;
   }
-  .carousel-arrow svg { width: 16px; height: 16px; }
-  .carousel-arrow-left { left: -2px; }
-  .carousel-arrow-right { right: -2px; }
+  .testimonials-dot {
+    width: 7px;
+    height: 7px;
+    min-width: 7px;
+    max-width: 7px;
+    flex: 0 0 7px;
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonials-section {
+    padding: 40px 0;
+  }
+  .testimonials-track {
+    gap: 12px;
+    padding: 6px 0 14px;
+  }
+  .testimonial-card {
+    min-width: 260px;
+    max-width: 290px;
+    padding: 18px;
+    gap: 10px;
+  }
+  .testimonials-dots {
+    gap: 6px;
+    margin-top: 16px;
+  }
+  .testimonials-dot {
+    width: 6px;
+    height: 6px;
+    min-width: 6px;
+    max-width: 6px;
+    flex: 0 0 6px;
+  }
 }
 
 [data-theme="light"] .carousel-arrow {
@@ -219,8 +257,8 @@
 
 [data-theme="light"] .carousel-arrow:hover {
   background: rgba(255, 255, 255, 0.95);
-  border-color: rgba(83, 109, 215, 0.3);
-  box-shadow: 0 2px 12px rgba(83, 109, 215, 0.15);
+  border-color: rgba(2, 78, 149, 0.3);
+  box-shadow: 0 2px 12px rgba(2, 78, 149, 0.15);
 }
 
 [data-theme="light"] .testimonial-card {

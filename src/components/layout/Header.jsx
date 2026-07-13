@@ -45,7 +45,7 @@ export default function Header() {
     >
       <div className="header-inner">
         <Link to="/" className="logo">
-          <img src={theme === "dark" ? "public/logo-dark.svg" : "public/logo-white.svg"} alt="IMKAN Academy logo" className="logo-icon-img" />
+          <img src={`${import.meta.env.BASE_URL}${theme === "dark" ? "logo-dark.svg" : "logo-white.svg"}`} alt="IMKAN Academy logo" className="logo-icon-img" />
           <span className="logo-text">IMKAN</span>
           <span className="logo-badge">Academy</span>
         </Link>

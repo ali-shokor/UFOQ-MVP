@@ -3,7 +3,8 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
   ArrowRight, Play, Sparkles,
-  ChevronRight, GraduationCap, Code, Lightbulb, Rocket, BookOpen
+  ChevronRight, GraduationCap, Code, Lightbulb, Rocket, BookOpen,
+  Users, Target, Clock
 } from "lucide-react";
 import Button from "../ui/Button";
 import "./Hero.css";
@@ -37,75 +38,164 @@ export default function Hero() {
 
       <div className="hero-container">
         <div className="hero-content">
-          <motion.div
-            className="hero-badge"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-          >
-            <Sparkles size={14} />
-            <span>Academic Year 2026-2027 Now Open</span>
-          </motion.div>
+          {isMobile ? (
+            <>
+              <motion.div
+                className="hero-badge"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+              >
+                <Sparkles size={13} />
+                <span>Academic Year 2026–2027 Now Open</span>
+              </motion.div>
 
-          <motion.h1
-            className="hero-title"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-          >
-            Discover Your
-            <br />
-            <span className="hero-title-gradient">Academic Path</span>
-          </motion.h1>
+              <motion.h1
+                className="hero-title"
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+              >
+                Your University Journey,{' '}
+                <span className="hero-title-gradient">Clearly Guided</span>
+              </motion.h1>
 
-          <motion.p
-            className="hero-description"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.35 }}
-          >
-            IMKAN Academy maps your university journey with structured courses,
-            expert mentors, and a clear path from where you are to where you
-            want to be.
-          </motion.p>
+              <motion.p
+                className="hero-description"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.35 }}
+              >
+                Structured courses, expert mentors, and a supportive learning
+                community — everything you need to study with clarity and
+                confidence.
+              </motion.p>
 
-          <motion.div
-            className="hero-actions"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-          >
-            <Link to="/academics">
-              <Button size="lg" icon={ArrowRight} iconPosition="right">
-                Find Your Path
-              </Button>
-            </Link>
-            <Link to="/packages">
-              <Button variant="secondary" size="lg" icon={Play}>
-                View Packages
-              </Button>
-            </Link>
-          </motion.div>
+              <motion.div
+                className="hero-actions"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.45 }}
+              >
+                <Link to="/academics" className="hero-cta-primary">
+                  <span>Explore Your Year</span>
+                  <ArrowRight size={17} />
+                </Link>
+                <Link to="/packages" className="hero-cta-secondary">
+                  <span>View Packages</span>
+                </Link>
+              </motion.div>
 
-          <motion.div
-            className="hero-price-pill"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.62 }}
-          >
-            <div className="hero-price-left">
-              <span className="hero-price-badge">Complete Semester Package</span>
-              <div className="hero-price-amount">
-                <span className="hero-price-dollar">$</span>
-                <span className="hero-price-num">120</span>
-              </div>
-              <span className="hero-price-detail">All courses · Lifetime access</span>
-            </div>
-            <Link to="/packages" className="hero-price-cta">
-              Get Started
-              <ChevronRight size={16} />
-            </Link>
-          </motion.div>
+              <motion.div
+                className="hero-trust-row"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.55 }}
+              >
+                <div className="hero-trust-item">
+                  <div className="hero-trust-icon">
+                    <BookOpen size={16} />
+                  </div>
+                  <div className="hero-trust-text">
+                    <span className="hero-trust-label">Structured Courses</span>
+                    <span className="hero-trust-sub">Semester-long paths</span>
+                  </div>
+                </div>
+                <div className="hero-trust-divider" />
+                <div className="hero-trust-item">
+                  <div className="hero-trust-icon hero-trust-icon-teal">
+                    <Users size={16} />
+                  </div>
+                  <div className="hero-trust-text">
+                    <span className="hero-trust-label">Expert Mentors</span>
+                    <span className="hero-trust-sub">1:1 guidance available</span>
+                  </div>
+                </div>
+                <div className="hero-trust-divider" />
+                <div className="hero-trust-item">
+                  <div className="hero-trust-icon hero-trust-icon-amber">
+                    <Target size={16} />
+                  </div>
+                  <div className="hero-trust-text">
+                    <span className="hero-trust-label">Flexible Plans</span>
+                    <span className="hero-trust-sub">From $120/semester</span>
+                  </div>
+                </div>
+              </motion.div>
+            </>
+          ) : (
+            <>
+              <motion.div
+                className="hero-badge"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+              >
+                <Sparkles size={14} />
+                <span>Academic Year 2026-2027 Now Open</span>
+              </motion.div>
+
+              <motion.h1
+                className="hero-title"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
+              >
+                Discover Your
+                <br />
+                <span className="hero-title-gradient">Academic Path</span>
+              </motion.h1>
+
+              <motion.p
+                className="hero-description"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.35 }}
+              >
+                IMKAN Academy maps your university journey with structured courses,
+                expert mentors, and a clear path from where you are to where you
+                want to be.
+              </motion.p>
+
+              <motion.div
+                className="hero-actions"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+              >
+                <Link to="/academics">
+                  <Button size="lg" icon={ArrowRight} iconPosition="right">
+                    Find Your Path
+                  </Button>
+                </Link>
+                <Link to="/packages">
+                  <Button variant="secondary" size="lg" icon={Play}>
+                    View Packages
+                  </Button>
+                </Link>
+              </motion.div>
+
+              <motion.div
+                className="hero-price-pill"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.62 }}
+              >
+                <div className="hero-price-left">
+                  <span className="hero-price-badge">Complete Semester Package</span>
+                  <div className="hero-price-amount">
+                    <span className="hero-price-dollar">$</span>
+                    <span className="hero-price-num">120</span>
+                  </div>
+                  <span className="hero-price-detail">All courses · Lifetime access</span>
+                </div>
+                <Link to="/packages" className="hero-price-cta">
+                  Get Started
+                  <ChevronRight size={16} />
+                </Link>
+              </motion.div>
+            </>
+          )}
         </div>
 
         {!isMobile && (

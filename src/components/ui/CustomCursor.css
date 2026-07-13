@@ -16,7 +16,7 @@
 }
 
 [data-theme="light"] .cursor-glow {
-  background: radial-gradient(circle, rgba(218, 164, 56, 0.2) 0%, rgba(218, 164, 56, 0.08) 30%, rgba(218, 164, 56, 0.02) 55%, transparent 70%);
+  background: radial-gradient(circle, rgba(1, 200, 220, 0.2) 0%, rgba(1, 200, 220, 0.08) 30%, rgba(1, 200, 220, 0.02) 55%, transparent 70%);
   mix-blend-mode: multiply;
 }
 

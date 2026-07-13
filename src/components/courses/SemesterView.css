@@ -151,14 +151,14 @@
 
 /* Gold variant */
 .bundle-row-gold {
-  background: linear-gradient(135deg, var(--accent-subtle), rgba(218, 164, 56, 0.04));
-  border-color: rgba(218, 164, 56, 0.2);
+  background: linear-gradient(135deg, var(--accent-subtle), rgba(253, 120, 23, 0.04));
+  border-color: rgba(253, 120, 23, 0.2);
 }
 
 .bundle-row-gold:hover {
-  border-color: rgba(218, 164, 56, 0.4);
-  background: linear-gradient(135deg, rgba(155, 123, 255, 0.1), rgba(218, 164, 56, 0.08));
-  box-shadow: 0 0 30px rgba(218, 164, 56, 0.08);
+  border-color: rgba(253, 120, 23, 0.4);
+  background: linear-gradient(135deg, rgba(155, 123, 255, 0.1), rgba(253, 120, 23, 0.08));
+  box-shadow: 0 0 30px rgba(253, 120, 23, 0.08);
 }
 
 /* Active state */
@@ -195,9 +195,9 @@
 }
 
 .bundle-row-icon-gold {
-  background: linear-gradient(135deg, rgba(218, 164, 56, 0.12), rgba(155, 123, 255, 0.08));
-  border-color: rgba(218, 164, 56, 0.2);
-  color: #DFA438;
+  background: linear-gradient(135deg, rgba(253, 120, 23, 0.12), rgba(155, 123, 255, 0.08));
+  border-color: rgba(253, 120, 23, 0.2);
+  color: #FD7817;
 }
 
 .bundle-row-active .bundle-row-icon {
@@ -240,9 +240,9 @@
 }
 
 .bundle-row-badge-gold {
-  background: rgba(218, 164, 56, 0.08);
-  border-color: rgba(218, 164, 56, 0.2);
-  color: #DFA438;
+  background: rgba(253, 120, 23, 0.08);
+  border-color: rgba(253, 120, 23, 0.2);
+  color: #FD7817;
 }
 
 .bundle-row-active .bundle-row-badge {
@@ -276,7 +276,7 @@
 }
 
 .bundle-row-currency-gold {
-  color: #DFA438;
+  color: #FD7817;
 }
 
 .bundle-row-amount {
@@ -310,15 +310,15 @@
 }
 
 .bundle-row-cta-gold {
-  background: rgba(218, 164, 56, 0.08);
-  border-color: rgba(218, 164, 56, 0.2);
-  color: #DFA438;
+  background: rgba(253, 120, 23, 0.08);
+  border-color: rgba(253, 120, 23, 0.2);
+  color: #FD7817;
 }
 
 .bundle-row:hover .bundle-row-cta-gold {
-  background: rgba(218, 164, 56, 0.15);
-  border-color: rgba(218, 164, 56, 0.4);
-  box-shadow: 0 0 16px rgba(218, 164, 56, 0.12);
+  background: rgba(253, 120, 23, 0.15);
+  border-color: rgba(253, 120, 23, 0.4);
+  box-shadow: 0 0 16px rgba(253, 120, 23, 0.12);
 }
 
 .bundle-row-active .bundle-row-cta {
@@ -335,17 +335,17 @@
 
 [data-theme="light"] .bundle-row:hover {
   background: rgba(255, 255, 255, 0.85);
-  border-color: rgba(83, 109, 215, 0.3);
+  border-color: rgba(2, 78, 149, 0.3);
 }
 
 [data-theme="light"] .bundle-row-gold {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(218, 164, 56, 0.04));
-  border-color: rgba(218, 164, 56, 0.15);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(253, 120, 23, 0.04));
+  border-color: rgba(253, 120, 23, 0.15);
 }
 
 [data-theme="light"] .bundle-row-gold:hover {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(218, 164, 56, 0.08));
-  border-color: rgba(218, 164, 56, 0.3);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(253, 120, 23, 0.08));
+  border-color: rgba(253, 120, 23, 0.3);
 }
 
 [data-theme="light"] .bundle-row-active {
@@ -354,27 +354,27 @@
 }
 
 [data-theme="light"] .bundle-row-icon {
-  background: rgba(83, 109, 215, 0.08);
-  border-color: rgba(83, 109, 215, 0.15);
-  color: #536DD7;
+  background: rgba(2, 78, 149, 0.08);
+  border-color: rgba(2, 78, 149, 0.15);
+  color: #024E95;
 }
 
 [data-theme="light"] .bundle-row-icon-gold {
-  background: rgba(218, 164, 56, 0.08);
-  border-color: rgba(218, 164, 56, 0.15);
-  color: #DFA438;
+  background: rgba(253, 120, 23, 0.08);
+  border-color: rgba(253, 120, 23, 0.15);
+  color: #FD7817;
 }
 
 [data-theme="light"] .bundle-row-cta {
-  background: rgba(83, 109, 215, 0.06);
-  border-color: rgba(83, 109, 215, 0.15);
-  color: #536DD7;
+  background: rgba(2, 78, 149, 0.06);
+  border-color: rgba(2, 78, 149, 0.15);
+  color: #024E95;
 }
 
 [data-theme="light"] .bundle-row-cta-gold {
-  background: rgba(218, 164, 56, 0.06);
-  border-color: rgba(218, 164, 56, 0.15);
-  color: #DFA438;
+  background: rgba(253, 120, 23, 0.06);
+  border-color: rgba(253, 120, 23, 0.15);
+  color: #FD7817;
 }
 
 .courses-empty {
@@ -518,14 +518,14 @@
 }
 
 [data-theme="light"] .year-pill:hover {
-  border-color: rgba(83, 109, 215, 0.3);
+  border-color: rgba(2, 78, 149, 0.3);
   background: rgba(255, 255, 255, 0.8);
 }
 
 [data-theme="light"] .year-pill-active {
-  background: rgba(83, 109, 215, 0.1);
-  border-color: rgba(83, 109, 215, 0.3);
-  color: #536DD7;
+  background: rgba(2, 78, 149, 0.1);
+  border-color: rgba(2, 78, 149, 0.3);
+  color: #024E95;
 }
 
 [data-theme="light"] .semester-pill {
@@ -534,13 +534,13 @@
 }
 
 [data-theme="light"] .semester-pill:hover {
-  border-color: rgba(83, 109, 215, 0.3);
+  border-color: rgba(2, 78, 149, 0.3);
   background: rgba(255, 255, 255, 0.8);
 }
 
 [data-theme="light"] .semester-pill-active {
-  background: rgba(83, 109, 215, 0.1);
-  border-color: rgba(83, 109, 215, 0.3);
+  background: rgba(2, 78, 149, 0.1);
+  border-color: rgba(2, 78, 149, 0.3);
 }
 
 [data-theme="light"] .progress-track {
@@ -548,10 +548,10 @@
 }
 
 [data-theme="light"] .progress-fill {
-  background: linear-gradient(90deg, #6B82E0, #536DD7);
+  background: linear-gradient(90deg, #01A8BB, #024E95);
 }
 
 [data-theme="light"] .progress-count,
 [data-theme="light"] .progress-extra {
-  color: #536DD7;
+  color: #024E95;
 }
