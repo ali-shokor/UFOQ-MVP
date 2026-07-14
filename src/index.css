@@ -283,6 +283,4 @@ select {
   background: rgba(2, 78, 149, 0.15);
 }
 
-[data-theme="light"] .hero-grid-pattern {
-  opacity: 0.4;
-}
+

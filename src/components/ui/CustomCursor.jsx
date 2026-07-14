@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./CustomCursor.css";
 
 export default function CustomCursor() {
@@ -9,8 +9,19 @@ export default function CustomCursor() {
   const lastUpdate = useRef(0);
   const idleTimer = useRef(null);
   const isIdle = useRef(false);
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== "undefined" && window.innerWidth <= 768
+  );
 
   useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return;
+
     const onMove = (e) => {
       target.current.x = e.clientX;
       target.current.y = e.clientY;
@@ -45,7 +56,9 @@ export default function CustomCursor() {
       cancelAnimationFrame(raf.current);
       clearTimeout(idleTimer.current);
     };
-  }, []);
+  }, [isMobile]);
+
+  if (isMobile) return null;
 
   return <div ref={glowRef} className="cursor-glow" />;
 }

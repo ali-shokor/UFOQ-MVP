@@ -3,7 +3,7 @@ export const packages = [
     id: "full-bundle",
     name: "Full Bundle",
     subtitle: "Full Semester · All Courses",
-    price: 120,
+    price: 119,
     originalPrice: 300,
     currency: "$",
     period: "one-time",

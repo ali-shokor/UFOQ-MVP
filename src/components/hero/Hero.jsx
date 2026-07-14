@@ -118,7 +118,7 @@ export default function Hero() {
                   </div>
                   <div className="hero-trust-text">
                     <span className="hero-trust-label">Flexible Plans</span>
-                    <span className="hero-trust-sub">From $120/semester</span>
+                    <span className="hero-trust-sub">From $119/semester</span>
                   </div>
                 </div>
               </motion.div>
@@ -185,7 +185,7 @@ export default function Hero() {
                   <span className="hero-price-badge">Complete Semester Package</span>
                   <div className="hero-price-amount">
                     <span className="hero-price-dollar">$</span>
-                    <span className="hero-price-num">120</span>
+                    <span className="hero-price-num">119</span>
                   </div>
                   <span className="hero-price-detail">All courses · Lifetime access</span>
                 </div>
@@ -391,6 +391,30 @@ export default function Hero() {
         </motion.div>
         )}
       </div>
+
+      <motion.button
+        className="hero-scroll-btn"
+        onClick={() => {
+          const next = document.querySelector(".hero + section, .problem-solution, main > section:nth-of-type(2)");
+          next?.scrollIntoView({ behavior: "smooth" });
+        }}
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.2, duration: 0.5 }}
+        aria-label="Scroll down"
+      >
+        <span className="hero-scroll-ring">
+          <span className="hero-scroll-mouse">
+            <span className="hero-scroll-wheel" />
+          </span>
+        </span>
+        <span className="hero-scroll-text">Scroll</span>
+        <span className="hero-scroll-arrows">
+          <span className="hero-scroll-arrow hero-scroll-arrow-1" />
+          <span className="hero-scroll-arrow hero-scroll-arrow-2" />
+          <span className="hero-scroll-arrow hero-scroll-arrow-3" />
+        </span>
+      </motion.button>
     </section>
   );
 }

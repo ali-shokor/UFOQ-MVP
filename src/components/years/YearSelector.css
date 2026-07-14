@@ -216,19 +216,25 @@
   }
   .year-tab {
     flex: 1;
-    padding: 10px 12px;
-    gap: 8px;
+    padding: 10px 8px;
+    gap: 6px;
     justify-content: center;
+    white-space: nowrap;
+    min-width: 0;
   }
   .year-tab-number {
-    width: 28px;
-    height: 28px;
-    font-size: 0.75rem;
+    width: 26px;
+    height: 26px;
+    font-size: 0.72rem;
     border-radius: 8px;
+    flex-shrink: 0;
   }
-  .year-tab-label { font-size: 0.78rem; }
+  .year-tab-info {
+    text-align: center;
+    min-width: 0;
+  }
+  .year-tab-label { font-size: 0.72rem; white-space: nowrap; }
   .year-tab-desc { display: none; }
-  .year-tab-info { text-align: center; }
   .majors-grid { grid-template-columns: 1fr; }
   .majors-show-more { display: inline-flex; }
 }

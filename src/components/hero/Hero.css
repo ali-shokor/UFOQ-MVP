@@ -62,6 +62,20 @@
   animation: orbDrift1 18s ease-in-out infinite reverse;
 }
 
+/* light theme orbs — baby blue family */
+[data-theme="light"] .hero-orb-purple {
+  background: radial-gradient(circle, rgba(2, 165, 201, 0.18), transparent 65%);
+}
+[data-theme="light"] .hero-orb-blue {
+  background: radial-gradient(circle, rgba(2, 78, 149, 0.15), transparent 65%);
+}
+[data-theme="light"] .hero-orb-violet {
+  background: radial-gradient(circle, rgba(1, 197, 207, 0.12), transparent 65%);
+}
+[data-theme="light"] .hero-orb-deep {
+  background: radial-gradient(circle, rgba(253, 120, 23, 0.07), transparent 65%);
+}
+
 .hero-aurora {
   position: absolute;
   inset: 0;
@@ -70,6 +84,15 @@
     radial-gradient(ellipse 60% 40% at 80% 20%, rgba(139, 92, 246, 0.1), transparent),
     radial-gradient(ellipse 50% 30% at 50% 50%, rgba(167, 139, 250, 0.06), transparent),
     radial-gradient(ellipse 70% 35% at 50% 95%, var(--accent-wash), transparent);
+  animation: auroraPulse 12s ease-in-out infinite alternate;
+}
+
+[data-theme="light"] .hero-aurora {
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 80%, rgba(2, 165, 201, 0.1), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 20%, rgba(2, 78, 149, 0.08), transparent),
+    radial-gradient(ellipse 50% 30% at 50% 50%, rgba(1, 197, 207, 0.05), transparent),
+    radial-gradient(ellipse 70% 35% at 50% 95%, rgba(253, 120, 23, 0.04), transparent);
   animation: auroraPulse 12s ease-in-out infinite alternate;
 }
 
@@ -86,8 +109,10 @@
 }
 
 [data-theme="light"] .hero-grid-pattern {
-  --grid-line: rgba(2, 78, 149, 0.15);
-  opacity: 0.5;
+  --grid-line: rgba(2, 78, 149, 0.2);
+  mask-image: radial-gradient(ellipse 85% 75% at 50% 40%, black 10%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 40%, black 10%, transparent 100%);
+  opacity: 0.35;
 }
 
 .hero-noise-overlay {
@@ -661,6 +686,17 @@
   .hero-price-num { font-size: 1.5rem; }
   .hero-price-detail { font-size: 0.65rem; }
   .hero-visual { display: none; }
+
+  .hero-gradient-orb {
+    animation-play-state: paused !important;
+  }
+  .hero-aurora {
+    animation: none;
+    opacity: 0.4;
+  }
+  .hero-grid-pattern {
+    opacity: 0.15;
+  }
 }
 
 @media (max-width: 480px) {
@@ -885,20 +921,8 @@
 [data-theme="light"] .hero-orb-teal,
 [data-theme="light"] .hero-orb-navy,
 [data-theme="light"] .hero-orb-deep {
-  opacity: 0.06;
+  opacity: 0.65;
   filter: blur(70px);
-}
-
-[data-theme="light"] .hero-aurora {
-  opacity: 0.3;
-  background: linear-gradient(135deg, rgba(2, 78, 149, 0.08), rgba(1, 168, 187, 0.05), transparent 50%);
-}
-
-[data-theme="light"] .hero-grid-pattern {
-  opacity: 0.1;
-  background-image:
-    linear-gradient(rgba(2, 78, 149, 0.12) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(2, 78, 149, 0.12) 1px, transparent 1px);
 }
 
 [data-theme="light"] .edu-float {
@@ -973,4 +997,147 @@
   border-color: rgba(1, 168, 187, 0.35);
   box-shadow: 0 0 24px rgba(1, 200, 220, 0.2);
   color: #01A8BB;
+}
+
+/* ══════════════════════════════════════
+   SCROLL-DOWN BUTTON
+   ══════════════════════════════════════ */
+.hero-scroll-btn {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hero-scroll-ring {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid rgba(155, 123, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: scrollRingPulse 2.4s ease-in-out infinite;
+  transition: border-color 0.3s;
+}
+
+.hero-scroll-btn:hover .hero-scroll-ring {
+  border-color: var(--accent);
+  box-shadow: 0 0 20px rgba(155, 123, 255, 0.25);
+}
+
+.hero-scroll-mouse {
+  width: 14px;
+  height: 22px;
+  border-radius: 7px;
+  border: 1.5px solid rgba(155, 123, 255, 0.5);
+  display: flex;
+  justify-content: center;
+  padding-top: 4px;
+  transition: border-color 0.3s;
+}
+
+.hero-scroll-btn:hover .hero-scroll-mouse {
+  border-color: var(--accent);
+}
+
+.hero-scroll-wheel {
+  width: 2px;
+  height: 6px;
+  border-radius: 1px;
+  background: var(--accent);
+  animation: scrollWheel 1.8s ease-in-out infinite;
+}
+
+.hero-scroll-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  opacity: 0.6;
+  transition: opacity 0.3s, color 0.3s;
+}
+
+.hero-scroll-btn:hover .hero-scroll-text {
+  opacity: 1;
+  color: var(--accent);
+}
+
+.hero-scroll-arrows {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  margin-top: -6px;
+}
+
+.hero-scroll-arrow {
+  width: 8px;
+  height: 8px;
+  border-right: 1.5px solid var(--text-tertiary);
+  border-bottom: 1.5px solid var(--text-tertiary);
+  transform: rotate(45deg);
+  opacity: 0;
+  animation: scrollArrowFade 2s ease-in-out infinite;
+}
+
+.hero-scroll-arrow-1 { animation-delay: 0s; }
+.hero-scroll-arrow-2 { animation-delay: 0.2s; }
+.hero-scroll-arrow-3 { animation-delay: 0.4s; }
+
+@keyframes scrollRingPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(155, 123, 255, 0.15); }
+  50% { box-shadow: 0 0 0 8px rgba(155, 123, 255, 0); }
+}
+
+@keyframes scrollWheel {
+  0% { transform: translateY(0); opacity: 1; }
+  60% { transform: translateY(4px); opacity: 0.3; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes scrollArrowFade {
+  0%, 100% { opacity: 0; transform: rotate(45deg) translateY(-2px); }
+  50% { opacity: 0.6; transform: rotate(45deg) translateY(2px); }
+}
+
+/* light theme */
+[data-theme="light"] .hero-scroll-ring {
+  border-color: rgba(2, 78, 149, 0.25);
+}
+[data-theme="light"] .hero-scroll-btn:hover .hero-scroll-ring {
+  border-color: #024E95;
+  box-shadow: 0 0 20px rgba(2, 78, 149, 0.2);
+}
+[data-theme="light"] .hero-scroll-mouse {
+  border-color: rgba(2, 78, 149, 0.4);
+}
+[data-theme="light"] .hero-scroll-btn:hover .hero-scroll-mouse {
+  border-color: #024E95;
+}
+[data-theme="light"] .hero-scroll-wheel {
+  background: #024E95;
+}
+[data-theme="light"] .hero-scroll-arrow {
+  border-color: rgba(2, 78, 149, 0.3);
+}
+
+/* mobile */
+@media (max-width: 1024px) {
+  .hero-scroll-btn {
+    display: none;
+  }
 }

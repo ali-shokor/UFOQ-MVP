@@ -10,6 +10,8 @@ import AcademicsPage from "./pages/AcademicsPage";
 import MajorPage from "./pages/MajorPage";
 import PackagesPage from "./pages/PackagesPage";
 import ContactPage from "./pages/ContactPage";
+import TermsPage from "./pages/TermsPage";
+import PrivacyPage from "./pages/PrivacyPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import "./App.css";
 
@@ -36,6 +38,8 @@ export default function App() {
                 <Route path="/academics/:majorId" element={<MajorPage />} />
                 <Route path="/packages" element={<PackagesPage />} />
                 <Route path="/contact" element={<ContactPage />} />
+                <Route path="/terms" element={<TermsPage />} />
+                <Route path="/privacy" element={<PrivacyPage />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Routes>
             </Layout>

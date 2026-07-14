@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useSearchParams } from "react-router-dom";
-import { Package, Layers } from "lucide-react";
+import { useSearchParams, useNavigate } from "react-router-dom";
+import { Package, Layers, X, ArrowRight } from "lucide-react";
 import CourseCard from "./CourseCard";
 import { useCart } from "../../context/CartContext";
 import { getCourses, getAvailableSemesters, getAvailableYears } from "../../data/courses";
@@ -9,9 +9,12 @@ import "./SemesterView.css";
 
 export default function SemesterView({ majorId = "cs" }) {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const initialYear = parseInt(searchParams.get("year")) || 2;
   const [selectedYear, setSelectedYear] = useState(initialYear);
   const [selectedSemester, setSelectedSemester] = useState(1);
+  const coursesGridRef = useRef(null);
+  const [showFullBundleModal, setShowFullBundleModal] = useState(false);
   const {
     addCourse, removeCourse, isCourseSelected, selectedCourses,
     isBundleActive, setBundleActive, setBundleInactive,
@@ -58,6 +61,7 @@ export default function SemesterView({ majorId = "cs" }) {
       availableCourses.forEach((c) => removeCourse(c.code));
     } else {
       setBundleActive(availableCourses, selectedYear, selectedSemester);
+      setShowFullBundleModal(true);
     }
   };
 
@@ -66,6 +70,9 @@ export default function SemesterView({ majorId = "cs" }) {
       setHalfBundleInactive();
     } else {
       setHalfBundleActive([]);
+      setTimeout(() => {
+        coursesGridRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 150);
     }
   };
 
@@ -144,7 +151,7 @@ export default function SemesterView({ majorId = "cs" }) {
                 </div>
                 <div className="bundle-row-price">
                   <span className="bundle-row-currency bundle-row-currency-gold">$</span>
-                  <span className="bundle-row-amount bundle-row-amount-gold">99</span>
+                  <span className="bundle-row-amount bundle-row-amount-gold">119</span>
                 </div>
                 <span className="bundle-row-cta bundle-row-cta-gold">
                   {allSelected ? "Active ✓" : "Get Bundle"}
@@ -173,7 +180,7 @@ export default function SemesterView({ majorId = "cs" }) {
                 </div>
                 <div className="bundle-row-price">
                   <span className="bundle-row-currency">$</span>
-                  <span className="bundle-row-amount">59</span>
+                  <span className="bundle-row-amount">79</span>
                 </div>
                 <span className="bundle-row-cta">
                   {isHalfBundleActive ? "Active ✓" : "Get Bundle"}
@@ -222,6 +229,7 @@ export default function SemesterView({ majorId = "cs" }) {
 
         <AnimatePresence mode="wait">
           <motion.div
+            ref={coursesGridRef}
             key={`${selectedYear}-${selectedSemester}`}
             className="courses-grid"
             initial={{ opacity: 0, y: 20 }}
@@ -267,6 +275,59 @@ export default function SemesterView({ majorId = "cs" }) {
           >
             <span className="bundle-full-toast-icon">&#10003;</span>
             <span>Your credits for this bundle is full</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {showFullBundleModal && (
+          <motion.div
+            className="bundle-modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowFullBundleModal(false)}
+          >
+            <motion.div
+              className="bundle-modal"
+              initial={{ opacity: 0, scale: 0.92, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.92, y: 20 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                className="bundle-modal-close"
+                onClick={() => setShowFullBundleModal(false)}
+                aria-label="Close"
+              >
+                <X size={18} />
+              </button>
+              <div className="bundle-modal-icon">
+                <Package size={28} />
+              </div>
+              <h3 className="bundle-modal-title">Courses Selected</h3>
+              <p className="bundle-modal-desc">
+                Your courses for this semester are now selected. Would you like to proceed to checkout?
+              </p>
+              <div className="bundle-modal-actions">
+                <button
+                  className="bundle-modal-btn bundle-modal-btn-primary"
+                  onClick={() => {
+                    setShowFullBundleModal(false);
+                    navigate("/contact");
+                  }}
+                >
+                  <span>Proceed to Checkout</span>
+                  <ArrowRight size={16} />
+                </button>
+                <button
+                  className="bundle-modal-btn bundle-modal-btn-secondary"
+                  onClick={() => setShowFullBundleModal(false)}
+                >
+                  Stay Here
+                </button>
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
